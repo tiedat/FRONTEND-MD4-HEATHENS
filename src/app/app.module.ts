@@ -14,15 +14,23 @@ import { RegisterComponent } from './component/register/register.component';
 import { LoginComponent } from './component/login/login.component';
 import { MiniplayerComponent } from './component/miniplayer/miniplayer.component';
 
+<<<<<<< HEAD
+=======
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+>>>>>>> play music
 
 @NgModule({
   declarations: [
     AppComponent,
+<<<<<<< HEAD
     HomepageComponent,
     NotFoundComponent,
     RegisterComponent,
     LoginComponent,
     MiniplayerComponent,
+=======
+>>>>>>> play music
   ],
   imports: [
     BrowserModule,
