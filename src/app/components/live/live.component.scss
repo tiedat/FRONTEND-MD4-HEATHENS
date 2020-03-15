@@ -41,3 +41,44 @@ body {
   height: 150px;
   max-width: 95%;
 }
+li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
+.number.special-1 {
+  width: 32px;
+  height: 32px;
+  font-size: 20px;
+  border: #e74c3c solid 1px;
+  margin: 66px 0 0 0;
+  line-height: 32px;
+  background: #e74c3c;
+  color: #FFFFFF;
+  position: absolute;
+}
+.info_data {
+  float: left;
+  width: 253px;
+}
+.number.special-2 {
+  width: 31px;
+  height: 31px;
+  font-size: 20px;
+  color: #1abc9c;
+}
+.box_chart_music .list_chart_music li {
+  float: left;
+  width: 300px;
+  margin: 0px 0 10px 0;
+  border-bottom: #f3f3f3 solid 1px;
+  padding: 0 0 10px 0;
+}
+li {
+  list-style: none;
+}
+.box_chart_music .list_chart_music {
+  float: left;
+  width: 300px;
+}
+
+
