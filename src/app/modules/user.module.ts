@@ -4,6 +4,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {LiveComponent} from '../components/live/live.component';
 import {SongService} from '../services/song.service';
 import {SongComponent} from '../components/song/song.component';
+import {UsermanagementComponent} from '../components/usermanagement/usermanagement.component';
+
 
 const routes: Routes = [
   {
@@ -11,11 +13,14 @@ const routes: Routes = [
   },
   {
     path: 'song', component: SongComponent
+  },
+  {
+    path: 'management', component: UsermanagementComponent
   }
 ];
 
 @NgModule({
-  declarations: [LiveComponent, SongComponent],
+  declarations: [LiveComponent, SongComponent, UsermanagementComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes)
