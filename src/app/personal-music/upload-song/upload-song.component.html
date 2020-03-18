@@ -1,0 +1,72 @@
+
+
+
+<div class="col-6" style="margin-top: 5px">
+  <div *ngIf="isShow"
+       class="alert {{ (isSuccess) ? 'alert-success' : 'alert-danger' }}"
+       role="alert">
+    {{message}}
+  </div>
+</div>
+
+
+<div style="margin-top: 5px">
+  <form class="row justify-content-md-center" novalidate (ngSubmit)="uploadSong()" [formGroup]="songUploadForm">
+    <div class="col-md-8">
+
+
+
+      <div class="form-group row">
+        <label for="name-input" class="col-3 col-form-label">
+          Tên bài hát:
+        </label>
+        <div class="col-9">
+          <input class="form-control" type="text" id="name-input" formControlName="name">
+        </div>
+      </div>
+
+
+
+      <div class="form-group row">
+        <label for="description-input" class="col-3 col-form-label">
+          Mô tả:
+        </label>
+        <div class="col-9">
+          <input class="form-control" type="text-area" id="description-input" formControlName="descriptionSong">
+        </div>
+      </div>
+
+
+
+      <div class="form-group row">
+        <label for="mp3-input" class="col-3 col-form-label">
+          Thêm file Mp3:
+        </label>
+        <div class="col-9">
+          <input class="form-control" type="file" multiple="multiple"
+                 id="mp3-input" formControlName="fileMp3"
+                 (change)="uploadFileMP3($event)">
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <label for="img-input" class="col-3 col-form-label">
+          Thêm file ảnh:
+        </label>
+        <div class="col-9">
+          <input class="form-control" type="file" multiple="multiple"
+                 id="img-input" formControlName="image"
+                 (change)="uploadFileImg($event)">
+        </div>
+      </div>
+
+
+      <button type="submit" class="btn btn-primary">
+        Thêm
+      </button>
+    </div>
+  </form>
+
+</div>
+
