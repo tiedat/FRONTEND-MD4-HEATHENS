@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
@@ -19,6 +20,15 @@ import { MiniplayerComponent } from './component/miniplayer/miniplayer.component
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 >>>>>>> play music
+=======
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import {environment} from '../environments/environment';
+>>>>>>> xxx
 
 @NgModule({
   declarations: [
@@ -35,12 +45,17 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+<<<<<<< HEAD
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireStorageModule,
+=======
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule
+>>>>>>> xxx
   ],
   providers: [],
   bootstrap: [AppComponent]
