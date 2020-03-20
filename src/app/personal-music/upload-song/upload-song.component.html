@@ -8,13 +8,17 @@
     {{message}}
   </div>
 </div>
+<!--<form [formGroup]="songUploadForm" (ngSubmit)="uploadFileMP3()">-->
+<!--<label>File</label>-->
+<!--<input type="file" (change)="showPreview($event)">-->
+<!--<div *ngIf="audio"></div>-->
+<!--<audio controls src="{{audio}}"></audio>-->
+<!--</form>-->
 
 
 <div style="margin-top: 5px">
-  <form class="row justify-content-md-center" novalidate (ngSubmit)="uploadSong()" [formGroup]="songUploadForm">
+  <form class="row justify-content-md-center" novalidate (ngSubmit)="NgSubmit()" [formGroup]="songUploadForm">
     <div class="col-md-8">
-
-
 
       <div class="form-group row">
         <label for="name-input" class="col-3 col-form-label">
@@ -24,7 +28,6 @@
           <input class="form-control" type="text" id="name-input" formControlName="name">
         </div>
       </div>
-
 
 
       <div class="form-group row">
@@ -37,36 +40,29 @@
       </div>
 
 
-
       <div class="form-group row">
-        <label for="mp3-input" class="col-3 col-form-label">
-          Thêm file Mp3:
-        </label>
-        <div class="col-9">
-          <input class="form-control" type="file" multiple="multiple"
-                 id="mp3-input" formControlName="fileMp3"
-                 (change)="uploadFileMP3($event)">
+        <label>FileMp3</label>
+        <input type="file" (change)="showPreviewMp3($event)">
+        <div *ngIf="checkMp3Null">
+          <audio controls src="{{audio}}"></audio>
         </div>
       </div>
 
-
       <div class="form-group row">
-        <label for="img-input" class="col-3 col-form-label">
-          Thêm file ảnh:
-        </label>
-        <div class="col-9">
-          <input class="form-control" type="file" multiple="multiple"
-                 id="img-input" formControlName="image"
-                 (change)="uploadFileImg($event)">
+        <label>FileImage</label>
+        <input type="file" (change)="showPreviewImage($event)">
+        <div *ngIf="checkImageNull">
+          <img src="{{imageUrl}}" height="125" width="100">
         </div>
       </div>
 
+      <div class="form-group row">
+        <button class="btn btn-primary" type="submit">Cập nhật</button>
+      </div>
 
-      <button type="submit" class="btn btn-primary">
-        Thêm
-      </button>
     </div>
   </form>
 
 </div>
+
 

@@ -2,12 +2,14 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
-
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AngularFireStorage} from '@angular/fire/storage';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HomepageComponent} from './component/homepage/homepage.component';
 import {NotFoundComponent} from './component/not-found/not-found.component';
+import {environment} from '../environments/environment';
 
 
 @NgModule({
@@ -21,7 +23,10 @@ import {NotFoundComponent} from './component/not-found/not-found.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireStorage
   ],
   providers: [],
   bootstrap: [AppComponent]
