@@ -53,6 +53,7 @@ export class UploadSongComponent implements OnInit {
   NgSubmit() {
     this.song.name = this.songUploadForm.get('name').value;
     this.song.descriptionSong = this.songUploadForm.get('descriptionSong').value;
+    this.userService.createSong(this.song);
     this.uploadFileMP3();
     this.uploadFileImage();
     console.log(this.song);

@@ -4,7 +4,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
-import {AngularFireStorage} from '@angular/fire/storage';
+import {AngularFireStorage, AngularFireStorageModule} from '@angular/fire/storage';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HomepageComponent} from './component/homepage/homepage.component';
@@ -26,7 +26,7 @@ import {environment} from '../environments/environment';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireStorage
+    AngularFireStorageModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
