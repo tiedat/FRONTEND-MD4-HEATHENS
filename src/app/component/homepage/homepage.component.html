@@ -1,0 +1,11 @@
+<p>homepage works!</p>
+<tbody class="table-hover" *ngFor="let song of songList">
+<tr>
+  <td>
+    <img [src]="song.image" style="width: 100px" height="100px">
+  </td>
+  <td >
+    <audio controls [src]="song.fileMp3" ></audio>
+  </td>
+</tr>
+</tbody>

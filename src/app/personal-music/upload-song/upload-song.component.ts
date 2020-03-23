@@ -1,0 +1,123 @@
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../../services/user.service';
+import * as firebase from 'firebase';
+import {finalize} from 'rxjs/operators';
+import {ISong} from '../../interface/song';
+import {AngularFireStorage} from '@angular/fire/storage';
+@Component({
+  selector: 'app-upload-song',
+  templateUrl: './upload-song.component.html',
+  styleUrls: ['./upload-song.component.scss']
+})
+export class UploadSongComponent implements OnInit {
+  percentLoadingMp3;
+  percentLoadingImg;
+  showLoadingMp3 = false;
+  showLoadingImg = false;
+  imageUrl = null;
+  songUploadForm: FormGroup;
+  message: string;
+  isShow = false;
+  isSuccess = true;
+  isLoading = false;
+  selectedAudio = null;
+  selectedImage = null;
+  audio = null;
+  checkImageNull = false;
+  checkMp3Null = false;
+  song: ISong = {
+    name: '',
+    descriptionSong: '',
+    fileMp3: '',
+    image: '',
+    numberOfPlays : 0,
+  };
+
+  constructor(private userService: UserService,
+              private fb: FormBuilder,
+              private storage: AngularFireStorage) {
+  }
+
+  ngOnInit() {
+    this.songUploadForm = this.fb.group({
+      name: '',
+      descriptionSong: '',
+      fileMp3: '',
+      image: '',
+      numberOfPlays : 0,
+    });
+  }
+
+  NgSubmit() {
+    this.isLoading = true;
+    this.song.name = this.songUploadForm.get('name').value;
+    this.song.descriptionSong = this.songUploadForm.get('descriptionSong').value;
+    this.uploadFileMP3();
+    this.uploadFileImage();
+    console.log(this.song);
+    this.userService.createSong(this.song).subscribe( result => {
+      this.isShow = true;
+      this.isSuccess = true;
+      this.message = 'Thêm thành công!';
+      this.isLoading = false;
+    }, error => {
+      this.isShow = true;
+      this.isSuccess = false;
+      this.message = 'Thêm thất bại!';
+      this.isLoading = false;
+    });
+  }
+  uploadFileMP3() {
+    const filePathMp3 = `audio/${this.selectedAudio.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+    const fileRefMp3 = this.storage.ref(filePathMp3);
+    this.storage.upload(filePathMp3, this.selectedAudio).snapshotChanges().pipe(
+      finalize(() => {
+        fileRefMp3.getDownloadURL().subscribe(url => {
+          this.audio = url;
+          this.song.fileMp3 = url;
+          this.percentLoadingMp3 = 'width: 100%';
+          this.showLoadingMp3 = true;
+        });
+      })
+    ).subscribe();
+  }
+  uploadFileImage() {
+    const filePathImage = `image/${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+    const fileRefImage = this.storage.ref(filePathImage);
+    this.storage.upload(filePathImage, this.selectedImage).snapshotChanges().pipe(
+      finalize(() => {
+        fileRefImage.getDownloadURL() .subscribe( url => {
+          this.imageUrl = url;
+          this.song.image = url;
+        });
+      })
+    ).subscribe();
+  }
+  showPreviewMp3(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      this.percentLoadingMp3 = 'width: 25%';
+      reader.onload = (e: any) => this.audio = e.target.result;
+      reader.readAsDataURL(event.target.files[0]);
+      this.selectedAudio = event.target.files[0];
+      this.checkMp3Null = true;
+      this.uploadFileMP3();
+    } else {
+      this.audio = '../../assets/img/Placeholder.jpg';
+      this.selectedAudio = null;
+    }
+  }
+  showPreviewImage(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => this.imageUrl = e.target.result;
+      reader.readAsDataURL(event.target.files[0]);
+      this.selectedImage = event.target.files[0];
+      this.checkImageNull = true;
+    } else {
+      this.imageUrl = '../../../assets/img/Placeholder.jpg';
+      this.selectedImage = null;
+    }
+  }
+}

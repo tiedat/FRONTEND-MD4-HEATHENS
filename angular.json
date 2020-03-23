@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "FRONT-END-MD4-HEATHENS"
+    }
+  },
+  "defaultProject": "FRONT-END-MD4-HEATHENS",
+  "cli": {
+    "analytics": "6d8327fd-454a-4699-8d78-107e78747a22"
+  }
 }
