@@ -77,7 +77,6 @@ export class UploadSongComponent implements OnInit {
           this.audio = url;
           this.song.fileMp3 = url;
           this.percentLoadingMp3 = 'width: 100%';
-          this.showLoadingMp3 = true;
         });
       })
     ).subscribe();
@@ -90,6 +89,7 @@ export class UploadSongComponent implements OnInit {
         fileRefImage.getDownloadURL() .subscribe( url => {
           this.imageUrl = url;
           this.song.image = url;
+          this.percentLoadingImg = 'width: 100%';
         });
       })
     ).subscribe();
@@ -102,6 +102,7 @@ export class UploadSongComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
       this.selectedAudio = event.target.files[0];
       this.checkMp3Null = true;
+      this.showLoadingMp3 = true;
       this.uploadFileMP3();
     } else {
       this.audio = '../../assets/img/Placeholder.jpg';
@@ -111,10 +112,13 @@ export class UploadSongComponent implements OnInit {
   showPreviewImage(event: any) {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
+      this.percentLoadingImg = 'width: 25%';
       reader.onload = (e: any) => this.imageUrl = e.target.result;
       reader.readAsDataURL(event.target.files[0]);
       this.selectedImage = event.target.files[0];
       this.checkImageNull = true;
+      this.showLoadingImg = true;
+      this.uploadFileImage();
     } else {
       this.imageUrl = '../../../assets/img/Placeholder.jpg';
       this.selectedImage = null;

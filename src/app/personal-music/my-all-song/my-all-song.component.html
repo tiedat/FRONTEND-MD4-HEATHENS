@@ -1,0 +1,33 @@
+<table class="table table-dark">
+  <thead class="">
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Tên bài hát</th>
+    <th scope="col">Ảnh</th>
+    <th scope="col">Nhạc</th>
+    <th scope="col">Chỉnh sửa</th>
+    <th scope="row">xóa</th>
+  </tr>
+  </thead>
+  <tbody class="table-hover" *ngFor="let song of songList, index as i">
+    <tr>
+      <td>{{i+1}}</td>
+      <td>
+        {{song.name}}
+      </td>
+      <td>
+        <img [src]="song.image" style="width: 100px" height="100px">
+      </td>
+      <td >
+        <audio controls [src]="song.fileMp3" ></audio>
+      </td>
+      <td>
+        Edit
+      </td>
+      <td>
+        <button type="button" class="btn btn-danger btn-sm" (click)="deleteSong(i)">Xoá</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+

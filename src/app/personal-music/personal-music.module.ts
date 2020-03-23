@@ -7,10 +7,11 @@ import {UploadSongComponent} from './upload-song/upload-song.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { MyAllSongComponent } from './my-all-song/my-all-song.component';
+import { EditSongComponent } from './edit-song/edit-song.component';
 
 
 @NgModule({
-  declarations: [PersonalMusicComponent, UploadSongComponent, MyAllSongComponent],
+  declarations: [PersonalMusicComponent, UploadSongComponent, MyAllSongComponent, EditSongComponent],
   imports: [
     CommonModule,
     PersonalMusicRoutingModule,
