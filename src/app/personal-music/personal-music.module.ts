@@ -6,10 +6,11 @@ import {PersonalMusicComponent} from './personal-music.component';
 import {UploadSongComponent} from './upload-song/upload-song.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { MyAllSongComponent } from './my-all-song/my-all-song.component';
 
 
 @NgModule({
-  declarations: [PersonalMusicComponent, UploadSongComponent],
+  declarations: [PersonalMusicComponent, UploadSongComponent, MyAllSongComponent],
   imports: [
     CommonModule,
     PersonalMusicRoutingModule,
