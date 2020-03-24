@@ -6,7 +6,7 @@
     <th scope="col">Ảnh</th>
     <th scope="col">Nhạc</th>
     <th scope="col">Chỉnh sửa</th>
-    <th scope="row">xóa</th>
+    <th scope="row">Xóa</th>
   </tr>
   </thead>
   <tbody class="table-hover" *ngFor="let song of songList, index as i">
@@ -22,7 +22,7 @@
         <audio controls [src]="song.fileMp3" ></audio>
       </td>
       <td>
-        Edit
+        <button type="button" class="btn btn-warning btn-sm" routerLink='edit/{{song.id}}'>Sửa</button>
       </td>
       <td>
         <button type="button" class="btn btn-danger btn-sm" (click)="deleteSong(i)">Xoá</button>

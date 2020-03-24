@@ -59,12 +59,12 @@ export class UploadSongComponent implements OnInit {
     this.userService.createSong(this.song).subscribe( result => {
       this.isShow = true;
       this.isSuccess = true;
-      this.message = 'Thêm thành công!';
+      this.message = 'Tạo thành công!';
       this.isLoading = false;
     }, error => {
       this.isShow = true;
       this.isSuccess = false;
-      this.message = 'Thêm thất bại!';
+      this.message = 'Tạo thất bại!';
       this.isLoading = false;
     });
   }
