@@ -3,6 +3,7 @@
   <tr>
     <th scope="col">ID</th>
     <th scope="col">Tên bài hát</th>
+    <th scope="col">Mô tả</th>
     <th scope="col">Ảnh</th>
     <th scope="col">Nhạc</th>
     <th scope="col">Chỉnh sửa</th>
@@ -14,6 +15,9 @@
       <td>{{i+1}}</td>
       <td>
         {{song.name}}
+      </td>
+      <td>
+        {{song.descriptionSong}}
       </td>
       <td>
         <img [src]="song.image" style="width: 100px" height="100px">
