@@ -41,7 +41,7 @@ export class UploadSongComponent implements OnInit {
 
   ngOnInit() {
     this.songUploadForm = this.fb.group({
-      name: '',
+      name: this.fb.control('', [Validators.required]),
       descriptionSong: '',
       fileMp3: '',
       image: '',

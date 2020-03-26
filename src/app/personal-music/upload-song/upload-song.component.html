@@ -27,6 +27,11 @@
         <div class="col-9">
           <input class="form-control" type="text" id="name-input" formControlName="name">
         </div>
+        <div class="col alert alert-danger" role="alert"
+             *ngIf="songUploadForm.controls.name?.errors?.required
+         && songUploadForm.controls.name?.touched">
+          Name is required!
+        </div>
       </div>
 
 

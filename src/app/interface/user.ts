@@ -1,11 +1,12 @@
-import {EnumValue} from '@angular/compiler-cli/src/ngtsc/partial_evaluator';
+import {Gender} from './gender';
+
 
 export interface User {
   id?: number;
   username?: string;
   password?: string;
   fullName?: string;
-  gender: Gender;
+  gender?: Gender;
   dayOfBirth?: Date;
   email?: string;
 }
