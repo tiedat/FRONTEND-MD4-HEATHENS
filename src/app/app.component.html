@@ -53,7 +53,7 @@
           <input type="text" class="search-query form-control" placeholder="Tìm kiếm theo họ và tên đệm"
                  formcontrolname="departmentName" style="width: 400px">
           <span class="input-group-btn">
-                        <button class="btn btn-danger" type="button" style="width: 200px">
+                        <button class="btn btn-danger" type="button" style="width: 50px">
                                 <i class="fas fa-search"></i>
                         </button>
           </span>
@@ -62,13 +62,12 @@
       </form>
     </div>
     <div class="row col-4">
-      <div>
-        <label>Username</label>
-        <input type="text">
-      </div>
-      <div>
-        <label>Password</label>
-        <input type="text">
+      <a class="nav-link dropdown-toggle" href="#" style="color: black" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-user"></i>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" routerLink="/login">Đăng nhập</a>
+        <a class="dropdown-item" routerLink="/register">Đăng kí</a>
       </div>
     </div>
   </div>
