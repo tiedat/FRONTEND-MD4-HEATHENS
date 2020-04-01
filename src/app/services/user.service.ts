@@ -1,41 +1,35 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ISong} from '../interface/song';
-import {HttpClient} from '@angular/common/http';
+import {IUser} from '../interface/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
-  private readonly API_URL = 'http://localhost:5000/api/songs/';
+  private readonly API_URL = 'http://localhost:5000/api/users/';
 
   constructor(private httpClient: HttpClient) {
   }
-
-  /* ---------------- GET ALL SONG ------------------------ */
-  public getAllSong(): Observable<any> {
+  /* ---------------- GET ALL USER ------------------------ */
+  public getAllUser(): Observable<any> {
     return this.httpClient.get(this.API_URL);
   }
-
-  /* ---------------- GET SONG BY ID ------------------------ */
-  public getSong(id: number): Observable<any> {
+  /* ---------------- GET USER BY ID ------------------------ */
+  public getUser(id: number): Observable<any> {
     return this.httpClient.get(this.API_URL + id);
   }
-
-  /* ---------------- DELETE SONG ------------------------ */
-  public deleteSong(id: number): Observable<any> {
+  /* ---------------- DELETE USER ------------------------ */
+  public deleteUser(id: number): Observable<any> {
     return this.httpClient.delete(this.API_URL + id);
   }
-
-  /* ---------------- CREATE SONG ------------------------ */
-  public createSong(song: ISong): Observable<any> {
-    return this.httpClient.post(this.API_URL, song);
+  /* ---------------- CREATE USER ------------------------ */
+  public createUser(user: IUser): Observable<any> {
+    return this.httpClient.post(this.API_URL, user);
   }
-
-  /* ---------------- UPDATE SONG ------------------------ */
-  public updateSong(song: ISong): Observable<any> {
-    return this.httpClient.patch(this.API_URL, song);
+  /* ---------------- UPDATE USER ------------------------ */
+  public updateUser(user: IUser): Observable<any> {
+    return this.httpClient.patch(this.API_URL, user);
   }
-
 }

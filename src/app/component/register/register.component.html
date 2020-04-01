@@ -1,37 +1,54 @@
 <body data-gr-c-s-loaded="true">
-
+<div class="col-6" style="margin-top: 5px">
+  <div *ngIf="isShow"
+       class="alert {{ (isSuccess) ? 'alert-success' : 'alert-danger' }}"
+       role="alert">
+    {{message}}
+  </div>
+</div>
 <div class="container">
-  <form class="form-signin">
+  <form class="form-signin" >
     <div class="row">
       <div class="col-md-2 order-md-1"></div>
       <div class="col-md-8 order-md-1">
         <h4 class="mb-3">Đăng kí</h4>
-        <form class="needs-validation" novalidate="">
+        <form class="needs-validation" novalidate="" (ngSubmit)="NgSubmit()" [formGroup]="userCreatForm">
           <div class="row">
           </div>
           <div class="mb-3">
-              <label for="lastName">Tên</label>
-              <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
-              <div class="invalid-feedback">
-                Valid name is required.
+              <label for="fullName">Tên</label>
+              <input type="text" class="form-control" id="fullName" placeholder="" value="" required="" formControlName="fullName">
+              <div class="col alert alert-danger" role="alert"
+                 *ngIf="userCreatForm.controls.fullName?.errors?.required
+         && userCreatForm.controls.fullName?.touched">
+              Full Name is required!
               </div>
+
+          </div>
+
+          <div class="mb-3">
+            <label for="gender">Giới tính</label>
+            <select class="form-control" id="gender" formControlName="gender">
+              <option value="0">Nam</option>
+              <option value="1">Nữ</option>
+            </select>
           </div>
 
           <div class="mb-3">
             <label for="username">Tên đăng nhập</label>
-            <div class="input-group">
-              <input type="text" class="form-control" id="username" placeholder="Tên đăng nhập" required="">
-              <div class="invalid-feedback" style="width: 100%;">
-                Your username is required.
+              <input type="text" class="form-control" id="username" placeholder="Tên đăng nhập" required="" formControlName="username">
+              <div class="col alert alert-danger" role="alert"
+                   *ngIf="userCreatForm.controls.username?.errors?.required&& userCreatForm.controls.username?.touched">
+                UserName is required!
               </div>
-            </div>
           </div>
 
           <div class="mb-3">
-            <label for="email">Mật khẩu</label>
-            <input type="email" class="form-control" id="email" placeholder="*******">
-            <div class="invalid-feedback">
-              Please enter Password.
+            <label for="password">Mật khẩu</label>
+            <input type="password" class="form-control" id="password" placeholder="*******" formControlName="password">
+            <div class="col alert alert-danger" role="alert"
+                 *ngIf="userCreatForm.controls.username?.errors?.required&& userCreatForm.controls.username?.touched">
+              Password is required!
             </div>
           </div>
 
@@ -43,36 +60,7 @@
   </form>
 </div>
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-<script src="../../assets/js/vendor/popper.min.js"></script>
-<script src="../../dist/js/bootstrap.min.js"></script>
-<script src="../../assets/js/vendor/holder.min.js"></script>
-<script>
-  // Example starter JavaScript for disabling form submissions if there are invalid fields
-  (function() {
-    'use strict';
 
-    window.addEventListener('load', function() {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation');
-
-      // Loop over them and prevent submission
-      var validation = Array.prototype.filter.call(forms, function(form) {
-        form.addEventListener('submit', function(event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-          form.classList.add('was-validated');
-        }, false);
-      });
-    }, false);
-  })();
-</script>
 
 
 </body>

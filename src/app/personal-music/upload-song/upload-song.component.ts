@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {UserService} from '../../services/user.service';
+import {SongService} from '../../services/song.service';
 import * as firebase from 'firebase';
 import {finalize} from 'rxjs/operators';
 import {ISong} from '../../interface/song';
@@ -11,6 +11,7 @@ import {AngularFireStorage} from '@angular/fire/storage';
   styleUrls: ['./upload-song.component.scss']
 })
 export class UploadSongComponent implements OnInit {
+  checkUpload = false;
   percentLoadingMp3;
   percentLoadingImg;
   showLoadingMp3 = false;
@@ -34,7 +35,7 @@ export class UploadSongComponent implements OnInit {
     numberOfPlays : 0,
   };
 
-  constructor(private userService: UserService,
+  constructor(private userService: SongService,
               private fb: FormBuilder,
               private storage: AngularFireStorage) {
   }
@@ -77,6 +78,7 @@ export class UploadSongComponent implements OnInit {
           this.audio = url;
           this.song.fileMp3 = url;
           this.percentLoadingMp3 = 'width: 100%';
+          this.checkUpload = true;
         });
       })
     ).subscribe();
