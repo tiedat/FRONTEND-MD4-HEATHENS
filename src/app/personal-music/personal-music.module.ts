@@ -18,7 +18,7 @@ import { EditSongComponent } from './edit-song/edit-song.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  // providers: [UserService]
+  // providers: [SongService]
 })
 export class PersonalMusicModule {
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ISong} from '../../interface/song';
-import {UserService} from '../../services/user.service';
+import {SongService} from '../../services/song.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {ActivatedRoute} from '@angular/router';
@@ -38,7 +38,7 @@ export class EditSongComponent implements OnInit {
   };
   id;
   songEditForm: FormGroup;
-  constructor(private userService: UserService,
+  constructor(private userService: SongService,
               private fb: FormBuilder,
               private storage: AngularFireStorage,
               private route: ActivatedRoute) { }

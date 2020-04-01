@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../services/user.service';
+import {SongService} from '../../services/song.service';
 
 @Component({
   selector: 'app-homepage',
@@ -8,7 +8,7 @@ import {UserService} from '../../services/user.service';
 })
 export class HomepageComponent implements OnInit {
   songList: any[];
-  constructor(private userService: UserService) { }
+  constructor(private userService: SongService) { }
 
   ngOnInit() {
     this.userService.getAllSong().subscribe( result => {
