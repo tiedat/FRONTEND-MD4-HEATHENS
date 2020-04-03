@@ -10,6 +10,8 @@ import {AppComponent} from './app.component';
 import {HomepageComponent} from './component/homepage/homepage.component';
 import {NotFoundComponent} from './component/not-found/not-found.component';
 import {environment} from '../environments/environment';
+import { RegisterComponent } from './component/register/register.component';
+import { LoginComponent } from './component/login/login.component';
 
 
 @NgModule({
@@ -17,6 +19,8 @@ import {environment} from '../environments/environment';
     AppComponent,
     HomepageComponent,
     NotFoundComponent,
+    RegisterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,78 @@
+<body data-gr-c-s-loaded="true">
+
+<div class="container">
+  <form class="form-signin">
+    <div class="row">
+      <div class="col-md-2 order-md-1"></div>
+      <div class="col-md-8 order-md-1">
+        <h4 class="mb-3">Đăng kí</h4>
+        <form class="needs-validation" novalidate="">
+          <div class="row">
+          </div>
+          <div class="mb-3">
+              <label for="lastName">Tên</label>
+              <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+              <div class="invalid-feedback">
+                Valid name is required.
+              </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="username">Tên đăng nhập</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="username" placeholder="Tên đăng nhập" required="">
+              <div class="invalid-feedback" style="width: 100%;">
+                Your username is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="email">Mật khẩu</label>
+            <input type="email" class="form-control" id="email" placeholder="*******">
+            <div class="invalid-feedback">
+              Please enter Password.
+            </div>
+          </div>
+
+          <button class="btn btn-lg btn-secondary" style="width: 200px" type="submit">Đăng kí</button>
+        </form>
+      </div>
+      <div class="col-md-2 order-md-1"></div>
+    </div>
+  </form>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="../../assets/js/vendor/popper.min.js"></script>
+<script src="../../dist/js/bootstrap.min.js"></script>
+<script src="../../assets/js/vendor/holder.min.js"></script>
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function() {
+    'use strict';
+
+    window.addEventListener('load', function() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+</script>
+
+
+</body>

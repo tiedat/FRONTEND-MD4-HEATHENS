@@ -1,21 +1,21 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {UserService} from '../../services/user.service';
-import * as firebase from 'firebase';
-import {finalize} from 'rxjs/operators';
 import {ISong} from '../../interface/song';
+import {UserService} from '../../services/user.service';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {AngularFireStorage} from '@angular/fire/storage';
+import {ActivatedRoute} from '@angular/router';
+import {finalize} from 'rxjs/operators';
+
 @Component({
-  selector: 'app-upload-song',
-  templateUrl: './upload-song.component.html',
-  styleUrls: ['./upload-song.component.scss']
+  selector: 'app-edit-song',
+  templateUrl: './edit-song.component.html',
+  styleUrls: ['./edit-song.component.scss']
 })
-export class UploadSongComponent implements OnInit {
+export class EditSongComponent implements OnInit {
   percentLoadingMp3;
   percentLoadingImg;
   showLoadingMp3 = false;
   showLoadingImg = false;
-  imageUrl = null;
   songUploadForm: FormGroup;
   message: string;
   isShow = false;
@@ -24,6 +24,9 @@ export class UploadSongComponent implements OnInit {
   selectedAudio = null;
   selectedImage = null;
   audio = null;
+  imageUrl = null;
+  audioOld = null;
+  imageUrlOld = null;
   checkImageNull = false;
   checkMp3Null = false;
   song: ISong = {
@@ -31,43 +34,65 @@ export class UploadSongComponent implements OnInit {
     descriptionSong: '',
     fileMp3: '',
     image: '',
-    numberOfPlays : 0,
+    numberOfPlays: 0,
   };
+  id;
+  songEditForm: FormGroup;
 
   constructor(private userService: UserService,
               private fb: FormBuilder,
-              private storage: AngularFireStorage) {
+              private storage: AngularFireStorage,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.songUploadForm = this.fb.group({
-      name: this.fb.control('', [Validators.required]),
+    this.songEditForm = this.fb.group({
+      name: '',
       descriptionSong: '',
       fileMp3: '',
       image: '',
-      numberOfPlays : 0,
+      numberOfPlays: 0,
+    });
+    this.route.paramMap.subscribe(params => {
+      console.log(params);
+      const idSearch = Number(params.get('id'));
+      console.log(idSearch);
+      this.userService.getSong(idSearch).subscribe(song => {
+        this.song = song.data;
+        console.log(song);
+        console.log(this.song.name);
+        this.songEditForm.controls.name.setValue(this.song.name);
+        this.songEditForm.controls.descriptionSong.setValue(this.song.descriptionSong);
+        this.audioOld = this.song.fileMp3;
+        this.imageUrlOld = this.song.image;
+      });
     });
   }
 
   NgSubmit() {
     this.isLoading = true;
-    this.song.name = this.songUploadForm.get('name').value;
-    this.song.descriptionSong = this.songUploadForm.get('descriptionSong').value;
-    this.uploadFileMP3();
-    this.uploadFileImage();
+    this.song.name = this.songEditForm.get('name').value;
+    this.song.descriptionSong = this.songEditForm.get('descriptionSong').value;
+    if (this.audio != null) {
+      this.uploadFileMP3();
+    }
+    if (this.imageUrl != null) {
+      this.uploadFileImage();
+    }
     console.log(this.song);
-    this.userService.createSong(this.song).subscribe( result => {
+    this.userService.updateSong(this.song).subscribe(result => {
       this.isShow = true;
       this.isSuccess = true;
-      this.message = 'Tạo thành công!';
+      this.message = 'Sửa thành công!';
       this.isLoading = false;
     }, error => {
       this.isShow = true;
       this.isSuccess = false;
-      this.message = 'Tạo thất bại!';
+      this.message = 'Sửa thất bại!';
       this.isLoading = false;
     });
   }
+
   uploadFileMP3() {
     const filePathMp3 = `audio/${this.selectedAudio.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
     const fileRefMp3 = this.storage.ref(filePathMp3);
@@ -81,12 +106,13 @@ export class UploadSongComponent implements OnInit {
       })
     ).subscribe();
   }
+
   uploadFileImage() {
     const filePathImage = `image/${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
     const fileRefImage = this.storage.ref(filePathImage);
     this.storage.upload(filePathImage, this.selectedImage).snapshotChanges().pipe(
       finalize(() => {
-        fileRefImage.getDownloadURL() .subscribe( url => {
+        fileRefImage.getDownloadURL().subscribe(url => {
           this.imageUrl = url;
           this.song.image = url;
           this.percentLoadingImg = 'width: 100%';
@@ -94,6 +120,7 @@ export class UploadSongComponent implements OnInit {
       })
     ).subscribe();
   }
+
   showPreviewMp3(event: any) {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
@@ -109,6 +136,7 @@ export class UploadSongComponent implements OnInit {
       this.selectedAudio = null;
     }
   }
+
   showPreviewImage(event: any) {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();

@@ -47,13 +47,13 @@
                              class="navbar-brand" height="50" width="65"></a>
     </div>
 
-    <div class="row col-10 justify-content-center">
+    <div class="row col-6 justify-content-center">
       <form>
         <div class="input-group col-md-12" style="text-align: center">
           <input type="text" class="search-query form-control" placeholder="Tìm kiếm theo họ và tên đệm"
                  formcontrolname="departmentName" style="width: 400px">
           <span class="input-group-btn">
-                        <button class="btn btn-danger" type="button" style="width: 200px">
+                        <button class="btn btn-danger" type="button" style="width: 50px">
                                 <i class="fas fa-search"></i>
                         </button>
           </span>
@@ -61,12 +61,20 @@
         <br>
       </form>
     </div>
-
+    <div class="row col-4">
+      <a class="nav-link dropdown-toggle" href="#" style="color: black" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-user"></i>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" routerLink="/login">Đăng nhập</a>
+        <a class="dropdown-item" routerLink="/register">Đăng kí</a>
+      </div>
+    </div>
   </div>
 </div>
 
 <div>
-  <nav class="navbar  navbar-expand-lg navbar-dark bg-primary">
+  <nav class="navbar  navbar-expand-lg navbar-dark bg-dark">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
