@@ -7,12 +7,14 @@
         <input type="email" id="inputEmail" class="form-control" placeholder="Username"  required="" autofocus="" formControlName="userName">
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" formControlName="password">
       </div>
-      <button class="btn btn-lg btn-secondary" type="submit" style="width: 100px">Đăng nhập</button>
-      <div *ngIf="isShow"
-           class="alert {{ (isSuccess) ? 'alert-success' : 'alert-danger' }}"
-           role="alert">
-        {{message}}
+      <div class="checkbox mb-3">
       </div>
-    </form>
+      <button class="btn btn-lg btn-secondary" type="submit" style="width: 100px">Đăng nhập</button>
 
+    </form>
+    <div *ngIf="isShow"
+         class="alert {{ (isSuccess) ? 'alert-success' : 'alert-danger' }}"
+         role="alert">
+      {{message}}
+    </div>
 </div>
