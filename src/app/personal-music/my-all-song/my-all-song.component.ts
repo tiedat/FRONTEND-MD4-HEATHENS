@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SongService} from '../../services/song.service';
+import {ActivatedRoute} from '@angular/router';
+import {DataService} from '../../services/data.service';
 
 @Component({
   selector: 'app-my-all-song',
@@ -8,16 +10,24 @@ import {SongService} from '../../services/song.service';
 })
 export class MyAllSongComponent implements OnInit {
   songList: any[];
-  constructor(private userService: SongService) { }
+  username: string;
+  constructor(private songService: SongService,
+              private route: ActivatedRoute,
+              private data: DataService) { }
 
   ngOnInit() {
-    this.userService.getAllSong().subscribe( result => {
-      this.songList = result.data;
+    this.data.currentMessage.subscribe(username => this.username = username);
+    console.log(this.username);
+    this.songService.getAllSongByUser(this.username).subscribe(list => {
+      this.songList = list;
     });
+    // this.route.paramMap.subscribe(param => {
+    //   console.log(param);
+    // });
   }
   deleteSong(i) {
     const song = this.songList[i];
-    this.userService.deleteSong(song.id).subscribe(() => {
+    this.songService.deleteSong(song.id).subscribe(() => {
       this.songList = this.songList.filter(t => t.id !== song.id);
       console.log('Xóa ' + song.id);
     });

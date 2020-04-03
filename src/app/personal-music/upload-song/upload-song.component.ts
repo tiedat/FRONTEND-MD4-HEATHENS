@@ -5,6 +5,7 @@ import * as firebase from 'firebase';
 import {finalize} from 'rxjs/operators';
 import {ISong} from '../../interface/song';
 import {AngularFireStorage} from '@angular/fire/storage';
+import {IUser} from '../../interface/user';
 @Component({
   selector: 'app-upload-song',
   templateUrl: './upload-song.component.html',
