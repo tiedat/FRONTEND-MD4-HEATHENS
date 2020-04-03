@@ -6,6 +6,8 @@ import {finalize} from 'rxjs/operators';
 import {ISong} from '../../interface/song';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {IUser} from '../../interface/user';
+import {DataService} from '../../services/data.service';
+import {UserService} from '../../services/user.service';
 @Component({
   selector: 'app-upload-song',
   templateUrl: './upload-song.component.html',
@@ -28,20 +30,29 @@ export class UploadSongComponent implements OnInit {
   audio = null;
   checkImageNull = false;
   checkMp3Null = false;
+  username;
   song: ISong = {
     name: '',
     descriptionSong: '',
     fileMp3: '',
     image: '',
     numberOfPlays : 0,
+    user: {}
   };
 
-  constructor(private userService: SongService,
+  constructor(private songService: SongService,
               private fb: FormBuilder,
-              private storage: AngularFireStorage) {
+              private storage: AngularFireStorage,
+              private data: DataService,
+              private userService: UserService) {
   }
 
   ngOnInit() {
+    this.data.currentMessage.subscribe(username => this.username = username);
+    this.userService.getUserByUsername(this.username).subscribe(user => {
+      console.log(user);
+      this.song.user = user.data;
+    });
     this.songUploadForm = this.fb.group({
       name: this.fb.control('', [Validators.required]),
       descriptionSong: '',
@@ -58,7 +69,7 @@ export class UploadSongComponent implements OnInit {
     this.uploadFileMP3();
     this.uploadFileImage();
     console.log(this.song);
-    this.userService.createSong(this.song).subscribe( result => {
+    this.songService.createSong(this.song).subscribe( result => {
       this.isShow = true;
       this.isSuccess = true;
       this.message = 'Tạo thành công!';

@@ -9,7 +9,7 @@ import {IUser} from '../interface/user';
 })
 export class SongService {
 
-  private readonly API_URL = 'http://localhost:5000/api/songs/';
+  private readonly API_URL = 'http://localhost:5000/api/songs';
   private readonly API_URL1 = 'http://localhost:5000/api/mysongs';
 
   constructor(private httpClient: HttpClient) {
@@ -27,22 +27,22 @@ export class SongService {
 
   /* ---------------- GET SONG BY ID ------------------------ */
   public getSong(id: number): Observable<any> {
-    return this.httpClient.get(this.API_URL + id);
+    return this.httpClient.get(this.API_URL + '/' + id);
   }
 
   /* ---------------- DELETE SONG ------------------------ */
   public deleteSong(id: number): Observable<any> {
-    return this.httpClient.delete(this.API_URL + id);
+    return this.httpClient.delete(this.API_URL1 + id);
   }
 
   /* ---------------- CREATE SONG ------------------------ */
   public createSong(song: ISong): Observable<any> {
-    return this.httpClient.post(this.API_URL, song);
+    return this.httpClient.post(this.API_URL1, song);
   }
 
   /* ---------------- UPDATE SONG ------------------------ */
   public updateSong(song: ISong): Observable<any> {
-    return this.httpClient.patch(this.API_URL, song);
+    return this.httpClient.patch(this.API_URL1, song);
   }
 
 }

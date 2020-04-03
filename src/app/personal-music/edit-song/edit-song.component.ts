@@ -5,6 +5,8 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {ActivatedRoute} from '@angular/router';
 import {finalize} from 'rxjs/operators';
+import {DataService} from '../../services/data.service';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-edit-song',
@@ -29,19 +31,24 @@ export class EditSongComponent implements OnInit {
   imageUrlOld = null;
   checkImageNull = false;
   checkMp3Null = false;
+  username;
   song: ISong = {
     name: '',
     descriptionSong: '',
     fileMp3: '',
     image: '',
     numberOfPlays : 0,
+    user: {},
   };
   id;
   songEditForm: FormGroup;
-  constructor(private userService: SongService,
+  constructor(private songService: SongService,
               private fb: FormBuilder,
               private storage: AngularFireStorage,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private data: DataService,
+              private userService: UserService,
+  ) { }
   ngOnInit() {
     this.songEditForm = this.fb.group({
       name: '',
@@ -50,11 +57,11 @@ export class EditSongComponent implements OnInit {
       image: '',
       numberOfPlays : 0,
     });
-    this.route.paramMap.subscribe(params =>{
+    this.route.paramMap.subscribe(params => {
         console.log(params);
         const idSearch = Number(params.get('id'));
         console.log(idSearch);
-        this.userService.getSong(idSearch).subscribe(song => {
+        this.songService.getSong(idSearch).subscribe(song => {
           this.song = song.data;
           console.log(song);
           console.log(this.song.name);
@@ -63,6 +70,12 @@ export class EditSongComponent implements OnInit {
           this.audioOld = this.song.fileMp3;
           this.imageUrlOld = this.song.image;
         });
+    });
+    this.data.currentMessage.subscribe(username => this.username = username);
+    this.userService.getUserByUsername(this.username).subscribe(user => {
+      console.log(user);
+      this.song.user = user.data;
+      console.log(this.song);
     });
   }
   NgSubmit() {
@@ -76,7 +89,7 @@ export class EditSongComponent implements OnInit {
       this.uploadFileImage();
     }
     console.log(this.song);
-    this.userService.updateSong(this.song).subscribe( result => {
+    this.songService.updateSong(this.song).subscribe( result => {
       this.isShow = true;
       this.isSuccess = true;
       this.message = 'Sửa thành công!';

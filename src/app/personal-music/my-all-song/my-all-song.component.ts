@@ -16,10 +16,13 @@ export class MyAllSongComponent implements OnInit {
               private data: DataService) { }
 
   ngOnInit() {
-    this.data.currentMessage.subscribe(username => this.username = username);
+    this.data.currentMessage.subscribe(username => {
+      console.log(username);
+      this.username = username;
+    });
     console.log(this.username);
     this.songService.getAllSongByUser(this.username).subscribe(list => {
-      this.songList = list;
+      this.songList = list.data;
     });
     // this.route.paramMap.subscribe(param => {
     //   console.log(param);
