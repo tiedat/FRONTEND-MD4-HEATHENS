@@ -32,7 +32,7 @@ export class SongService {
 
   /* ---------------- DELETE SONG ------------------------ */
   public deleteSong(id: number): Observable<any> {
-    return this.httpClient.delete(this.API_URL1 + id);
+    return this.httpClient.delete(this.API_URL1 + '/' + id);
   }
 
   /* ---------------- CREATE SONG ------------------------ */
