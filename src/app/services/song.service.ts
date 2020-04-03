@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {ISong} from '../interface/song';
 import {HttpClient} from '@angular/common/http';
+import {IUser} from '../interface/user';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import {HttpClient} from '@angular/common/http';
 export class SongService {
 
   private readonly API_URL = 'http://localhost:5000/api/songs/';
+  private readonly API_URL1 = 'http://localhost:5000/api/mysongs';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -16,6 +18,11 @@ export class SongService {
   /* ---------------- GET ALL SONG ------------------------ */
   public getAllSong(): Observable<any> {
     return this.httpClient.get(this.API_URL);
+  }
+
+  /* ---------------- GET ALL MY SONG ------------------------ */
+  public getAllSongByUser(username: string): Observable<any> {
+    return this.httpClient.get(this.API_URL1 + '?username=' + username);
   }
 
   /* ---------------- GET SONG BY ID ------------------------ */

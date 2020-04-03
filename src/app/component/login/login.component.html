@@ -1,18 +1,18 @@
 <div class="text-center" >
 
-    <form class="form-signin" >
+    <form class="form-signin" [formGroup]="formGroup" (ngSubmit)="checkUser()">
       <img class="mb-4" src="https://i.pinimg.com/236x/54/00/da/5400da31bbbbe463628d6a727ae69b23.jpg" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Đăng nhập</h1>
       <div class="btn btn-lg " style="width: 500px">
-        <input type="email" id="inputEmail" class="form-control" placeholder="Username"  required="" autofocus="">
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+        <input type="email" id="inputEmail" class="form-control" placeholder="Username"  required="" autofocus="" formControlName="userName">
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" formControlName="password">
       </div>
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
+      <button class="btn btn-lg btn-secondary" type="submit" style="width: 100px">Đăng nhập</button>
+      <div *ngIf="isShow"
+           class="alert {{ (isSuccess) ? 'alert-success' : 'alert-danger' }}"
+           role="alert">
+        {{message}}
       </div>
-      <button class="btn btn-lg btn-secondary" type="submit" style="width: 100px">Sign in</button>
     </form>
 
 </div>

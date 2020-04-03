@@ -8,13 +8,13 @@ import {IUser} from '../interface/user';
   providedIn: 'root'
 })
 export class UserService {
-  private readonly API_URL = 'http://localhost:5000/api/users/';
+  private readonly API_URL = 'http://localhost:5000/api/users';
 
   constructor(private httpClient: HttpClient) {
   }
-  /* ---------------- GET ALL USER ------------------------ */
-  public getAllUser(): Observable<any> {
-    return this.httpClient.get(this.API_URL);
+  /* ---------------- GET USER BY USERNAME ------------------------ */
+  public getUserByUsername(username: string): Observable<any> {
+    return this.httpClient.get(this.API_URL + '?username=' + username);
   }
   /* ---------------- GET USER BY ID ------------------------ */
   public getUser(id: number): Observable<any> {
