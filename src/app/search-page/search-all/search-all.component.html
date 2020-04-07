@@ -1,0 +1,26 @@
+<h3> Bài hát</h3>
+<table class="table table-dark">
+  <thead class="">
+  <tr>
+    <th scope="col">Tên bài hát</th>
+    <th scope="col">Ảnh</th>
+    <th scope="col">Nhạc</th>
+  </tr>
+  </thead>
+  <tbody class="table-hover" *ngFor="let song of songList, index as i">
+  <tr *ngIf="i<4">
+    <td>
+      {{song.name}}
+    </td>
+    <td>
+      <img [src]="song.image" style="width: 100px" height="100px">
+    </td>
+    <td >
+      <audio controls [src]="song.fileMp3" ></audio>
+    </td>
+  </tr>
+  </tbody>
+<a></a>
+</table>
+<h3>Playlist</h3>
+<h3></h3>

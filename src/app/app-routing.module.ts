@@ -11,10 +11,11 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'search/:textSearch', loadChildren: () => import('./search-page/search-page.module').then(m => m.SearchPageModule)
+  },
   {path: 'mymusic', loadChildren: () => import('./personal-music/personal-music.module').then(m => m.PersonalMusicModule)
   },
   {path: '**', component: NotFoundComponent},
-
 ];
 
 @NgModule({
