@@ -44,5 +44,8 @@ export class SongService {
   public updateSong(song: ISong): Observable<any> {
     return this.httpClient.patch(this.API_URL1, song);
   }
-
+  /* ---------------- Search Song By Name ------------------------ */
+  public getSongByName(search: string): Observable<any> {
+    return this.httpClient.get(this.API_URL + '/search?nameContains=' + search);
+  }
 }
