@@ -1,21 +1,22 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {ISong} from '../interface/song';
-import {HttpClient} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ISong } from '../interface/song';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private readonly API_URL = 'http://localhost:5000/api/songs/';
+  private readonly API_URL = 'http://localhost:5000/api/mysongs/';
+  private readonly API_URL2 = 'http://localhost:5000/api/songs/';
 
   constructor(private httpClient: HttpClient) {
   }
 
   /* ---------------- GET ALL SONG ------------------------ */
   public getAllSong(): Observable<any> {
-    return this.httpClient.get(this.API_URL);
+    return this.httpClient.get(this.API_URL2);
   }
 
   /* ---------------- GET SONG BY ID ------------------------ */

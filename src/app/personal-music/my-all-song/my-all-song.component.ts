@@ -1,5 +1,7 @@
+import { SongService } from './../../services/song.service';
+import { ISong } from './../../interface/song';
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../services/user.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-my-all-song',
@@ -11,7 +13,7 @@ export class MyAllSongComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getAllSong().subscribe( result => {
+    this.userService.getAllSong().subscribe(result => {
       this.songList = result.data;
     });
   }
@@ -21,6 +23,10 @@ export class MyAllSongComponent implements OnInit {
       this.songList = this.songList.filter(t => t.id !== song.id);
       console.log('Xóa ' + song.id);
     });
+  }
+  updateListener(song: ISong) {
+    song.numberOfPlays = song.numberOfPlays + 1;
+    this.userService.updateSong(song).subscribe();
   }
 
 

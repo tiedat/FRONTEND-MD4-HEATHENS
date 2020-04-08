@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {UserService} from '../../services/user.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../../services/user.service';
 import * as firebase from 'firebase';
-import {finalize} from 'rxjs/operators';
-import {ISong} from '../../interface/song';
-import {AngularFireStorage} from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
+import { ISong } from '../../interface/song';
+import { AngularFireStorage } from '@angular/fire/storage';
 @Component({
   selector: 'app-upload-song',
   templateUrl: './upload-song.component.html',
@@ -31,12 +31,12 @@ export class UploadSongComponent implements OnInit {
     descriptionSong: '',
     fileMp3: '',
     image: '',
-    numberOfPlays : 0,
+    numberOfPlays: 0,
   };
 
   constructor(private userService: UserService,
-              private fb: FormBuilder,
-              private storage: AngularFireStorage) {
+    private fb: FormBuilder,
+    private storage: AngularFireStorage) {
   }
 
   ngOnInit() {
@@ -45,7 +45,7 @@ export class UploadSongComponent implements OnInit {
       descriptionSong: '',
       fileMp3: '',
       image: '',
-      numberOfPlays : 0,
+      numberOfPlays: 0,
     });
   }
 
@@ -56,7 +56,7 @@ export class UploadSongComponent implements OnInit {
     this.uploadFileMP3();
     this.uploadFileImage();
     console.log(this.song);
-    this.userService.createSong(this.song).subscribe( result => {
+    this.userService.createSong(this.song).subscribe(result => {
       this.isShow = true;
       this.isSuccess = true;
       this.message = 'Tạo thành công!';
@@ -86,7 +86,7 @@ export class UploadSongComponent implements OnInit {
     const fileRefImage = this.storage.ref(filePathImage);
     this.storage.upload(filePathImage, this.selectedImage).snapshotChanges().pipe(
       finalize(() => {
-        fileRefImage.getDownloadURL() .subscribe( url => {
+        fileRefImage.getDownloadURL().subscribe(url => {
           this.imageUrl = url;
           this.song.image = url;
           this.percentLoadingImg = 'width: 100%';
@@ -103,7 +103,6 @@ export class UploadSongComponent implements OnInit {
       this.selectedAudio = event.target.files[0];
       this.checkMp3Null = true;
       this.showLoadingMp3 = true;
-      this.uploadFileMP3();
     } else {
       this.audio = '../../assets/img/Placeholder.jpg';
       this.selectedAudio = null;
@@ -118,7 +117,6 @@ export class UploadSongComponent implements OnInit {
       this.selectedImage = event.target.files[0];
       this.checkImageNull = true;
       this.showLoadingImg = true;
-      this.uploadFileImage();
     } else {
       this.imageUrl = '../../../assets/img/Placeholder.jpg';
       this.selectedImage = null;

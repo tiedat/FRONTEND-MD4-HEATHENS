@@ -5,14 +5,14 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: 'AIzaSyA4N0muiFwtYq_0L33h-HZpcR9T-nOAt-o',
-    authDomain: 'project-mp3-b3fb9.firebaseapp.com',
-    databaseURL: 'https://project-mp3-b3fb9.firebaseio.com',
-    projectId: 'project-mp3-b3fb9',
-    storageBucket: 'project-mp3-b3fb9.appspot.com',
-    messagingSenderId: '383360467544',
-    appId: '1:383360467544:web:3bd04326bfac7c7b08802d',
-    measurementId: 'G-BYDQ8L4PK8'
+    apiKey: "AIzaSyBW0gQoj73yrgzczj_0KKdSN5AszwockZo",
+    authDomain: "mp3-music-ce364.firebaseapp.com",
+    databaseURL: "https://mp3-music-ce364.firebaseio.com",
+    projectId: "mp3-music-ce364",
+    storageBucket: "mp3-music-ce364.appspot.com",
+    messagingSenderId: "807093260122",
+    appId: "1:807093260122:web:2ae2058eea75e3616fed63",
+    measurementId: "G-V322QGGJ10"
   }
 };
 
