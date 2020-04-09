@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {SongService} from '../../services/song.service';
 
@@ -10,6 +10,7 @@ import {SongService} from '../../services/song.service';
 export class SearchAllComponent implements OnInit {
   // searchValue;
   @Input() songList: any[];
+  @Output() changeSongs: EventEmitter<any> = new EventEmitter();
   constructor(private route: ActivatedRoute,
               private songService: SongService) { }
 
@@ -22,5 +23,7 @@ export class SearchAllComponent implements OnInit {
     //     console.log(this.songList);
     //   });
     // });
+  }
+  showSongs() {
   }
 }
