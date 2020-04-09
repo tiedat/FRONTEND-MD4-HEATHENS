@@ -8,7 +8,7 @@
   </tr>
   </thead>
   <tbody class="table-hover" *ngFor="let song of songList, index as i">
-  <tr *ngIf="i<4">
+  <tr *ngIf="i<3">
     <td>
       {{song.name}}
     </td>
@@ -20,7 +20,7 @@
     </td>
   </tr>
   </tbody>
-<a></a>
+<button (change)="showSongs()">Xem tất cả</button>
 </table>
 <h3>Playlist</h3>
 <h3></h3>
