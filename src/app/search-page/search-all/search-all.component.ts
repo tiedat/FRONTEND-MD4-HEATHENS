@@ -25,5 +25,6 @@ export class SearchAllComponent implements OnInit {
     // });
   }
   showSongs() {
+    this.changeSongs.emit();
   }
 }

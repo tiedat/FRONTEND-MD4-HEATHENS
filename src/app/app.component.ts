@@ -22,7 +22,7 @@ export class AppComponent {
   search() {
     const searchValue = this.formGroup.get('searchName').value;
     console.log(searchValue);
-    this.route.navigate(['/search/' + searchValue]).then((e) => {
+    this.route.navigate(['search'], { queryParams: { search: searchValue } }).then((e) => {
       console.log('Navigation is successful!');
     });
   }

@@ -1,11 +1,24 @@
 
 <tbody class="table-hover" *ngFor="let song of songList">
-<tr>
-  <td>
-    <img [src]="song.image" style="width: 100px" height="100px">
-  </td>
-  <td >
-    <audio controls [src]="song.fileMp3" ></audio>
-  </td>
-</tr>
+<div class = "col-sm-12 poly-prod">
+  <div class = "panel panel-default">
+    <div class = "panel-body" (click)="playMusic(song)">
+      <img [src]="song.image" style="width: 100px" height="100px">
+      <div class = "panel-footer" (click)="playMusic(song)">
+        <div>{{song.name}}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--<tr>-->
+<!--  <td (click)="playMusic(song)">-->
+<!--    <img [src]="song.image" style="width: 100px" height="100px">-->
+<!--  </td>-->
+<!--  <td>-->
+<!--    <a (click)="playMusic(song)">-->
+<!--      {{song.name}}-->
+<!--    </a>-->
+<!--  </td>-->
+<!--</tr>-->
 </tbody>
+<app-miniplayer *ngIf="isPlayMusic" [songList]="songList" [songPlayed]="songPlayed"></app-miniplayer>
