@@ -10,6 +10,7 @@ import { MyAllSongComponent } from './my-all-song/my-all-song.component';
 import { EditSongComponent } from './edit-song/edit-song.component';
 import { MyAllPlaylistComponent } from './my-all-playlist/my-all-playlist.component';
 import { MyLibraryComponent } from './my-library/my-library.component';
+import {AppModule} from '../app.module';
 
 
 @NgModule({
