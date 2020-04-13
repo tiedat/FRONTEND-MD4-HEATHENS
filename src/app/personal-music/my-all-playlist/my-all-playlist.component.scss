@@ -1,0 +1,20 @@
+.empty-playlist {
+  background-color: red;
+  cursor: pointer;
+  background: -webkit-linear-gradient(57deg, rgb(0,0,0) -7%, rgba(255, 187, 117, 0) 117%);
+  background: -o-linear-gradient(57deg, rgb(0,0,0) -7%, rgba(101, 133, 174, 0) 117%);
+  background: linear-gradient(33deg, rgba(0,0,0,1) -7%, rgba(255, 236, 178, 0) 117%);
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: #fff;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 2px;
+  width: 180px;
+  min-height: 229px;
+}

@@ -1,14 +1,14 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {SongService} from '../../services/song.service';
 import {ActivatedRoute} from '@angular/router';
 import {DataService} from '../../services/data.service';
 
 @Component({
-  selector: 'app-my-all-song',
-  templateUrl: './my-all-song.component.html',
-  styleUrls: ['./my-all-song.component.scss']
+  selector: 'app-my-library',
+  templateUrl: './my-library.component.html',
+  styleUrls: ['./my-library.component.scss']
 })
-export class MyAllSongComponent implements OnInit {
+export class MyLibraryComponent implements OnInit {
   songList: any[];
   username: string;
   constructor(private songService: SongService,
@@ -27,12 +27,5 @@ export class MyAllSongComponent implements OnInit {
     // this.route.paramMap.subscribe(param => {
     //   console.log(param);
     // });
-  }
-  deleteSong(i) {
-    const song = this.songList[i];
-    this.songService.deleteSong(song.id).subscribe(() => {
-      this.songList = this.songList.filter(t => t.id !== song.id);
-      console.log('Xóa ' + song.id);
-    });
   }
 }
