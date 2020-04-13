@@ -8,10 +8,12 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { MyAllSongComponent } from './my-all-song/my-all-song.component';
 import { EditSongComponent } from './edit-song/edit-song.component';
+import { MyAllPlaylistComponent } from './my-all-playlist/my-all-playlist.component';
+import { MyLibraryComponent } from './my-library/my-library.component';
 
 
 @NgModule({
-  declarations: [PersonalMusicComponent, UploadSongComponent, MyAllSongComponent, EditSongComponent],
+  declarations: [PersonalMusicComponent, UploadSongComponent, MyAllSongComponent, EditSongComponent, MyAllPlaylistComponent, MyLibraryComponent],
   imports: [
     CommonModule,
     PersonalMusicRoutingModule,

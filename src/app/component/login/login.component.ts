@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
         this.message = 'Sai tài khoản';
       } else if (this.user.password === password) {
         this.createMessage(this.user.username);
-        this.route.navigate(['/mymusic/']).then((e) => {
+        this.route.navigate(['/mymusic/songs']).then((e) => {
           this.isShow = true;
           console.log('Navigation is successful!');
         });

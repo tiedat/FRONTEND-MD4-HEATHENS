@@ -11,6 +11,8 @@ import {DataService} from '../../services/data.service';
 export class HomepageComponent implements OnInit {
   songList: any[];
   username: string;
+  isPlayMusic = false;
+  songPlayed: any;
   constructor(private songService: SongService,
               private userService: UserService,
               private data: DataService ) { }
@@ -25,5 +27,8 @@ export class HomepageComponent implements OnInit {
       console.log(this.songList);
     });
   }
-
+   playMusic(song) {
+     this.isPlayMusic = true;
+     this.songPlayed = song;
+   }
 }
