@@ -1,19 +1,19 @@
-
 <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
   <div class="row col-12 ">
     <div class="row col-2"></div>
     <div class="row col-9">
-      <a class="navbar-brand" ><img [src]="songPlayed.image" width = "50px" height="50px" ></a>
+      <a class="navbar-brand"><img [src]="songPlayed.image" width="50px" height="50px"></a>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <audio controls autoplay [src]="songPlayed.fileMp3" (play)="upNumberOfPlays()" (ended)="nextSong()"></audio>
+            <audio controls autoplay [src]="songPlayed.fileMp3" (ended)="nextSong()"></audio>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#"><i class="far fa-heart"></i></a>
           </li>
           <li class="nav-item dropup">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown10" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
               <span class="navbar-toggler-icon"></span>
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdown10">
