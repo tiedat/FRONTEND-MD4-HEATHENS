@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {SongService} from '../../services/song.service';
-import {UserService} from '../../services/user.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { SongService } from '../../services/song.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-miniplayer',
@@ -13,7 +13,7 @@ export class MiniplayerComponent implements OnInit {
   @Output() changeSongs: EventEmitter<any> = new EventEmitter();
   idNextSong: any;
   constructor(private songService: SongService,
-              private userService: UserService,) { }
+    private userService: UserService) { }
 
   ngOnInit(): void {
     console.log(this.songList);
@@ -21,10 +21,11 @@ export class MiniplayerComponent implements OnInit {
   upNumberOfPlays() {
     console.log(this.songPlayed.numberOfPlays);
     this.songPlayed.numberOfPlays = this.songPlayed.numberOfPlays + 1;
-    this.songService.updateSong(this.songPlayed);
+    this.songService.updateSong(this.songPlayed).subscribe();
     console.log(this.songPlayed);
   }
   nextSong() {
+    this.upNumberOfPlays();
     this.changeSongs.emit();
   }
 }
