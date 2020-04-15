@@ -1,24 +1,23 @@
-
 <tbody class="table-hover" *ngFor="let song of songList">
-<div class = "col-sm-12 poly-prod">
-  <div class = "panel panel-default">
-    <div class = "panel-body" (click)="playMusic(song)">
-      <img [src]="song.image" style="width: 100px" height="100px">
-      <div class = "panel-footer" (click)="playMusic(song)">
-        <div>{{song.name}}</div>
+  <div class="col-sm-12 poly-prod">
+    <div class="panel panel-default">
+      <div class="panel-body" (click)="playMusic(song)">
+        <img [src]="song.image" style="width: 100px" height="100px">
+        <div class="panel-footer" (click)="playMusic(song)">
+          <div>{{song.name}} - {{song.numberOfPlays}}</div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<!--<tr>-->
-<!--  <td (click)="playMusic(song)">-->
-<!--    <img [src]="song.image" style="width: 100px" height="100px">-->
-<!--  </td>-->
-<!--  <td>-->
-<!--    <a (click)="playMusic(song)">-->
-<!--      {{song.name}}-->
-<!--    </a>-->
-<!--  </td>-->
-<!--</tr>-->
+  <!--<tr>-->
+  <!--  <td (click)="playMusic(song)">-->
+  <!--    <img [src]="song.image" style="width: 100px" height="100px">-->
+  <!--  </td>-->
+  <!--  <td>-->
+  <!--    <a (click)="playMusic(song)">-->
+  <!--      {{song.name}}-->
+  <!--    </a>-->
+  <!--  </td>-->
+  <!--</tr>-->
 </tbody>
 <app-miniplayer *ngIf="isPlayMusic" [songList]="songList" [songPlayed]="songPlayed"></app-miniplayer>
