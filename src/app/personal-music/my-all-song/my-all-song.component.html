@@ -24,7 +24,7 @@
         <img [src]="song.image" style="width: 100px" height="100px">
       </td>
       <td >
-        <audio controls [src]="song.fileMp3" ></audio>
+        <audio controls [src]="song.fileMp3"  (play)="updateListener(song)"></audio>
       </td>
       <td>
         <button type="button" class="btn btn-warning btn-sm" routerLink='edit/{{song.id}}'>Sửa</button>
