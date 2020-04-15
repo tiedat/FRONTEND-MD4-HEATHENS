@@ -21,4 +21,4 @@
 <!--  </td>-->
 <!--</tr>-->
 </tbody>
-<app-miniplayer *ngIf="isPlayMusic" [songList]="songList" [songPlayed]="songPlayed"></app-miniplayer>
+<app-miniplayer *ngIf="isPlayMusic" [songList]="songList" [songPlayed]="songPlayed" (changeSongs)="nextSong()"></app-miniplayer>

@@ -31,4 +31,9 @@ export class HomepageComponent implements OnInit {
      this.isPlayMusic = true;
      this.songPlayed = song;
    }
+   nextSong() {
+    this.songPlayed = this.songList[Math.floor(Math.random() * this.songList.length)];
+    console.log(this.songPlayed);
+    this.playMusic(this.songPlayed);
+   }
 }

@@ -7,7 +7,7 @@
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <audio controls autoplay [src]="songPlayed.fileMp3"></audio>
+            <audio controls autoplay [src]="songPlayed.fileMp3" (play)="upNumberOfPlays()" (ended)="nextSong()"></audio>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#"><i class="far fa-heart"></i></a>

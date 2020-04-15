@@ -9,6 +9,7 @@ import { SearchPlaylistComponent } from './search-playlist/search-playlist.compo
 
 
 
+
 @NgModule({
   declarations: [SearchSongsComponent, SearchAllComponent, SearchPageComponent, SearchSingerComponent, SearchPlaylistComponent],
   imports: [
