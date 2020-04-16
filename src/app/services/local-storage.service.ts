@@ -10,9 +10,9 @@ export class LocalStorageService {
     this.storage = window.localStorage;
   }
 
-  getValue<T>(key: string): T {
+  getValue(key: string) {
     const obj = JSON.parse(this.storage.getItem[key] || null);
-    return obj as T;
+    return obj;
   }
 
   setObject(key: string, value: any): void {

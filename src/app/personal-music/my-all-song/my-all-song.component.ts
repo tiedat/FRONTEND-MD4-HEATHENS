@@ -1,9 +1,9 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {SongService} from '../../services/song.service';
-import {ActivatedRoute} from '@angular/router';
-import {DataService} from '../../services/data.service';
-import {ISong} from '../../interface/song';
-import {UserService} from '../../services/user.service';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { SongService } from '../../services/song.service';
+import { ActivatedRoute } from '@angular/router';
+import { DataService } from '../../services/data.service';
+import { ISong } from '../../interface/song';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-my-all-song',
@@ -15,16 +15,17 @@ export class MyAllSongComponent implements OnInit {
   username: string;
   user: any;
   constructor(
-              private songService: SongService,
-              private route: ActivatedRoute,
-              private data: DataService,
-              private userService: UserService) { }
+    private songService: SongService,
+    private route: ActivatedRoute,
+    private data: DataService,
+    private userService: UserService) { }
 
   ngOnInit() {
-    this.data.currentMessage.subscribe(username => {
-      console.log(username);
-      this.username = username;
-    });
+    this.username = localStorage.getItem('username');
+    // this.data.currentMessage.subscribe(username => {
+    //   console.log(username);
+    //   this.username = username;
+    // });
     console.log(this.username);
     this.songService.getAllSongByUser(this.username).subscribe(list => {
       this.songList = list.data;

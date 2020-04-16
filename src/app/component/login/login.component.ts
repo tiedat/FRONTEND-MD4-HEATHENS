@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {Router} from '@angular/router';
-import {UserService} from '../../services/user.service';
-import {IUser} from '../../interface/user';
-import {DataService} from '../../services/data.service';
+import { AuthenticationService } from './../../services/authentication.service';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
+import { IUser } from '../../interface/user';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -27,8 +28,9 @@ export class LoginComponent implements OnInit {
   isLoading = false;
 
   constructor(private userService: UserService,
-              private route: Router,
-              private data: DataService) {
+    private route: Router,
+    private data: DataService,
+    private authService: AuthenticationService) {
   }
 
   ngOnInit(): void {
@@ -44,27 +46,50 @@ export class LoginComponent implements OnInit {
   checkUser() {
     const userName = this.formGroup.get('userName').value;
     const password = this.formGroup.get('password').value;
-    this.userService.getUserByUsername(userName).subscribe(result => {
-      this.user = result.data;
-      console.log(this.user);
-      console.log(result);
-      if (this.user === null) {
-        this.isShow = true;
-        this.message = 'Sai tài khoản';
-      } else if (this.user.password === password) {
-        this.createMessage(this.user.username);
-        this.route.navigate(['/mymusic/']).then((e) => {
-          this.isShow = true;
-          console.log('Navigation is successful!');
+    this.authService.authenticate(userName, password).subscribe(
+      success => {
+        this.route.navigate(['/home']).then(() => {
+          location.reload();
         });
-      } else {
-        this.isShow = true;
-        this.message = 'Sai mật khẩu.';
+      },
+      error => {
+        this.userService.getUserByUsername(userName).subscribe(
+          result => {
+            this.user = result.data;
+            if (this.user === null) {
+              this.isShow = true;
+              this.message = 'Sai tài khoản';
+            } else {
+              if (password !== this.user.password) {
+                this.isShow = true;
+                this.message = 'Sai mật khẩu';
+              }
+            }
+          }
+        );
       }
-      }, error => {
-      this.isShow = true;
-      this.message = 'Sai tài khoản';
-      });
+    );
+    // this.userService.getUserByUsername(userName).subscribe(result => {
+    //   this.user = result.data;
+    //   console.log(this.user);
+    //   console.log(result);
+    //   if (this.user === null) {
+    //     this.isShow = true;
+    //     this.message = 'Sai tài khoản';
+    //   } else if (this.user.password === password) {
+    //     this.createMessage(this.user.username);
+    //     this.route.navigate(['/mymusic/']).then((e) => {
+    //       this.isShow = true;
+    //       console.log('Navigation is successful!');
+    //     });
+    //   } else {
+    //     this.isShow = true;
+    //     this.message = 'Sai mật khẩu.';
+    //   }
+    //   }, error => {
+    //   this.isShow = true;
+    //   this.message = 'Sai tài khoản';
+    //   });
     // for (let i = 0; i < this.listUser.length; i++) {
     //   if (this.listUser[i].userName === userName && this.listUser[i].password === password) {
     //     this.check = true;
