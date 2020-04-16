@@ -53,20 +53,9 @@ export class LoginComponent implements OnInit {
         });
       },
       error => {
-        this.userService.getUserByUsername(userName).subscribe(
-          result => {
-            this.user = result.data;
-            if (this.user === null) {
-              this.isShow = true;
-              this.message = 'Sai tài khoản';
-            } else {
-              if (password !== this.user.password) {
-                this.isShow = true;
-                this.message = 'Sai mật khẩu';
-              }
-            }
-          }
-        );
+        this.isShow = true;
+        this.isSuccess = false;
+        this.message = 'Invalid username or password';
       }
     );
     // this.userService.getUserByUsername(userName).subscribe(result => {
