@@ -14,7 +14,12 @@ import {AppModule} from '../app.module';
 
 
 @NgModule({
-  declarations: [PersonalMusicComponent, UploadSongComponent, MyAllSongComponent, EditSongComponent, MyAllPlaylistComponent, MyLibraryComponent],
+  declarations: [PersonalMusicComponent,
+    UploadSongComponent,
+    MyAllSongComponent,
+    EditSongComponent,
+    MyAllPlaylistComponent,
+    MyLibraryComponent],
   imports: [
     CommonModule,
     PersonalMusicRoutingModule,
