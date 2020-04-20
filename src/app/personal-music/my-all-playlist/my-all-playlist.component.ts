@@ -20,6 +20,7 @@ export class MyAllPlaylistComponent implements OnInit {
   playlistForm: any;
   playlist: IPlaylist = {
     name: '',
+    img: '',
     descriptionPlaylist: '',
     songs: [],
     user: {},
@@ -52,6 +53,7 @@ export class MyAllPlaylistComponent implements OnInit {
   }
   creatPlaylist() {
     this.playlist.name = this.playlistForm.get('name').value;
+    this.playlist.img = 'https://photo-zmp3.zadn.vn/album_default.png';
     console.log(this.playlist);
     this.playlistService.createPlaylist(this.playlist).subscribe( result => {
       this.isShow = true;
