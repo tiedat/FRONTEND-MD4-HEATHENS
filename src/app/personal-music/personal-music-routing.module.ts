@@ -7,6 +7,7 @@ import {MyAllSongComponent} from './my-all-song/my-all-song.component';
 import {EditSongComponent} from './edit-song/edit-song.component';
 import {MyAllPlaylistComponent} from './my-all-playlist/my-all-playlist.component';
 import {MyLibraryComponent} from './my-library/my-library.component';
+import {MyPlaylistComponent} from './my-playlist/my-playlist.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
       {path: 'upload', component: UploadSongComponent},
       {path: 'songs', component: MyAllSongComponent},
       {path: 'playlist', component: MyAllPlaylistComponent},
+      {path: 'playlist/:id', component: MyPlaylistComponent},
       {path: 'songs/edit/:id', component: EditSongComponent}
     ]
   },
