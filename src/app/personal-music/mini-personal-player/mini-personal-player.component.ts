@@ -1,13 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { SongService } from '../../services/song.service';
-import { UserService } from '../../services/user.service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {SongService} from '../../services/song.service';
+import {UserService} from '../../services/user.service';
 
 @Component({
-  selector: 'app-miniplayer',
-  templateUrl: './miniplayer.component.html',
-  styleUrls: ['./miniplayer.component.scss']
+  selector: 'app-mini-personal-player',
+  templateUrl: './mini-personal-player.component.html',
+  styleUrls: ['./mini-personal-player.component.scss']
 })
-export class MiniplayerComponent implements OnInit {
+export class MiniPersonalPlayerComponent implements OnInit {
   @Input() songList: any[];
   @Input() songPlayed: any;
   @Output() changeSongs: EventEmitter<any> = new EventEmitter();
