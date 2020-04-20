@@ -16,7 +16,7 @@
         <div class="card-180 --z--reset-height">
           <a title="{{playlist.name}}" routerLink='{{playlist.id}}'>
             <div class="image lazyload-img loaded">
-              <img src="https://photo-zmp3.zadn.vn/album_default.png" >
+              <img [src]="playlist.img" >
             </div><div class="opac">
           </div>
           </a>
