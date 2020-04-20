@@ -5,6 +5,6 @@ export interface IPlaylist {
   id?: number;
   name?: string;
   descriptionPlaylist?: string;
-  songs?: [];
+  songs?: any[];
   user?: IUser;
 }

@@ -1,1 +1,116 @@
-<p>my-playlist works!</p>
+<!--<div class="col-6" style="margin-top: 5px">-->
+<!--  <div *ngIf="isShow"-->
+<!--       class="alert {{ (isSuccess) ? 'alert-success' : 'alert-danger' }}"-->
+<!--       role="alert">-->
+<!--    {{message}}-->
+<!--  </div>-->
+<!--</div>-->
+<h1>
+  <a (click)="playPlaylist()">
+    <i role="button" class="far fa-play-circle"></i>
+  </a>
+</h1>
+<h2>Tên playlist: {{playlist.name}}
+  <a data-toggle="modal" data-target="#exampleModal">
+    <i role="button" class="far fa-edit"></i>
+  </a>
+  <a data-toggle="modal" data-target="#exampleModal1">
+    <i role="button" class="far fa-trash-alt"></i>
+  </a>
+</h2>
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle1">Xóa playlist</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <a>Playlist của bạn sẽ bị xóa khỏi thư viện cá nhân. Các bài hát do bạn tải lên sẽ vẫn được giữ lại. Bạn có muốn xóa?</a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="deletePlaylist()">Xóa</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Đổi tên playlist</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" [formGroup]="playlistForm">
+        <input type="text" class="form-control" formControlName="name">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="editName()">Lưu</button>
+      </div>
+    </div>
+  </div>
+</div>
+<table class="table table-dark">
+  <thead class="">
+  <tr>
+    <th scope="col"></th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody class="table-hover" *ngFor="let song of playlist.songs, index as i">
+  <tr>
+    <td>{{i+1}}</td>
+    <td>
+      {{song.name}}
+    </td>
+    <td>
+      {{song.descriptionSong}}
+    </td>
+    <td>
+      <img [src]="song.image" style="width: 100px" height="100px">
+    </td>
+    <td>
+      <a (click)="subtractSong(i)">
+        <i role="button" class="fas fa-minus"></i>
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<table class="table table-dark">
+  <thead class="">
+  <tr>
+    <th scope="col"></th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody class="table-hover" *ngFor="let song of songListAll, index as i">
+  <tr *ngIf="checkAdded(song.id)">
+    <td>{{song.id}}</td>
+    <td>
+      {{song.name}}
+    </td>
+    <td>
+      {{song.descriptionSong}}
+    </td>
+    <td>
+      <img [src]="song.image" style="width: 100px" height="100px">
+    </td>
+    <td>
+      <a (click)="addSongToPlaylist(song)">
+        <i role="button" class="fas fa-plus"></i>
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
