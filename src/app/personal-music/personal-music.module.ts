@@ -12,6 +12,7 @@ import { MyAllPlaylistComponent } from './my-all-playlist/my-all-playlist.compon
 import { MyLibraryComponent } from './my-library/my-library.component';
 import {AppModule} from '../app.module';
 import { MyPlaylistComponent } from './my-playlist/my-playlist.component';
+import { MiniPersonalPlayerComponent } from './mini-personal-player/mini-personal-player.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { MyPlaylistComponent } from './my-playlist/my-playlist.component';
     EditSongComponent,
     MyAllPlaylistComponent,
     MyLibraryComponent,
-    MyPlaylistComponent],
+    MyPlaylistComponent,
+    MiniPersonalPlayerComponent],
   imports: [
     CommonModule,
     PersonalMusicRoutingModule,

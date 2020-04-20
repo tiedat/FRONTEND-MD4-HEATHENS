@@ -14,7 +14,7 @@
     <div class="no-line-height col-md-3 col-xs-4 mar-bottom-20" *ngFor="let playlist of listPlayList, index as i">
       <div class="col-album z-size-180 ">
         <div class="card-180 --z--reset-height">
-          <a title="{{playlist.name}}" routerLink='id'>
+          <a title="{{playlist.name}}" routerLink='{{playlist.id}}'>
             <div class="image lazyload-img loaded">
               <img src="https://photo-zmp3.zadn.vn/album_default.png" >
             </div><div class="opac">
@@ -29,7 +29,7 @@
         </div>
         <div class="card-info ">
           <div class="title">
-            <a title="" routerLink="id">{{playlist.name}}</a>
+            <a title="" routerLink="{{playlist.id}}">{{playlist.name}}</a>
           </div>
           <div class="artist">
           </div>

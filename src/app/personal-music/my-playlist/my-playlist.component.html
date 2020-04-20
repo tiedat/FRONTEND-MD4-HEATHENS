@@ -114,3 +114,4 @@
   </tr>
   </tbody>
 </table>
+<app-mini-personal-player *ngIf="isPlayMusic" [songPlayed]="songPlayed" (changeSongs)="nextSong()"></app-mini-personal-player>
