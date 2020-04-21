@@ -4,7 +4,7 @@ import {IUser} from './user';
 export interface IPlaylist {
   id?: number;
   name?: string;
-  img?: string;
+  image?: string;
   descriptionPlaylist?: string;
   songs?: any[];
   user?: IUser;

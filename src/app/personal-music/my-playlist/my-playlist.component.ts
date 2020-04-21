@@ -31,7 +31,7 @@ export class MyPlaylistComponent implements OnInit {
   playlist: IPlaylist = {
     name: '',
     descriptionPlaylist: '',
-    img: '',
+    image: '',
     songs: [],
     user: {},
   };
@@ -91,7 +91,7 @@ export class MyPlaylistComponent implements OnInit {
     console.log(this.song);
     this.playlist.songs.push(object);
     console.log(this.playlist.songs);
-    this.playlist.img = object.image;
+    this.playlist.image = object.image;
     this.playlistService.updatePlaylist(this.playlist).subscribe();
   }
   subtractSong(i: number) {
