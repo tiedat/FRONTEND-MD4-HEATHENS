@@ -2,10 +2,10 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {PersonalMusicComponent} from './personal-music.component';
-import {UploadSongComponent} from './upload-song/upload-song.component';
-import {MyAllSongComponent} from './my-all-song/my-all-song.component';
-import {EditSongComponent} from './edit-song/edit-song.component';
-import {MyAllPlaylistComponent} from './my-all-playlist/my-all-playlist.component';
+import {UploadSongComponent} from './song/upload-song/upload-song.component';
+import {MyAllSongComponent} from './song/my-all-song/my-all-song.component';
+import {EditSongComponent} from './song/edit-song/edit-song.component';
+import {MyAllPlaylistComponent} from './playlist/my-all-playlist/my-all-playlist.component';
 import {MyLibraryComponent} from './my-library/my-library.component';
 import {MyPlaylistComponent} from './my-playlist/my-playlist.component';
 

@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {SongService} from '../../services/song.service';
+import {SongService} from '../../../services/song.service';
 import * as firebase from 'firebase';
 import {finalize} from 'rxjs/operators';
-import {ISong} from '../../interface/song';
+import {ISong} from '../../../interface/song';
 import {AngularFireStorage} from '@angular/fire/storage';
-import {IUser} from '../../interface/user';
-import {DataService} from '../../services/data.service';
-import {UserService} from '../../services/user.service';
+import {IUser} from '../../../interface/user';
+import {DataService} from '../../../services/data.service';
+import {UserService} from '../../../services/user.service';
 @Component({
   selector: 'app-upload-song',
   templateUrl: './upload-song.component.html',
@@ -43,16 +43,22 @@ export class UploadSongComponent implements OnInit {
   constructor(private songService: SongService,
               private fb: FormBuilder,
               private storage: AngularFireStorage,
-              private data: DataService,
+              // private data: DataService,
               private userService: UserService) {
   }
 
   ngOnInit() {
-    this.data.currentMessage.subscribe(username => this.username = username);
+    // this.data.currentMessage.subscribe(username => this.username = username);
+    this.username = localStorage.getItem('username');
+    console.log(this.username);
     this.userService.getUserByUsername(this.username).subscribe(user => {
       console.log(user);
       this.song.user = user.data;
     });
+    // this.userService.getUserByUsername(this.username).subscribe(user => {
+    //   console.log(user);
+    //   this.song.user = user.data;
+    // });
     this.songUploadForm = this.fb.group({
       name: this.fb.control('', [Validators.required]),
       descriptionSong: '',
