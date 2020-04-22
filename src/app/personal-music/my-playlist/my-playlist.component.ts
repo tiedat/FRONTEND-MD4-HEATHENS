@@ -25,13 +25,19 @@ export class MyPlaylistComponent implements OnInit {
   songPlayed: ISong;
   song: ISong = {
     name: '',
-    descriptionSong: '',
+    description: '',
     fileMp3: '',
     image: '',
     numberOfPlays: 0,
     user: {}
   };
-  playlist: IPlaylist;
+  playlist: IPlaylist = {
+    id: 0,
+    description: '',
+    image: '',
+    name: '',
+    songs: [{}],
+  }
   playlistForm: any;
   constructor(private route: ActivatedRoute,
     private playlistService: PlaylistService,
@@ -42,7 +48,7 @@ export class MyPlaylistComponent implements OnInit {
   ngOnInit() {
     this.playlistForm = this.fb.group({
       name: this.fb.control('', [Validators.required]),
-      descriptionPlaylist: '',
+      description: '',
     });
     this.route.paramMap.subscribe(params => {
       const idSearch = Number(params.get('id'));

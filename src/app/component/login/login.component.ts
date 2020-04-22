@@ -6,6 +6,10 @@ import { IUser } from '../../interface/user';
 import { DataService } from '../../services/data.service';
 import { AuthenticationService } from 'src/app/services/authentiation.service';
 
+function focus() {
+  document.getElementById('inputEmail').focus();
+}
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,7 +29,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthenticationService) {
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { focus(); }
 
   checkUser() {
     const userName = this.formGroup.get('userName').value;

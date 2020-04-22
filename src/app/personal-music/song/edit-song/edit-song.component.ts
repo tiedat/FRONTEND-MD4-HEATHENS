@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {AngularFireStorage} from '@angular/fire/storage';
-import {ActivatedRoute} from '@angular/router';
-import {finalize} from 'rxjs/operators';
-import {ISong} from '../../../interface/song';
-import {UserService} from '../../../services/user.service';
-import {SongService} from '../../../services/song.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { ActivatedRoute } from '@angular/router';
+import { finalize } from 'rxjs/operators';
+import { ISong } from '../../../interface/song';
+import { UserService } from '../../../services/user.service';
+import { SongService } from '../../../services/song.service';
 
 @Component({
   selector: 'app-edit-song',
@@ -34,7 +34,7 @@ export class EditSongComponent implements OnInit {
   checkMp3Null = false;
   song: ISong = {
     name: '',
-    descriptionSong: '',
+    description: '',
     fileMp3: '',
     image: '',
     numberOfPlays: 0,
@@ -43,16 +43,16 @@ export class EditSongComponent implements OnInit {
   songEditForm: FormGroup;
 
   constructor(private userService: UserService,
-              private fb: FormBuilder,
-              private storage: AngularFireStorage,
-              private route: ActivatedRoute,
-              private songService: SongService) {
+    private fb: FormBuilder,
+    private storage: AngularFireStorage,
+    private route: ActivatedRoute,
+    private songService: SongService) {
   }
 
   ngOnInit() {
     this.songEditForm = this.fb.group({
       name: '',
-      descriptionSong: '',
+      description: '',
       fileMp3: '',
       image: '',
       numberOfPlays: 0,
@@ -66,7 +66,7 @@ export class EditSongComponent implements OnInit {
         console.log(song);
         console.log(this.song.name);
         this.songEditForm.controls.name.setValue(this.song.name);
-        this.songEditForm.controls.descriptionSong.setValue(this.song.descriptionSong);
+        this.songEditForm.controls.description.setValue(this.song.description);
         this.audioOld = this.song.fileMp3;
         this.imageUrlOld = this.song.image;
       });
@@ -76,7 +76,7 @@ export class EditSongComponent implements OnInit {
   NgSubmit() {
     this.isLoading = true;
     this.song.name = this.songEditForm.get('name').value;
-    this.song.descriptionSong = this.songEditForm.get('descriptionSong').value;
+    this.song.description = this.songEditForm.get('description').value;
     if (this.audio != null) {
       this.uploadFileMP3();
     }

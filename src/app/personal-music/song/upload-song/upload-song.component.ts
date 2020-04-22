@@ -33,7 +33,7 @@ export class UploadSongComponent implements OnInit {
   username;
   song: ISong = {
     name: '',
-    descriptionSong: '',
+    description: '',
     fileMp3: '',
     image: '',
     numberOfPlays: 0,
@@ -57,7 +57,7 @@ export class UploadSongComponent implements OnInit {
     });
     this.songUploadForm = this.fb.group({
       name: this.fb.control('', [Validators.required]),
-      descriptionSong: '',
+      description: '',
       fileMp3: '',
       image: '',
       numberOfPlays: 0,
@@ -67,7 +67,7 @@ export class UploadSongComponent implements OnInit {
   NgSubmit() {
     this.isLoading = true;
     this.song.name = this.songUploadForm.get('name').value;
-    this.song.descriptionSong = this.songUploadForm.get('descriptionSong').value;
+    this.song.description = this.songUploadForm.get('description').value;
     this.uploadFileMP3();
     this.uploadFileImage();
     console.log(this.song);

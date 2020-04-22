@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {IPlaylist} from '../../../interface/playlist';
-import {DataService} from '../../../services/data.service';
-import {PlaylistService} from '../../../services/playlist.service';
-import {FormBuilder, Validators} from '@angular/forms';
-import {UserService} from '../../../services/user.service';
+import { Component, OnInit } from '@angular/core';
+import { IPlaylist } from '../../../interface/playlist';
+import { DataService } from '../../../services/data.service';
+import { PlaylistService } from '../../../services/playlist.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-my-all-playlist',
@@ -20,15 +20,15 @@ export class MyAllPlaylistComponent implements OnInit {
   playlist: IPlaylist = {
     name: '',
     image: '',
-    descriptionPlaylist: '',
+    description: '',
     songs: [],
     user: {},
   };
   username: any;
 
   constructor(private playlistService: PlaylistService,
-              private fb: FormBuilder,
-              private userService: UserService) {
+    private fb: FormBuilder,
+    private userService: UserService) {
   }
 
   ngOnInit() {

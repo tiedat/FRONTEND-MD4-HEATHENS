@@ -21,7 +21,7 @@ export class MyAllPlaylistComponent implements OnInit {
   playlist: IPlaylist = {
     name: '',
     image: '',
-    descriptionPlaylist: '',
+    description: '',
     songs: [],
     user: {},
   };
@@ -42,7 +42,7 @@ export class MyAllPlaylistComponent implements OnInit {
     });
     this.playlistForm = this.fb.group({
       name: this.fb.control('', [Validators.required]),
-      descriptionPlaylist: '',
+      description: '',
     });
   }
   showPlayList() {

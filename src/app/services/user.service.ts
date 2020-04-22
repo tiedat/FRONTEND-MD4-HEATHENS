@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {ISong} from '../interface/song';
-import {IUser} from '../interface/user';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ISong } from '../interface/song';
+import { IUser } from '../interface/user';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +26,7 @@ export class UserService {
   }
   /* ---------------- CREATE USER ------------------------ */
   public createUser(user: IUser): Observable<any> {
-    return this.httpClient.post(this.API_URL, user);
+    return this.httpClient.post(this.API_URL + '/add', user);
   }
   /* ---------------- UPDATE USER ------------------------ */
   public updateUser(user: IUser): Observable<any> {

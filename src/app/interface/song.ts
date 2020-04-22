@@ -1,9 +1,9 @@
-import {IUser} from './user';
+import { IUser } from './user';
 
 export interface ISong {
   id?: number;
   name?: string;
-  descriptionSong?: string;
+  description?: string;
   fileMp3?: string;
   image?: string;
   numberOfPlays?: number;
