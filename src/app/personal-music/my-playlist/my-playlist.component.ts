@@ -52,9 +52,6 @@ export class MyPlaylistComponent implements OnInit {
       this.playlistService.getPlaylist(idSearch).subscribe(playlist => {
         console.log(playlist);
         this.playlist = playlist.data;
-        for (let i = 0; i < this.playlist.songs.length; i++) {
-          console.log(this.playlist.songs[i].id);
-        }
         console.log(this.playlist.name);
         this.playlistForm.controls.name.setValue(this.playlist.name);
       });

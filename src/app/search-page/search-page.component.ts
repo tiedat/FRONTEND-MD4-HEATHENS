@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {SongService} from '../services/song.service';
+import {PlaylistService} from '../services/playlist.service';
 
 @Component({
   selector: 'app-search-page',
@@ -14,10 +15,11 @@ export class SearchPageComponent implements OnInit {
   isShowPlaylist = false;
   songList: any[];
   singerList: any[];
-  PlaylistList: any[];
+  playlistList: any[];
   searchValue;
   constructor(private route: ActivatedRoute,
-              private songService: SongService) { }
+              private songService: SongService,
+              private playlistService: PlaylistService) { }
 
   ngOnInit() {
     this.route.queryParamMap.subscribe(params => {
@@ -26,6 +28,9 @@ export class SearchPageComponent implements OnInit {
       this.songService.getSongByName(this.searchValue).subscribe(list => {
         this.songList = list.data;
         console.log(this.songList);
+      });
+      this.playlistService.getPlaylistByName(this.searchValue).subscribe(list => {
+        this.playlistList = list.data;
       });
     });
   }
