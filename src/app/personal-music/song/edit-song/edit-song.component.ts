@@ -1,10 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {ISong} from '../../interface/song';
-import {UserService} from '../../services/user.service';
+
+
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {ActivatedRoute} from '@angular/router';
 import {finalize} from 'rxjs/operators';
+import {ISong} from '../../../interface/song';
+import {UserService} from '../../../services/user.service';
+import {SongService} from '../../../services/song.service';
 
 @Component({
   selector: 'app-edit-song',
@@ -42,7 +45,8 @@ export class EditSongComponent implements OnInit {
   constructor(private userService: UserService,
               private fb: FormBuilder,
               private storage: AngularFireStorage,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private songService: SongService) {
   }
 
   ngOnInit() {
@@ -57,7 +61,7 @@ export class EditSongComponent implements OnInit {
       console.log(params);
       const idSearch = Number(params.get('id'));
       console.log(idSearch);
-      this.userService.getSong(idSearch).subscribe(song => {
+      this.songService.getSong(idSearch).subscribe(song => {
         this.song = song.data;
         console.log(song);
         console.log(this.song.name);
@@ -80,7 +84,7 @@ export class EditSongComponent implements OnInit {
       this.uploadFileImage();
     }
     console.log(this.song);
-    this.userService.updateSong(this.song).subscribe(result => {
+    this.songService.updateSong(this.song).subscribe(result => {
       this.isShow = true;
       this.isSuccess = true;
       this.message = 'Sửa thành công!';
