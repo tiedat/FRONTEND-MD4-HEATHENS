@@ -35,9 +35,11 @@ export class MyAllPlaylistComponent implements OnInit {
     this.username = localStorage.getItem('username');
     this.userService.getUserByUsername(this.username).subscribe(user => {
       this.playlist.user = user.data;
+      console.log(this.playlist.user);
     });
     this.playlistService.getAllPlaylistByUser(this.username).subscribe(list => {
       this.listPlayList = list.data;
+      console.log(this.listPlayList);
     });
     this.playlistForm = this.fb.group({
       name: this.fb.control('', [Validators.required]),
