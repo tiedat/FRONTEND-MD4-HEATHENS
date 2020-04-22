@@ -1,1 +1,33 @@
-<p>search-playlist works!</p>
+<h3>Playlist</h3>
+<div class="col-md-12">
+  <div class="row">
+    <div class="no-line-height col-md-3 col-xs-4 mar-bottom-20" *ngFor="let playlist of playlistList, index as i">
+      <div class="col-album z-size-180 ">
+        <div class="card-180 --z--reset-height">
+          <a title="{{playlist.name}}" href='http://localhost:4200/mymusic/playlist/{{playlist.id}}'>
+            <div class="image lazyload-img loaded">
+              <img [src]="playlist.image" >
+            </div><div class="opac">
+          </div>
+          </a>
+          <div class="player-actions">
+            <ul>
+              <a href='http://localhost:4200/mymusic/playlist/{{playlist.id}}' style="z-index: 10; width: 210px; height: 210px; left: 0px; position: absolute; top: 0px;">
+              </a>
+            </ul>
+          </div>
+        </div>
+        <div class="card-info ">
+          <div class="title">
+            <a title="" href='http://localhost:4200/mymusic/playlist/{{playlist.id}}'>{{playlist.name}}</a>
+          </div>
+          <div class="artist">
+          </div>
+          <div class="artist" style="line-height: normal;">
+            <span style="color: rgb(160, 160, 160); font-size: 12px;">Tạo bởi {{playlist.user.username}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

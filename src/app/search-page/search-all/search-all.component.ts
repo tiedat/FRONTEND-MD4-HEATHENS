@@ -10,7 +10,9 @@ import {SongService} from '../../services/song.service';
 export class SearchAllComponent implements OnInit {
   // searchValue;
   @Input() songList: any[];
+  @Input() playlistList: any[];
   @Output() changeSongs: EventEmitter<any> = new EventEmitter();
+  @Output() changePlaylist: EventEmitter<any> = new EventEmitter();
   constructor(private route: ActivatedRoute,
               private songService: SongService) { }
 
@@ -26,5 +28,8 @@ export class SearchAllComponent implements OnInit {
   }
   showSongs() {
     this.changeSongs.emit();
+  }
+  showPlaylist() {
+    this.changePlaylist.emit();
   }
 }

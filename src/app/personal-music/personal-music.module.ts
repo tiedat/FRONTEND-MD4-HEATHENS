@@ -11,7 +11,7 @@ import { EditSongComponent } from './song/edit-song/edit-song.component';
 import { MyAllPlaylistComponent } from './playlist/my-all-playlist/my-all-playlist.component';
 import { MyLibraryComponent } from './my-library/my-library.component';
 import {AppModule} from '../app.module';
-import { MyPlaylistComponent } from './my-playlist/my-playlist.component';
+import { MyPlaylistComponent } from './playlist/my-playlist/my-playlist.component';
 import { MiniPersonalPlayerComponent } from './mini-personal-player/mini-personal-player.component';
 
 

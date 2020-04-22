@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {IPlaylist} from '../../interface/playlist';
-import {ISong} from '../../interface/song';
+import {IPlaylist} from '../../../interface/playlist';
+import {ISong} from '../../../interface/song';
 import {ActivatedRoute, Router} from '@angular/router';
-import {PlaylistService} from '../../services/playlist.service';
+import {PlaylistService} from '../../../services/playlist.service';
 import {FormBuilder, Validators} from '@angular/forms';
-import {SongService} from '../../services/song.service';
+import {SongService} from '../../../services/song.service';
 
 @Component({
   selector: 'app-my-playlist',
