@@ -1,7 +1,5 @@
 <div class="col-6" style="margin-top: 5px">
-  <div *ngIf="isShow"
-       class="alert {{ (isSuccess) ? 'alert-success' : 'alert-danger' }}"
-       role="alert">
+  <div *ngIf="isShow" class="alert {{ (isSuccess) ? 'alert-success' : 'alert-danger' }}" role="alert">
     {{message}}
   </div>
 </div>
@@ -16,13 +14,15 @@
         <div class="card-180 --z--reset-height">
           <a title="{{playlist.name}}" routerLink='{{playlist.id}}'>
             <div class="image lazyload-img loaded">
-              <img [src]="playlist.img" >
-            </div><div class="opac">
-          </div>
+              <img [src]="playlist.image">
+            </div>
+            <div class="opac">
+            </div>
           </a>
           <div class="player-actions">
             <ul>
-              <a routerLink="{{playlist.id}}" style="z-index: 10; width: 210px; height: 210px; left: 0px; position: absolute; top: 0px;">
+              <a routerLink="{{playlist.id}}"
+                style="z-index: 10; width: 210px; height: 210px; left: 0px; position: absolute; top: 0px;">
               </a>
             </ul>
           </div>
@@ -43,7 +43,8 @@
 </div>
 <!-- Modal -->
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">

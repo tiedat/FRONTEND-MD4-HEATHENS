@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {IPlaylist} from '../../interface/playlist';
-import {DataService} from '../../services/data.service';
-import {PlaylistService} from '../../services/playlist.service';
-import {FormBuilder, Validators} from '@angular/forms';
-import {UserService} from '../../services/user.service';
+import { IPlaylist } from '../../interface/playlist';
+import { DataService } from '../../services/data.service';
+import { PlaylistService } from '../../services/playlist.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-my-all-playlist',
@@ -20,18 +20,18 @@ export class MyAllPlaylistComponent implements OnInit {
   playlistForm: any;
   playlist: IPlaylist = {
     name: '',
-    img: '',
+    image: '',
     descriptionPlaylist: '',
     songs: [],
     user: {},
   };
   username: any;
   constructor(private data: DataService,
-              private playlistService: PlaylistService,
-              private fb: FormBuilder,
-              private userService: UserService) { }
+    private playlistService: PlaylistService,
+    private fb: FormBuilder,
+    private userService: UserService) { }
   ngOnInit() {
-    this.data.currentMessage.subscribe(username => this.username = username);
+    this.username = localStorage.getItem('username');
     this.userService.getUserByUsername(this.username).subscribe(user => {
       console.log(user);
       this.playlist.user = user.data;
@@ -44,23 +44,19 @@ export class MyAllPlaylistComponent implements OnInit {
       name: this.fb.control('', [Validators.required]),
       descriptionPlaylist: '',
     });
-    this.data.currentMessage.subscribe(username => {
-      console.log(username);
-      this.username = username;
-    });
   }
   showPlayList() {
   }
   creatPlaylist() {
     this.playlist.name = this.playlistForm.get('name').value;
-    this.playlist.img = 'https://photo-zmp3.zadn.vn/album_default.png';
+    this.playlist.image = 'https://photo-zmp3.zadn.vn/album_default.png';
     console.log(this.playlist);
-    this.playlistService.createPlaylist(this.playlist).subscribe( result => {
+    this.playlistService.createPlaylist(this.playlist).subscribe(result => {
       this.isShow = true;
       this.isSuccess = true;
       this.message = 'Tạo thành công!';
       this.isLoading = false;
-      this.ngOnInit();
+      //this.ngOnInit();
     }, error => {
       this.isShow = true;
       this.isSuccess = false;

@@ -10,7 +10,7 @@
     <i role="button" class="far fa-play-circle"></i>
   </a>
 </h1>
-<h2>Tên playlist: {{playlist.name}}
+<h2>Tên playlist: {{ playlist.name }}
   <a data-toggle="modal" data-target="#exampleModal">
     <i role="button" class="far fa-edit"></i>
   </a>
@@ -18,7 +18,8 @@
     <i role="button" class="far fa-trash-alt"></i>
   </a>
 </h2>
-<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle1" aria-hidden="true">
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle1"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -28,7 +29,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <a>Playlist của bạn sẽ bị xóa khỏi thư viện cá nhân. Các bài hát do bạn tải lên sẽ vẫn được giữ lại. Bạn có muốn xóa?</a>
+        <a>Playlist của bạn sẽ bị xóa khỏi thư viện cá nhân. Các bài hát do bạn tải lên sẽ vẫn được giữ lại. Bạn có muốn
+          xóa?</a>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="deletePlaylist()">Xóa</button>
@@ -36,7 +38,8 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -56,62 +59,62 @@
 </div>
 <table class="table table-dark">
   <thead class="">
-  <tr>
-    <th scope="col"></th>
-    <th scope="col"></th>
-    <th scope="col"></th>
-    <th scope="col"></th>
-    <th scope="col"></th>
-  </tr>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
   </thead>
   <tbody class="table-hover" *ngFor="let song of playlist.songs, index as i">
-  <tr>
-    <td>{{i+1}}</td>
-    <td>
-      {{song.name}}
-    </td>
-    <td>
-      {{song.descriptionSong}}
-    </td>
-    <td>
-      <img [src]="song.image" style="width: 100px" height="100px">
-    </td>
-    <td>
-      <a (click)="subtractSong(i)">
-        <i role="button" class="fas fa-minus"></i>
-      </a>
-    </td>
-  </tr>
+    <tr>
+      <td>{{i+1}}</td>
+      <td>
+        {{song.name}}
+      </td>
+      <td>
+        {{song.descriptionSong}}
+      </td>
+      <td>
+        <img [src]="song.image" style="width: 100px" height="100px">
+      </td>
+      <td>
+        <a (click)="subtractSong(i)">
+          <i role="button" class="fas fa-minus"></i>
+        </a>
+      </td>
+    </tr>
   </tbody>
 </table>
 <table class="table table-dark">
   <thead class="">
-  <tr>
-    <th scope="col"></th>
-    <th scope="col"></th>
-    <th scope="col"></th>
-    <th scope="col"></th>
-    <th scope="col"></th>
-  </tr>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
   </thead>
   <tbody class="table-hover" *ngFor="let song of songListAll, index as i">
-  <tr *ngIf="checkAdded(song.id)">
-    <td>{{song.id}}</td>
-    <td>
-      {{song.name}}
-    </td>
-    <td>
-      {{song.descriptionSong}}
-    </td>
-    <td>
-      <img [src]="song.image" style="width: 100px" height="100px">
-    </td>
-    <td>
-      <a (click)="addSongToPlaylist(song)">
-        <i role="button" class="fas fa-plus"></i>
-      </a>
-    </td>
-  </tr>
+    <tr *ngIf="checkAdded(song.id)">
+      <td>{{song.id}}</td>
+      <td>
+        {{song.name}}
+      </td>
+      <td>
+        {{song.descriptionSong}}
+      </td>
+      <td>
+        <img [src]="song.image" style="width: 100px" height="100px">
+      </td>
+      <td>
+        <a (click)="addSongToPlaylist(song)">
+          <i role="button" class="fas fa-plus"></i>
+        </a>
+      </td>
+    </tr>
   </tbody>
 </table>
-<app-mini-personal-player *ngIf="isPlayMusic" [songPlayed]="songPlayed" (changeSongs)="nextSong()"></app-mini-personal-player>
+<!-- <app-mini-personal-player *ngIf="isPlayMusic" [songPlayed]="songPlayed" (changeSongs)="nextSong()"></app-mini-personal-player> -->

@@ -4,15 +4,25 @@
 
 export const environment = {
   production: false,
+  // firebaseConfig: {
+  //   apiKey: 'AIzaSyCQYQQooPcw2gQEqNJQKzjhJoIqOR6y-vQ',
+  //   authDomain: 'mp3-project-3bd46.firebaseapp.com',
+  //   databaseURL: 'https://mp3-project-3bd46.firebaseio.com',
+  //   projectId: 'mp3-project-3bd46',
+  //   storageBucket: 'mp3-project-3bd46.appspot.com',
+  //   messagingSenderId: '465410854805',
+  //   appId: '1:465410854805:web:38284e013bb62ae85d309c',
+  //   measurementId: 'G-21WJ99YYE1'
+  // }
   firebaseConfig: {
-    apiKey: 'AIzaSyCQYQQooPcw2gQEqNJQKzjhJoIqOR6y-vQ',
-    authDomain: 'mp3-project-3bd46.firebaseapp.com',
-    databaseURL: 'https://mp3-project-3bd46.firebaseio.com',
-    projectId: 'mp3-project-3bd46',
-    storageBucket: 'mp3-project-3bd46.appspot.com',
-    messagingSenderId: '465410854805',
-    appId: '1:465410854805:web:38284e013bb62ae85d309c',
-    measurementId: 'G-21WJ99YYE1'
+    apiKey: "AIzaSyBW0gQoj73yrgzczj_0KKdSN5AszwockZo",
+    authDomain: "mp3-music-ce364.firebaseapp.com",
+    databaseURL: "https://mp3-music-ce364.firebaseio.com",
+    projectId: "mp3-music-ce364",
+    storageBucket: "mp3-music-ce364.appspot.com",
+    messagingSenderId: "807093260122",
+    appId: "1:807093260122:web:2ae2058eea75e3616fed63",
+    measurementId: "G-V322QGGJ10"
   }
 };
 
