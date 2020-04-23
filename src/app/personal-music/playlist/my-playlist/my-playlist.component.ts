@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { IPlaylist } from '../../interface/playlist';
-import { ISong } from '../../interface/song';
-import { ActivatedRoute, Router } from '@angular/router';
-import { PlaylistService } from '../../services/playlist.service';
-import { FormBuilder, Validators } from '@angular/forms';
-import { SongService } from '../../services/song.service';
+
 import { Observable } from 'rxjs';
 import { PlayerService } from 'src/app/services/player.service';
+import { ISong } from 'src/app/interface/song';
+import { ActivatedRoute, Router } from '@angular/router';
+import { IPlaylist } from 'src/app/interface/playlist';
+import { PlaylistService } from 'src/app/services/playlist.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { SongService } from 'src/app/services/song.service';
 
 @Component({
   selector: 'app-my-playlist',
