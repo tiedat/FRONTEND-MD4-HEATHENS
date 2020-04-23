@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {SongService} from '../../../services/song.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SongService } from '../../../services/song.service';
 import * as firebase from 'firebase';
-import {finalize} from 'rxjs/operators';
-import {ISong} from '../../../interface/song';
-import {AngularFireStorage} from '@angular/fire/storage';
-import {IUser} from '../../../interface/user';
-import {DataService} from '../../../services/data.service';
-import {UserService} from '../../../services/user.service';
+import { finalize } from 'rxjs/operators';
+import { ISong } from '../../../interface/song';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { IUser } from '../../../interface/user';
+import { DataService } from '../../../services/data.service';
+import { UserService } from '../../../services/user.service';
 @Component({
   selector: 'app-upload-song',
   templateUrl: './upload-song.component.html',
@@ -33,18 +33,18 @@ export class UploadSongComponent implements OnInit {
   username;
   song: ISong = {
     name: '',
-    descriptionSong: '',
+    description: '',
     fileMp3: '',
     image: '',
-    numberOfPlays : 0,
+    numberOfPlays: 0,
     user: {}
   };
 
   constructor(private songService: SongService,
-              private fb: FormBuilder,
-              private storage: AngularFireStorage,
-              // private data: DataService,
-              private userService: UserService) {
+    private fb: FormBuilder,
+    private storage: AngularFireStorage,
+    // private data: DataService,
+    private userService: UserService) {
   }
 
   ngOnInit() {
@@ -55,27 +55,23 @@ export class UploadSongComponent implements OnInit {
       console.log(user);
       this.song.user = user.data;
     });
-    // this.userService.getUserByUsername(this.username).subscribe(user => {
-    //   console.log(user);
-    //   this.song.user = user.data;
-    // });
     this.songUploadForm = this.fb.group({
       name: this.fb.control('', [Validators.required]),
-      descriptionSong: '',
+      description: '',
       fileMp3: '',
       image: '',
-      numberOfPlays : 0,
+      numberOfPlays: 0,
     });
   }
 
   NgSubmit() {
     this.isLoading = true;
     this.song.name = this.songUploadForm.get('name').value;
-    this.song.descriptionSong = this.songUploadForm.get('descriptionSong').value;
+    this.song.description = this.songUploadForm.get('description').value;
     this.uploadFileMP3();
     this.uploadFileImage();
     console.log(this.song);
-    this.songService.createSong(this.song).subscribe( result => {
+    this.songService.createSong(this.song).subscribe(result => {
       this.isShow = true;
       this.isSuccess = true;
       this.message = 'Tạo thành công!';
@@ -106,7 +102,7 @@ export class UploadSongComponent implements OnInit {
     const fileRefImage = this.storage.ref(filePathImage);
     this.storage.upload(filePathImage, this.selectedImage).snapshotChanges().pipe(
       finalize(() => {
-        fileRefImage.getDownloadURL() .subscribe( url => {
+        fileRefImage.getDownloadURL().subscribe(url => {
           this.imageUrl = url;
           this.song.image = url;
           this.percentLoadingImg = 'width: 100%';

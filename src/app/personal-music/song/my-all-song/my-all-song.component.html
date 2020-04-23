@@ -2,15 +2,15 @@
 <table class="table table-dark">
   <thead class="">
 
-  <tr>
-    <th scope="col">ID</th>
-    <th scope="col">Tên bài hát</th>
-    <th scope="col">Mô tả</th>
-    <th scope="col">Ảnh</th>
-    <th scope="col">Nhạc</th>
-    <th scope="col">Chỉnh sửa</th>
-    <th scope="row">Xóa</th>
-  </tr>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Tên bài hát</th>
+      <th scope="col">Mô tả</th>
+      <th scope="col">Ảnh</th>
+      <th scope="col">Nhạc</th>
+      <th scope="col">Chỉnh sửa</th>
+      <th scope="row">Xóa</th>
+    </tr>
   </thead>
   <tbody class="table-hover" *ngFor="let song of songList, index as i">
     <tr>
@@ -19,13 +19,13 @@
         {{song.name}}
       </td>
       <td>
-        {{song.descriptionSong}}
+        {{song.description}}
       </td>
       <td>
         <img [src]="song.image" style="width: 100px" height="100px">
       </td>
-      <td >
-        <audio controls [src]="song.fileMp3"  (play)="updateListener(song)"></audio>
+      <td>
+        <audio controls [src]="song.fileMp3" (play)="updateListener(song)"></audio>
       </td>
       <td>
         <button type="button" class="btn btn-warning btn-sm" routerLink='edit/{{song.id}}'>Sửa</button>
@@ -36,4 +36,3 @@
     </tr>
   </tbody>
 </table>
-

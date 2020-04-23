@@ -6,7 +6,7 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./search-playlist.component.scss']
 })
 export class SearchPlaylistComponent implements OnInit {
-  @Input() playlistList: any[];
+  @Input() playlistList: any[]
   constructor() { }
 
   ngOnInit(): void {

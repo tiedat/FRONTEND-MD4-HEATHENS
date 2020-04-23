@@ -31,6 +31,9 @@ export class SearchPageComponent implements OnInit {
       this.playlistService.getPlaylistByName(this.searchValue).subscribe(list => {
         this.playlistList = list.data;
       });
+      this.playlistService.getPlaylistByName(this.searchValue).subscribe(list => {
+        this.playlistList = list.data;
+      });
     });
   }
   showSongs() {

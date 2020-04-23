@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {IPlaylist} from '../../../interface/playlist';
-import {ISong} from '../../../interface/song';
-import {ActivatedRoute, Router} from '@angular/router';
-import {PlaylistService} from '../../../services/playlist.service';
-import {FormBuilder, Validators} from '@angular/forms';
-import {SongService} from '../../../services/song.service';
+import { IPlaylist } from '../../interface/playlist';
+import { ISong } from '../../interface/song';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PlaylistService } from '../../services/playlist.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { SongService } from '../../services/song.service';
+import { Observable } from 'rxjs';
+import { PlayerService } from 'src/app/services/player.service';
 
 @Component({
   selector: 'app-my-playlist',
@@ -14,59 +16,57 @@ import {SongService} from '../../../services/song.service';
 export class MyPlaylistComponent implements OnInit {
   numberSong = 0;
   isPlayMusic = false;
-  songPlayed: any;
   songListAll: any[];
   message: string;
   isShow = false;
   isSuccess = true;
   isLoading = false;
+  isPlay: Observable<boolean>;
+  songPlayed: ISong;
   song: ISong = {
     name: '',
-    descriptionSong: '',
+    description: '',
     fileMp3: '',
     image: '',
-    numberOfPlays : 0,
+    numberOfPlays: 0,
     user: {}
   };
   playlist: IPlaylist = {
-    name: '',
-    descriptionPlaylist: '',
+    id: 0,
+    description: '',
     image: '',
-    songs: [],
-    user: {},
-  };
+    name: '',
+    songs: [{}],
+  }
   playlistForm: any;
   constructor(private route: ActivatedRoute,
-              private playlistService: PlaylistService,
-              private fb: FormBuilder,
-              private router: Router,
-              private songService: SongService) { }
+    private playlistService: PlaylistService,
+    private fb: FormBuilder,
+    private router: Router,
+    private songService: SongService,
+    private playerService: PlayerService) { }
   ngOnInit() {
     this.playlistForm = this.fb.group({
       name: this.fb.control('', [Validators.required]),
-      descriptionPlaylist: '',
+      description: '',
     });
-    this.route.paramMap.subscribe( params => {
+    this.route.paramMap.subscribe(params => {
       const idSearch = Number(params.get('id'));
-      console.log(idSearch);
       this.playlistService.getPlaylist(idSearch).subscribe(playlist => {
-        console.log(playlist);
         this.playlist = playlist.data;
-        for (let i = 0; i < this.playlist.songs.length; i++) {
-          console.log(this.playlist.songs[i].id);
-        }
-        console.log(this.playlist.name);
+        console.log('song list');
+        console.log(this.playlist);
         this.playlistForm.controls.name.setValue(this.playlist.name);
       });
     });
     this.songService.getAllSong().subscribe(list => {
-      console.log(list.data);
       this.songListAll = list.data;
     });
+    this.isPlay = this.playerService.isPlay$;
   }
   editName() {
     this.playlist.name = this.playlistForm.get('name').value;
-    this.playlistService.updatePlaylist(this.playlist).subscribe( result => {
+    this.playlistService.updatePlaylist(this.playlist).subscribe(result => {
       this.isShow = true;
       this.isSuccess = true;
       this.message = 'Sửa thành công!';
@@ -79,6 +79,7 @@ export class MyPlaylistComponent implements OnInit {
       this.isLoading = false;
     });
   }
+
   deletePlaylist() {
     this.playlistService.deletePlaylist(this.playlist.id).subscribe();
     this.router.navigate(['/mymusic/playlist/']).then((e) => {
@@ -87,16 +88,15 @@ export class MyPlaylistComponent implements OnInit {
     });
   }
   addSongToPlaylist(object: ISong) {
-    this.song = object;
-    console.log(this.song);
     this.playlist.songs.push(object);
-    console.log(this.playlist.songs);
     this.playlist.image = object.image;
     this.playlistService.updatePlaylist(this.playlist).subscribe();
+    this.updateLocalStorage();
   }
   subtractSong(i: number) {
-    this.playlist.songs.splice(i, 1 );
+    this.playlist.songs.splice(i, 1);
     this.playlistService.updatePlaylist(this.playlist).subscribe();
+    this.updateLocalStorage();
   }
   checkAdded(checkValue: number) {
     let check;
@@ -116,11 +116,18 @@ export class MyPlaylistComponent implements OnInit {
   }
   playPlaylist() {
     this.isPlayMusic = true;
-    this.songPlayed = this.playlist.songs[this.numberSong];
+    if (this.playlist.songs.length > 0) {
+      this.updateLocalStorage();
+      this.songPlayed = this.playlist.songs[this.numberSong];
+      this.playerService.changePlayStatus(true);
+    }
   }
   nextSong() {
     this.numberSong += 1;
-    console.log(this.songPlayed);
     this.playPlaylist();
+  }
+
+  updateLocalStorage() {
+    this.playerService.addPlayList(this.playlist.songs);
   }
 }

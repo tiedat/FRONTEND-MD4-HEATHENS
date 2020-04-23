@@ -2,11 +2,11 @@
   <div class="row col-12 ">
     <div class="row col-2"></div>
     <div class="row col-9">
-      <a class="navbar-brand"><img [src]="songPlayed.image" width="50px" height="50px"></a>
+      <a class="navbar-brand"><img [src]="currentSong.image" width="50px" height="50px"></a>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <audio controls autoplay [src]="songPlayed.fileMp3" (ended)="nextSong()"></audio>
+            <audio controls autoplay [src]="currentSong.fileMp3" preload="auto" (ended)="nextSong()"></audio>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#"><i class="far fa-heart"></i></a>
@@ -27,6 +27,4 @@
     </div>
     <div class="row col-2"></div>
   </div>
-
-
 </nav>

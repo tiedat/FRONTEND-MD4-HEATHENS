@@ -1,7 +1,8 @@
+import { IPlaylist } from './../interface/playlist';
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {ISong} from '../interface/song';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ISong } from '../interface/song';
 
 @Injectable({
   providedIn: 'root'
@@ -35,13 +36,13 @@ export class PlaylistService {
   }
 
   /* ---------------- CREATE PLAYLIST ------------------------ */
-  public createPlaylist(song: ISong): Observable<any> {
-    return this.httpClient.post(this.API_URL1, song);
+  public createPlaylist(playlist: IPlaylist): Observable<any> {
+    return this.httpClient.post(this.API_URL1, playlist);
   }
 
   /* ---------------- UPDATE PLAYLIST ------------------------ */
-  public updatePlaylist(song: ISong): Observable<any> {
-    return this.httpClient.patch(this.API_URL1, song);
+  public updatePlaylist(playlist: IPlaylist): Observable<any> {
+    return this.httpClient.patch(this.API_URL1, playlist);
   }
   /* ---------------- Search PLAYLIST By Name ------------------------ */
   public getPlaylistByName(search: string): Observable<any> {
