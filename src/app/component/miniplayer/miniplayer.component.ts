@@ -13,13 +13,13 @@ import { ISong } from 'src/app/interface/song';
 export class MiniplayerComponent implements OnInit {
   songList: Observable<ISong[]>;
   currentSong: ISong;
-  shufferList: ISong[];
+  shufflerList: ISong[];
   songIndex = 0;
   length;
   isRepeat = false;
-  isShuffe = false;
+  isShuffle = false;
   constructor(private songService: SongService,
-    private playerService: PlayerService) { }
+              private playerService: PlayerService) { }
 
   ngOnInit(): void {
     this.songList = this.playerService.player$;
@@ -28,10 +28,10 @@ export class MiniplayerComponent implements OnInit {
       console.log(song);
       this.currentSong = song[this.songIndex];
       this.length = song.length;
-      //this.shufferList = this.shuffle(song);
+      // this.shufflerList = this.shuffle(song);
 
     });
-    console.log(this.shufferList);
+    console.log(this.shufflerList);
   }
   upNumberOfPlays() {
     this.currentSong.numberOfPlays = this.currentSong.numberOfPlays + 1;
@@ -46,7 +46,7 @@ export class MiniplayerComponent implements OnInit {
       this.songIndex++;
       console.log(this.songIndex);
       this.songList.subscribe(song => this.currentSong = song[this.songIndex]);
-      //this.currentSong = this.shufferList[this.songIndex];
+      // this.currentSong = this.shufflerList[this.songIndex];
     } else {
       if (this.isRepeat) {
         this.songIndex = 0;
