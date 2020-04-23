@@ -23,14 +23,34 @@ export class MiniplayerComponent implements OnInit {
 
   ngOnInit(): void {
     this.songList = this.playerService.player$;
-
     this.songList.subscribe(song => {
       console.log(song);
       this.currentSong = song[this.songIndex];
+      // if (this.isShuffle) {
+      //   this.shufflerList = this.shuffle(song);
+      //   console.log(this.isShuffle);
+      // }
       this.length = song.length;
-      // this.shufflerList = this.shuffle(song);
-
     });
+    console.log(this.shufflerList);
+  }
+  shuffleList() {
+    this.isShuffle = !this.isShuffle;
+    if (this.isShuffle) {
+      this.songList.subscribe(song => {
+      console.log(song);
+      this.currentSong = song[this.songIndex];
+      this.shufflerList = this.shuffle(song);
+      console.log(this.isShuffle);
+      this.length = song.length;
+    }); } else {this.ngOnInit();
+      // if (this.isShuffle) {
+      //   this.shufflerList = this.shuffle(song);
+      //   console.log(this.isShuffle);
+      // }
+      // this.length = song.length;
+    }
+    console.log(this.isShuffle);
     console.log(this.shufflerList);
   }
   upNumberOfPlays() {
@@ -61,6 +81,11 @@ export class MiniplayerComponent implements OnInit {
       this.songIndex--;
       this.songList.subscribe(song => this.currentSong = song[this.songIndex]);
     }
+  }
+  forwardSong() {
+    if (this.songIndex < this.length - 1) {
+      this.songIndex++;
+      this.songList.subscribe(song => this.currentSong = song[this.songIndex]);}
   }
 
   shuffle(a) {
