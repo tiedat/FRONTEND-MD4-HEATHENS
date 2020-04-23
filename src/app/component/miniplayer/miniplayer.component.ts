@@ -17,7 +17,7 @@ export class MiniplayerComponent implements OnInit {
   songIndex = 0;
   length;
   isRepeat = false;
-  isShuffe = false;
+  isShuffer = false;
   constructor(private songService: SongService,
     private playerService: PlayerService) { }
 
@@ -38,6 +38,7 @@ export class MiniplayerComponent implements OnInit {
     this.songService.updateSong(this.currentSong).subscribe();
   }
   nextSong() {
+    console.log(this.isShuffer)
     this.upNumberOfPlays();
     console.log(this.songIndex);
     console.log(this.length);
@@ -48,12 +49,15 @@ export class MiniplayerComponent implements OnInit {
       this.songList.subscribe(song => this.currentSong = song[this.songIndex]);
       //this.currentSong = this.shufferList[this.songIndex];
     } else {
-      if (this.isRepeat) {
-        this.songIndex = 0;
-        this.songList.subscribe(song => this.currentSong = song[this.songIndex]);
-      }
+      this.songIndex = 0;
+      this.songList.subscribe(song => this.currentSong = song[this.songIndex]);
     }
 
+  }
+
+  toggleShuffer() {
+    this.isShuffer = !this.isShuffer;
+    console.log(this.isShuffer);
   }
 
   backSong() {

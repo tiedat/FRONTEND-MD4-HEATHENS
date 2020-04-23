@@ -25,7 +25,7 @@ export class PlayerService {
     }
 
     updateToLocalStorage(songlist) {
-        localStorage.removeItem(PlayerService.PlayerStorageKey);
+        //localStorage.removeItem(PlayerService.PlayerStorageKey);
         this.localStorageService.setObject(PlayerService.PlayerStorageKey, songlist);
         this.updatePlayerData();
     }
