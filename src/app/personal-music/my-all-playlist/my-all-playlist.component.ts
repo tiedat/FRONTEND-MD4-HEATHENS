@@ -27,9 +27,9 @@ export class MyAllPlaylistComponent implements OnInit {
   };
   username: any;
   constructor(private data: DataService,
-    private playlistService: PlaylistService,
-    private fb: FormBuilder,
-    private userService: UserService) { }
+              private playlistService: PlaylistService,
+              private fb: FormBuilder,
+              private userService: UserService) { }
   ngOnInit() {
     this.username = localStorage.getItem('username');
     this.userService.getUserByUsername(this.username).subscribe(user => {
@@ -56,7 +56,7 @@ export class MyAllPlaylistComponent implements OnInit {
       this.isSuccess = true;
       this.message = 'Tạo thành công!';
       this.isLoading = false;
-      //this.ngOnInit();
+      // this.ngOnInit();
     }, error => {
       this.isShow = true;
       this.isSuccess = false;

@@ -13,22 +13,35 @@ import { ISong } from 'src/app/interface/song';
 export class MiniplayerComponent implements OnInit {
   songList: Observable<ISong[]>;
   currentSong: ISong;
-  songIndex = 0
+  songIndex = 0;
+  pastSong: ISong;
   constructor(private songService: SongService,
-    private playerService: PlayerService) { }
+              private playerService: PlayerService) { }
 
   ngOnInit(): void {
     this.songList = this.playerService.player$;
     this.songList.subscribe(song => this.currentSong = song[this.songIndex]);
   }
+  savePastSong(song) {
+    this.pastSong = song;
+    console.log(this.pastSong);
+  }
+  backSong() {
+    this.songList.subscribe(song => this.currentSong = song[this.songIndex--]);
+  }
+  forwardSong() {}
   upNumberOfPlays() {
     this.currentSong.numberOfPlays = this.currentSong.numberOfPlays + 1;
     this.songService.updateSong(this.currentSong).subscribe();
   }
+  shuffleSongList() {}
+
   nextSong() {
     this.upNumberOfPlays();
     this.songIndex++;
     this.songList.subscribe(song => this.currentSong = song[this.songIndex]);
-
+  }
+  randomSong() {
+    this.shuffleSongList();
   }
 }

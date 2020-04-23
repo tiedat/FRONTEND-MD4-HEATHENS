@@ -38,14 +38,14 @@ export class MyPlaylistComponent implements OnInit {
     image: '',
     name: '',
     songs: [{}],
-  }
+  };
   playlistForm: any;
   constructor(private route: ActivatedRoute,
-    private playlistService: PlaylistService,
-    private fb: FormBuilder,
-    private router: Router,
-    private songService: SongService,
-    private playerService: PlayerService) { }
+              private playlistService: PlaylistService,
+              private fb: FormBuilder,
+              private router: Router,
+              private songService: SongService,
+              private playerService: PlayerService) { }
   ngOnInit() {
     this.playlistForm = this.fb.group({
       name: this.fb.control('', [Validators.required]),

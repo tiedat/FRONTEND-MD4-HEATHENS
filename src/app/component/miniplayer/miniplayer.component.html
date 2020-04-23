@@ -2,25 +2,52 @@
   <div class="row col-12 ">
     <div class="row col-2"></div>
     <div class="row col-9">
-      <a class="navbar-brand"><img [src]="currentSong.image" width="50px" height="50px"></a>
+
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <audio controls autoplay [src]="currentSong.fileMp3" preload="auto" (ended)="nextSong()"></audio>
+          <li class="nav-item">
+            <a class="nav-link" (click)="backSong()"><i class="fas fa-backward"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="far fa-heart"></i></a>
+            <a class="nav-link" ><i class="fas fa-forward"></i></a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" ><i class="fas fa-random"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" ><i class="fal fa-repeat-alt"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="navbar-brand"><img [src]="currentSong.image" width="50px" height="50px"></a>
+          </li>
+          <li class="nav-item active">
+            <audio controls autoplay [src]="currentSong.fileMp3" preload="auto" (ended)="nextSong()" (play)="savePastSong(currentSong)"></audio>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" ><i class="far fa-heart"></i></a>
+          </li>
+
           <li class="nav-item dropup">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown10" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">
-              <span class="navbar-toggler-icon"></span>
+              <i class="fas fa-plus"></i>
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdown10">
               <a class="dropdown-item" href="#"> <i class="fas fa-plus"></i> Thêm vào playlist</a>
               <a class="dropdown-item" href="#"><i class="far fa-comment"></i> Bình luận</a>
             </div>
           </li>
+          <li class="nav-item dropup">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown1" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false">
+              <i class="far fa-comment"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdown1">
+              <a class="dropdown-item" href="#"> <i class="fas fa-plus"></i> Thêm vào playlist</a>
+              <a class="dropdown-item" href="#"><i class="far fa-comment"></i> Bình luận</a>
+            </div>
+          </li>
+
         </ul>
       </div>
 
