@@ -8,7 +8,6 @@ import {SongService} from '../../services/song.service';
   styleUrls: ['./search-all.component.scss']
 })
 export class SearchAllComponent implements OnInit {
-  // searchValue;
   @Input() songList: any[];
   @Input() playlistList: any[];
   @Output() changeSongs: EventEmitter<any> = new EventEmitter();
@@ -16,16 +15,7 @@ export class SearchAllComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private songService: SongService) { }
 
-  ngOnInit() {
-    // this.route.paramMap.subscribe(params => {
-    //   this.searchValue = params.get('textSearch');
-    //   console.log(this.searchValue);
-    //   this.songService.getSongByName(this.searchValue).subscribe(list => {
-    //     this.songList = list.data;
-    //     console.log(this.songList);
-    //   });
-    // });
-  }
+  ngOnInit() {}
   showSongs() {
     this.changeSongs.emit();
   }

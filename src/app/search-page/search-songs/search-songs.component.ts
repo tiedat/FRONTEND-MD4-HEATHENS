@@ -8,21 +8,12 @@ import {SongService} from '../../services/song.service';
   styleUrls: ['./search-songs.component.scss']
 })
 export class SearchSongsComponent implements OnInit {
-  @Input() songList: any[]
-  searchValue;
-  // songList: any[];
+  @Input() songList: any[];
+  searchValue: any;
   constructor(private route: ActivatedRoute,
               private songService: SongService) { }
 
   ngOnInit() {
-    // this.route.paramMap.subscribe(params => {
-    //   this.searchValue = params.get('id');
-    //   console.log(this.searchValue);
-    //   this.songService.getSongByName(this.searchValue).subscribe(list => {
-    //     this.songList = list.data;
-    //     console.log(this.songList);
-    //   });
-    // });
-  }
 
+  }
 }

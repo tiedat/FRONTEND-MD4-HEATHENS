@@ -10,7 +10,7 @@ export class AuthenticationService {
         private httpClient: HttpClient
     ) {
     }
-    authenticate(username, password) {
+    authenticate(username: any, password: any) {
         return this.httpClient.post<any>('http://localhost:5000/authenticate', { username, password }, { responseType: 'text' as 'json' })
             .pipe(map(token => {
                 const tokenStr = 'Bearer ' + token;

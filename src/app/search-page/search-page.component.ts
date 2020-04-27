@@ -16,7 +16,7 @@ export class SearchPageComponent implements OnInit {
   songList: any[];
   singerList: any[];
   playlistList: any[];
-  searchValue;
+  searchValue: string;
   constructor(private route: ActivatedRoute,
               private songService: SongService,
               private playlistService: PlaylistService) { }

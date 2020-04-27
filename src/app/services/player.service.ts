@@ -24,7 +24,7 @@ export class PlayerService {
         this.updatePlayerData();
     }
 
-    updateToLocalStorage(songlist) {
+    updateToLocalStorage(songlist: ISong[]) {
         localStorage.removeItem(PlayerService.PlayerStorageKey);
         this.localStorageService.setObject(PlayerService.PlayerStorageKey, songlist);
         this.updatePlayerData();
@@ -40,7 +40,7 @@ export class PlayerService {
         this.updateToLocalStorage(this.player);
     }
 
-    addPlayList(list): void {
+    addPlayList(list: any[]): void {
         this.player = new Array<ISong>();
         this.player = [...list];
         this.updateToLocalStorage(this.player);
