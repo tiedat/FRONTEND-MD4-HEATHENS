@@ -13,6 +13,9 @@ import { MyLibraryComponent } from './my-library/my-library.component';
 import {AppModule} from '../app.module';
 import { MyPlaylistComponent } from './my-playlist/my-playlist.component';
 import { MiniPersonalPlayerComponent } from './mini-personal-player/mini-personal-player.component';
+import { HistoryComponent } from './history/history.component';
+import { SongHistoryComponent } from './history/song-history/song-history.component';
+import { PlaylistHistoryComponent } from './history/playlist-history/playlist-history.component';
 
 
 @NgModule({
@@ -23,7 +26,10 @@ import { MiniPersonalPlayerComponent } from './mini-personal-player/mini-persona
     MyAllPlaylistComponent,
     MyLibraryComponent,
     MyPlaylistComponent,
-    MiniPersonalPlayerComponent],
+    MiniPersonalPlayerComponent,
+    HistoryComponent,
+    SongHistoryComponent,
+    PlaylistHistoryComponent],
   imports: [
     CommonModule,
     PersonalMusicRoutingModule,

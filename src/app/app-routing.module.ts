@@ -1,3 +1,5 @@
+import { MostListenSongComponent } from './component/most-listen-song/most-listen-song.component';
+import { NewSongComponent } from './component/new-song/new-song.component';
 import { AuthGaurd } from './guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -11,6 +13,8 @@ const routes: Routes = [
   { path: 'home', component: HomepageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'new-song', component: NewSongComponent },
+  { path: 'chart', component: MostListenSongComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'search',

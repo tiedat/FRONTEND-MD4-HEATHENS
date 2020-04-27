@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Cabin+Sketch&family=Fredericka+the+Great&family=Kumar+One+Outline&family=Monoton&display=swap');
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.slick-btn {
+    width: 20px;
+    height: 20px;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.card-wrap {
+    width: 330px;
+    height: 150px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+
+    & img {
+        border-radius: 5px;
+    }
+}
+
+.text {
+    font-family: 'Kumar One Outline', cursive;
+    font-size: 40px;
+    color: #6d6d6d;
+}
+
+.time {
+    font-size: 14px;
+    color: #6d6d6d;
+}

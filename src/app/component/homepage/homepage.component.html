@@ -1,22 +1,9 @@
-<tbody class="table-hover" *ngFor="let song of songList">
-  <div class="col-sm-12 poly-prod">
-    <div class="panel panel-default">
-      <div class="panel-body" (click)="playMusic(song)">
-        <img [src]="song.image" style="width: 100px" height="100px">
-        <div class="panel-footer" (click)="playMusic(song)">
-          <div>{{song.name}} - {{song.numberOfPlays}}</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--<tr>-->
-  <!--  <td (click)="playMusic(song)">-->
-  <!--    <img [src]="song.image" style="width: 100px" height="100px">-->
-  <!--  </td>-->
-  <!--  <td>-->
-  <!--    <a (click)="playMusic(song)">-->
-  <!--      {{song.name}}-->
-  <!--    </a>-->
-  <!--  </td>-->
-  <!--</tr>-->
-</tbody>
+<app-carosel-banner></app-carosel-banner>
+
+<app-carousel-most-song></app-carousel-most-song>
+
+<app-carousel-new-song></app-carousel-new-song>
+
+<app-carousel *ngIf="isLoggedIn === true && playlists.length > 0" carousel_title="Playlist nghe gần đây"
+    [obj]="playlists">
+</app-carousel>

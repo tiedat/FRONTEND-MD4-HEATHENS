@@ -1,3 +1,5 @@
+import { AuthenticationService } from 'src/app/services/authentiation.service';
+import { IPlaylist } from './../../interface/playlist';
 import { Component, OnInit } from '@angular/core';
 import { SongService } from '../../services/song.service';
 import { UserService } from '../../services/user.service';
@@ -12,27 +14,26 @@ import { ISong } from 'src/app/interface/song';
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
-  songList: any[];
-  username: string;
   isPlay: Observable<boolean>;
-  songPlayed: any;
-  constructor(private songService: SongService,
-    private playerService: PlayerService) { }
+  playlists: IPlaylist[];
+  isLoggedIn = false;
+  constructor(
+    private playerService: PlayerService,
+    private authenticationService: AuthenticationService
+
+  ) { }
 
   ngOnInit() {
-    this.songService.getAllSong().subscribe(result => {
-      this.songList = result.data;
-    });
     this.isPlay = this.playerService.isPlay$;
+    this.playlists = JSON.parse(localStorage.getItem('listenedPlaylist'));
+    this.checkLogin();
   }
-  playMusic(song: ISong) {
-    this.songPlayed = song;
-    this.playerService.addSong(song);
-    this.playerService.changePlayStatus(true);
-  }
-  nextSong() {
-    this.songPlayed = this.songList[Math.floor(Math.random() * this.songList.length)];
-    console.log(this.songPlayed);
-    this.playMusic(this.songPlayed);
+
+  checkLogin() {
+    if (this.authenticationService.isUserLoggedIn()) {
+      this.isLoggedIn = true;
+    } else {
+      this.isLoggedIn = false;
+    }
   }
 }
