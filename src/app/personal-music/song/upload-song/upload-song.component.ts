@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { SongService } from '../../../services/song.service';
 import * as firebase from 'firebase';
 import { finalize } from 'rxjs/operators';
@@ -36,6 +36,7 @@ export class UploadSongComponent implements OnInit {
     fileMp3: '',
     image: '',
     numberOfPlays: 0,
+    tags: [{}],
     user: {}
   };
 
@@ -56,6 +57,7 @@ export class UploadSongComponent implements OnInit {
       fileMp3: '',
       image: '',
       numberOfPlays: 0,
+      tags: this.fb.array([])
     });
   }
 
@@ -133,5 +135,20 @@ export class UploadSongComponent implements OnInit {
       this.imageUrl = '../../../assets/img/Placeholder.jpg';
       this.selectedImage = null;
     }
+  }
+
+  get tags(): FormArray {
+    return this.songUploadForm.get('tags') as FormArray;
+  }
+
+  addTag() {
+    const tag = new FormGroup({
+      nameTag: new FormControl('')
+    });
+    this.tags.push(tag);
+  }
+
+  removeTag(index: number) {
+    this.tags.removeAt(index);
   }
 }
