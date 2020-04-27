@@ -59,6 +59,7 @@ export class UploadSongComponent implements OnInit {
       numberOfPlays: 0,
       tags: this.fb.array([])
     });
+    this.addTag();
   }
 
   NgSubmit() {
@@ -67,6 +68,7 @@ export class UploadSongComponent implements OnInit {
     this.song.description = this.songUploadForm.get('description').value;
     this.uploadFileMP3();
     this.uploadFileImage();
+    this.song.tags = this.songUploadForm.get('tags').value;
     this.songService.createSong(this.song).subscribe(result => {
       this.isShow = true;
       this.isSuccess = true;
