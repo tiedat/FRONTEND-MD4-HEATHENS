@@ -24,7 +24,6 @@ export class SearchPageComponent implements OnInit {
   ngOnInit() {
     this.route.queryParamMap.subscribe(params => {
       this.searchValue = params.get('search');
-      console.log(this.searchValue);
       this.songService.getSongByName(this.searchValue).subscribe(list => {
         this.songList = list.data;
       });

@@ -38,14 +38,14 @@ export class MyPlaylistComponent implements OnInit {
     image: '',
     name: '',
     songs: [{}],
-  }
+  };
   playlistForm: any;
   constructor(private route: ActivatedRoute,
-    private playlistService: PlaylistService,
-    private fb: FormBuilder,
-    private router: Router,
-    private songService: SongService,
-    private playerService: PlayerService) { }
+              private playlistService: PlaylistService,
+              private fb: FormBuilder,
+              private router: Router,
+              private songService: SongService,
+              private playerService: PlayerService) { }
   ngOnInit() {
     this.playlistForm = this.fb.group({
       name: this.fb.control('', [Validators.required]),
@@ -55,8 +55,6 @@ export class MyPlaylistComponent implements OnInit {
       const idSearch = Number(params.get('id'));
       this.playlistService.getPlaylist(idSearch).subscribe(playlist => {
         this.playlist = playlist.data;
-        console.log('song list');
-        console.log(this.playlist);
         this.playlistForm.controls.name.setValue(this.playlist.name);
       });
     });
@@ -100,10 +98,10 @@ export class MyPlaylistComponent implements OnInit {
     this.updateLocalStorage();
   }
   checkAdded(checkValue: number) {
-    let check;
+    let check: boolean;
     if (this.playlist.songs.length !== 0) {
-      for (let i = 0; i < this.playlist.songs.length; i++) {
-        if (checkValue === this.playlist.songs[i].id) {
+      for (const song of this.playlist.songs) {
+        if (checkValue === song.id) {
           check = false;
           break;
         } else {

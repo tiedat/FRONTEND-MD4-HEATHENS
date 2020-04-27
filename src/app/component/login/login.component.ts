@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from '../../services/user.service';
-import { IUser } from '../../interface/user';
-import { DataService } from '../../services/data.service';
 import { AuthenticationService } from 'src/app/services/authentiation.service';
 
 function focus() {

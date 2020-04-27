@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { IPlaylist } from '../../../interface/playlist';
-import { DataService } from '../../../services/data.service';
 import { PlaylistService } from '../../../services/playlist.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../../../services/user.service';
@@ -27,15 +26,14 @@ export class MyAllPlaylistComponent implements OnInit {
   username: any;
 
   constructor(private playlistService: PlaylistService,
-    private fb: FormBuilder,
-    private userService: UserService) {
+              private fb: FormBuilder,
+              private userService: UserService) {
   }
 
   ngOnInit() {
     this.username = localStorage.getItem('username');
     this.userService.getUserByUsername(this.username).subscribe(user => {
       this.playlist.user = user.data;
-      console.log(this.playlist.user);
     });
     this.playlistService.getAllPlaylistByUser(this.username).subscribe(list => {
       this.listPlayList = list.data;

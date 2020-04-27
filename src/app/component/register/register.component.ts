@@ -12,7 +12,7 @@ import {IGender} from '../../interface/gender';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-userCreatForm: FormGroup;
+userCreateForm: FormGroup;
   message: string;
   isShow = false;
   isSuccess = true;
@@ -26,7 +26,7 @@ userCreatForm: FormGroup;
   constructor(private userService: UserService,
               private fb: FormBuilder) { }
   ngOnInit() {
-    this.userCreatForm = this.fb.group({
+    this.userCreateForm = this.fb.group({
       fullName: this.fb.control('', [Validators.required]),
       gender: IGender,
       username: this.fb.control('', [Validators.required]),
@@ -35,11 +35,10 @@ userCreatForm: FormGroup;
   }
   NgSubmit() {
     this.isLoading = true;
-    this.user.fullName = this.userCreatForm.get('fullName').value;
-    this.user.username = this.userCreatForm.get('username').value;
-    this.user.password = this.userCreatForm.get('password').value;
-    this.user.gender = this.userCreatForm.get('gender').value;
-    console.log(this.user);
+    this.user.fullName = this.userCreateForm.get('fullName').value;
+    this.user.username = this.userCreateForm.get('username').value;
+    this.user.password = this.userCreateForm.get('password').value;
+    this.user.gender = this.userCreateForm.get('gender').value;
     this.userService.createUser(this.user).subscribe( () => {
       this.isShow = true;
       this.isSuccess = true;

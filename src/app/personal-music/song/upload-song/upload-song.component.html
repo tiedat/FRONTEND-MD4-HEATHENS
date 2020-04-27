@@ -3,13 +3,6 @@
     {{message}}
   </div>
 </div>
-<!--<form [formGroup]="songUploadForm" (ngSubmit)="uploadFileMP3()">-->
-<!--<label>File</label>-->
-<!--<input type="file" (change)="showPreview($event)">-->
-<!--<div *ngIf="audio"></div>-->
-<!--<audio controls src="{{audio}}"></audio>-->
-<!--</form>-->
-
 
 <div style="margin-top: 5px">
   <form class="row justify-content-md-center" novalidate (ngSubmit)="NgSubmit()" [formGroup]="songUploadForm">
@@ -64,14 +57,12 @@
       <div class="form-group row">
         <button class="btn btn-primary" type="submit" id="submit" [disabled]="!checkUpload">Tạo bài hát</button>
       </div>
-      <!-- <div class="col alert alert-danger" role="alert" *ngIf="!checkUpload">
-        Chưa có bài hát
-      </div> -->
       <div *ngIf="isLoading" class="spinner-border" role="status">
         <span class="sr-only">Loading...</span>
       </div>
 
     </div>
   </form>
-
+  <pre>{{ songUploadForm.value | json }}</pre>
+  <pre>{{ song | json }}</pre>
 </div>

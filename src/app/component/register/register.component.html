@@ -12,15 +12,15 @@
       <div class="col-md-2 order-md-1"></div>
       <div class="col-md-8 order-md-1">
         <h4 class="mb-3">Đăng kí</h4>
-        <form class="needs-validation" novalidate="" (ngSubmit)="NgSubmit()" [formGroup]="userCreatForm">
+        <form class="needs-validation" novalidate="" (ngSubmit)="NgSubmit()" [formGroup]="userCreateForm">
           <div class="row">
           </div>
           <div class="mb-3">
               <label for="fullName">Tên</label>
               <input type="text" class="form-control" id="fullName" placeholder="" value="" required="" formControlName="fullName">
               <div class="col alert alert-danger" role="alert"
-                 *ngIf="userCreatForm.controls.fullName?.errors?.required
-         && userCreatForm.controls.fullName?.touched">
+                 *ngIf="userCreateForm.controls.fullName?.errors?.required
+         && userCreateForm.controls.fullName?.touched">
               Full Name is required!
               </div>
 
@@ -38,7 +38,7 @@
             <label for="username">Tên đăng nhập</label>
               <input type="text" class="form-control" id="username" placeholder="Tên đăng nhập" required="" formControlName="username">
               <div class="col alert alert-danger" role="alert"
-                   *ngIf="userCreatForm.controls.username?.errors?.required&& userCreatForm.controls.username?.touched">
+                   *ngIf="userCreateForm.controls.username?.errors?.required&& userCreateForm.controls.username?.touched">
                 UserName is required!
               </div>
           </div>
@@ -47,7 +47,7 @@
             <label for="password">Mật khẩu</label>
             <input type="password" class="form-control" id="password" placeholder="*******" formControlName="password">
             <div class="col alert alert-danger" role="alert"
-                 *ngIf="userCreatForm.controls.username?.errors?.required&& userCreatForm.controls.username?.touched">
+                 *ngIf="userCreateForm.controls.username?.errors?.required&& userCreateForm.controls.username?.touched">
               Password is required!
             </div>
           </div>
@@ -59,8 +59,4 @@
     </div>
   </form>
 </div>
-
-
-
-
 </body>

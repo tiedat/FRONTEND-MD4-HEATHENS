@@ -6,7 +6,6 @@ import { finalize } from 'rxjs/operators';
 import { ISong } from '../../../interface/song';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { IUser } from '../../../interface/user';
-import { DataService } from '../../../services/data.service';
 import { UserService } from '../../../services/user.service';
 @Component({
   selector: 'app-upload-song',
@@ -15,8 +14,8 @@ import { UserService } from '../../../services/user.service';
 })
 export class UploadSongComponent implements OnInit {
   checkUpload = false;
-  percentLoadingMp3;
-  percentLoadingImg;
+  percentLoadingMp3 = '';
+  percentLoadingImg = '';
   showLoadingMp3 = false;
   showLoadingImg = false;
   imageUrl = null;
@@ -30,7 +29,7 @@ export class UploadSongComponent implements OnInit {
   audio = null;
   checkImageNull = false;
   checkMp3Null = false;
-  username;
+  username = '';
   song: ISong = {
     name: '',
     description: '',
@@ -41,18 +40,14 @@ export class UploadSongComponent implements OnInit {
   };
 
   constructor(private songService: SongService,
-    private fb: FormBuilder,
-    private storage: AngularFireStorage,
-    // private data: DataService,
-    private userService: UserService) {
+              private fb: FormBuilder,
+              private storage: AngularFireStorage,
+              private userService: UserService) {
   }
 
   ngOnInit() {
-    // this.data.currentMessage.subscribe(username => this.username = username);
     this.username = localStorage.getItem('username');
-    console.log(this.username);
     this.userService.getUserByUsername(this.username).subscribe(user => {
-      console.log(user);
       this.song.user = user.data;
     });
     this.songUploadForm = this.fb.group({
@@ -70,7 +65,6 @@ export class UploadSongComponent implements OnInit {
     this.song.description = this.songUploadForm.get('description').value;
     this.uploadFileMP3();
     this.uploadFileImage();
-    console.log(this.song);
     this.songService.createSong(this.song).subscribe(result => {
       this.isShow = true;
       this.isSuccess = true;

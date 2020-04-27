@@ -7,7 +7,6 @@
       <th scope="col">Tên bài hát</th>
       <th scope="col">Mô tả</th>
       <th scope="col">Ảnh</th>
-      <th scope="col">Nhạc</th>
       <th scope="col">Chỉnh sửa</th>
       <th scope="row">Xóa</th>
     </tr>
@@ -15,17 +14,14 @@
   <tbody class="table-hover" *ngFor="let song of songList, index as i">
     <tr>
       <td>{{i+1}}</td>
-      <td>
+      <td (click)="playMusic(song)">
         {{song.name}}
       </td>
-      <td>
+      <td (click)="playMusic(song)">
         {{song.description}}
       </td>
-      <td>
+      <td (click)="playMusic(song)">
         <img [src]="song.image" style="width: 100px" height="100px">
-      </td>
-      <td>
-        <audio controls [src]="song.fileMp3" (play)="updateListener(song)"></audio>
       </td>
       <td>
         <button type="button" class="btn btn-warning btn-sm" routerLink='edit/{{song.id}}'>Sửa</button>

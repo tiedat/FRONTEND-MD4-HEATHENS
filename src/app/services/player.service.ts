@@ -2,7 +2,7 @@ import { IPlaylist } from './../interface/playlist';
 import { ISong } from './../interface/song';
 import { LocalStorageService } from './local-storage.service';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 
 @Injectable({

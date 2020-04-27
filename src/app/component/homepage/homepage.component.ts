@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SongService } from '../../services/song.service';
-import { UserService } from '../../services/user.service';
-import { DataService } from '../../services/data.service';
 import { PlayerService } from 'src/app/services/player.service';
 import { Observable } from 'rxjs';
 import { ISong } from 'src/app/interface/song';
@@ -17,7 +15,7 @@ export class HomepageComponent implements OnInit {
   isPlay: Observable<boolean>;
   songPlayed: any;
   constructor(private songService: SongService,
-    private playerService: PlayerService) { }
+              private playerService: PlayerService) { }
 
   ngOnInit() {
     this.songService.getAllSong().subscribe(result => {
@@ -32,7 +30,6 @@ export class HomepageComponent implements OnInit {
   }
   nextSong() {
     this.songPlayed = this.songList[Math.floor(Math.random() * this.songList.length)];
-    console.log(this.songPlayed);
     this.playMusic(this.songPlayed);
   }
 }

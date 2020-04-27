@@ -38,14 +38,11 @@ export class AppComponent implements OnInit {
     } else {
       this.isLoggedIn = false;
     }
-    console.log(this.isLoggedIn);
   }
 
   search() {
     const searchValue = this.formGroup.get('searchName').value;
-    console.log(searchValue);
     this.route.navigate(['search'], { queryParams: { search: searchValue } }).then((e) => {
-      console.log('Navigation is successful!');
     });
   }
 

@@ -9,10 +9,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { MyAllSongComponent } from './song/my-all-song/my-all-song.component';
 import { EditSongComponent } from './song/edit-song/edit-song.component';
 import { MyAllPlaylistComponent } from './playlist/my-all-playlist/my-all-playlist.component';
-import { MyLibraryComponent } from './my-library/my-library.component';
-import {AppModule} from '../app.module';
 import { MyPlaylistComponent } from './playlist/my-playlist/my-playlist.component';
-import { MiniPersonalPlayerComponent } from './mini-personal-player/mini-personal-player.component';
 
 
 @NgModule({
@@ -21,16 +18,13 @@ import { MiniPersonalPlayerComponent } from './mini-personal-player/mini-persona
     MyAllSongComponent,
     EditSongComponent,
     MyAllPlaylistComponent,
-    MyLibraryComponent,
-    MyPlaylistComponent,
-    MiniPersonalPlayerComponent],
+    MyPlaylistComponent],
   imports: [
     CommonModule,
     PersonalMusicRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  // providers: [SongService]
 })
 export class PersonalMusicModule {
 }

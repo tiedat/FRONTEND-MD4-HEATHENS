@@ -43,10 +43,10 @@ export class EditSongComponent implements OnInit {
   songEditForm: FormGroup;
 
   constructor(private userService: UserService,
-    private fb: FormBuilder,
-    private storage: AngularFireStorage,
-    private route: ActivatedRoute,
-    private songService: SongService) {
+              private fb: FormBuilder,
+              private storage: AngularFireStorage,
+              private route: ActivatedRoute,
+              private songService: SongService) {
   }
 
   ngOnInit() {
@@ -58,13 +58,9 @@ export class EditSongComponent implements OnInit {
       numberOfPlays: 0,
     });
     this.route.paramMap.subscribe(params => {
-      console.log(params);
       const idSearch = Number(params.get('id'));
-      console.log(idSearch);
       this.songService.getSong(idSearch).subscribe(song => {
         this.song = song.data;
-        console.log(song);
-        console.log(this.song.name);
         this.songEditForm.controls.name.setValue(this.song.name);
         this.songEditForm.controls.description.setValue(this.song.description);
         this.audioOld = this.song.fileMp3;
@@ -83,7 +79,6 @@ export class EditSongComponent implements OnInit {
     if (this.imageUrl != null) {
       this.uploadFileImage();
     }
-    console.log(this.song);
     this.songService.updateSong(this.song).subscribe(result => {
       this.isShow = true;
       this.isSuccess = true;

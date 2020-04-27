@@ -6,14 +6,12 @@ import {UploadSongComponent} from './song/upload-song/upload-song.component';
 import {MyAllSongComponent} from './song/my-all-song/my-all-song.component';
 import {EditSongComponent} from './song/edit-song/edit-song.component';
 import {MyAllPlaylistComponent} from './playlist/my-all-playlist/my-all-playlist.component';
-import {MyLibraryComponent} from './my-library/my-library.component';
 import {MyPlaylistComponent} from './playlist/my-playlist/my-playlist.component';
 
 const routes: Routes = [
   {
     path: '', component: PersonalMusicComponent,
     children: [
-      {path: '', component: MyLibraryComponent},
       {path: 'upload', component: UploadSongComponent},
       {path: 'songs', component: MyAllSongComponent},
       {path: 'playlist', component: MyAllPlaylistComponent},
