@@ -129,5 +129,6 @@ export class MyPlaylistComponent implements OnInit {
 
   updateLocalStorage() {
     this.playerService.addPlayList(this.playlist.songs);
+    this.playerService.historyPlaylist(this.playlist);
   }
 }

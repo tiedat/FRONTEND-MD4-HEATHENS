@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {ISong} from '../interface/song';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ISong } from '../interface/song';
 
 @Injectable({
   providedIn: 'root'
@@ -45,5 +45,15 @@ export class SongService {
   /* ---------------- Search Song By Name ------------------------ */
   public getSongByName(search: string): Observable<any> {
     return this.httpClient.get(this.API_URL + '/search?nameContains=' + search);
+  }
+
+  /* ----------------- Get Newest Song --------------------- */
+  public getNewestSong(): Observable<any> {
+    return this.httpClient.get(this.API_URL + '/top20Newest');
+  }
+
+  /*------------------ Get 20 Most Listening ------------------*/
+  public getMostListening(): Observable<any> {
+    return this.httpClient.get(this.API_URL + '/top20');
   }
 }

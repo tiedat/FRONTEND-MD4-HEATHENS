@@ -1,0 +1,38 @@
+<div *ngIf="obj.length > 5; else elseBlock" class="container mt-5">
+    <div class="d-flex justify-content-between align-ítems-center mb-2 pl-2 pr-1">
+        <a class="nav-items" routerLink="/mymusic/history/playlists">
+            <h3>{{ carousel_title }}</h3>
+        </a>
+        <div *ngIf="obj.length > 5;">
+            <button class=" slick-btn mr-2" (click)="slickModal.slickPrev()"><i class="fa fa-chevron-left"></i></button>
+            <button class="slick-btn ml-2" (click)="slickModal.slickNext()"><i class="fa fa-chevron-right"></i></button>
+        </div>
+    </div>
+    <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+        <div ngxSlickItem *ngFor="let item of obj; index as i" class="slide d-flex justify-content-around">
+            <div class="card" style="width: 12rem;">
+                <img [src]="item.image" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.name }}</h5>
+                </div>
+            </div>
+        </div>
+    </ngx-slick-carousel>
+</div>
+<ng-template #elseBlock>
+    <div class="container mt-5">
+        <div class=" mb-3 pl-2 pr-1">
+            <a class="nav-items" routerLink="/mymusic/history/playlists">
+                <h3>{{ carousel_title }}</h3>
+            </a>
+        </div>
+        <div *ngFor="let item of obj; index as i" class="d-flex justify-content-between">
+            <div class="card ml-2" style="width: 12rem;">
+                <img [src]="item.image" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.name }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

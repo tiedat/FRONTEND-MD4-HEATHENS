@@ -8,4 +8,5 @@ export interface ISong {
   image?: string;
   numberOfPlays?: number;
   user?: IUser;
+  initTime?: Date;
 }

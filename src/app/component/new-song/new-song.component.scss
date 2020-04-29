@@ -1,0 +1,58 @@
+.name-ctn {
+    position: relative;
+    margin-left: 30px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.name-ctn span {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    color: #6d6d6d;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.play-all {
+    margin-top: 20px;
+    background-color: #65509e;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.play-all:focus,
+.play-all:active {
+    outline: none;
+    border: none;
+    border-color: none;
+    background-color: #65509e;
+    box-shadow: none;
+}
+
+.tool-btn {
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+    font-size: 16px;
+    font-weight: 300;
+    border-radius: 50%;
+    color: #6d6d6d;
+}
+.tool-btn:hover,
+.tool-btn:active {
+    background-color: #ddd;
+    outline: none;
+    border: none;
+    border-color: none;
+    box-shadow: none;
+}
+
+.tool-btn:focus {
+    outline: none;
+    border: none;
+    border-color: none;
+    box-shadow: none;
+}

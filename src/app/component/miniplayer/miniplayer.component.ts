@@ -19,12 +19,11 @@ export class MiniplayerComponent implements OnInit {
   isRepeat = false;
   isShuffle = false;
   constructor(private songService: SongService,
-              private playerService: PlayerService) { }
+    private playerService: PlayerService) { }
 
   ngOnInit(): void {
     this.songList = this.playerService.player$;
     this.songList.subscribe(song => {
-      console.log(song);
       this.currentSong = song[this.songIndex];
       // if (this.isShuffle) {
       //   this.shufflerList = this.shuffle(song);
@@ -32,26 +31,23 @@ export class MiniplayerComponent implements OnInit {
       // }
       this.length = song.length;
     });
-    console.log(this.shufflerList);
   }
   shuffleList() {
     this.isShuffle = !this.isShuffle;
     if (this.isShuffle) {
       this.songList.subscribe(song => {
-      console.log(song);
-      this.currentSong = song[this.songIndex];
-      this.shufflerList = this.shuffle(song);
-      console.log(this.isShuffle);
-      this.length = song.length;
-    }); } else {this.ngOnInit();
+        this.currentSong = song[this.songIndex];
+        this.shufflerList = this.shuffle(song);
+        this.length = song.length;
+      });
+    } else {
+      this.ngOnInit();
       // if (this.isShuffle) {
       //   this.shufflerList = this.shuffle(song);
       //   console.log(this.isShuffle);
       // }
       // this.length = song.length;
     }
-    console.log(this.isShuffle);
-    console.log(this.shufflerList);
   }
   upNumberOfPlays() {
     this.currentSong.numberOfPlays = this.currentSong.numberOfPlays + 1;
@@ -59,21 +55,20 @@ export class MiniplayerComponent implements OnInit {
   }
   nextSong() {
     this.upNumberOfPlays();
-    console.log(this.songIndex);
-    console.log(this.length);
-
+    this.playerService.historySong(this.currentSong);
     if (this.songIndex < this.length - 1) {
       this.songIndex++;
-      console.log(this.songIndex);
       this.songList.subscribe(song => this.currentSong = song[this.songIndex]);
       // this.currentSong = this.shufflerList[this.songIndex];
     } else {
-      if (this.isRepeat) {
-        this.songIndex = 0;
-        this.songList.subscribe(song => this.currentSong = song[this.songIndex]);
-      }
+      this.songIndex = 0;
+      this.songList.subscribe(song => this.currentSong = song[this.songIndex]);
     }
 
+  }
+
+  toggleShuffer() {
+    this.isShuffle = !this.isShuffle;
   }
 
   backSong() {
@@ -85,7 +80,8 @@ export class MiniplayerComponent implements OnInit {
   forwardSong() {
     if (this.songIndex < this.length - 1) {
       this.songIndex++;
-      this.songList.subscribe(song => this.currentSong = song[this.songIndex]);}
+      this.songList.subscribe(song => this.currentSong = song[this.songIndex]);
+    }
   }
 
   shuffle(a) {
