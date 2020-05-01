@@ -18,7 +18,6 @@ import { CaroselBannerComponent } from './component/homepage/carosel-banner/caro
 import { NewSongComponent } from './component/new-song/new-song.component';
 import { MostListenSongComponent } from './component/most-listen-song/most-listen-song.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CarouselModule } from 'ngx-owl-carousel-o';
 import { CarouselMostSongComponent } from './component/homepage/carousel-most-song/carousel-most-song.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { CustomDatePipe } from './interface/custom.datepipe';
@@ -55,7 +54,6 @@ import { CarouselComponent } from './component/homepage/carousel/carousel.compon
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     BrowserAnimationsModule,
-    CarouselModule,
     SlickCarouselModule
   ],
   providers: [
