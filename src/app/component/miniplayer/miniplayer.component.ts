@@ -3,6 +3,9 @@ import {Observable} from 'rxjs';
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {SongService} from '../../services/song.service';
 import {ISong} from 'src/app/interface/song';
+import {UserService} from '../../services/user.service';
+import {PlaylistService} from '../../services/playlist.service';
+import {IPlaylist} from '../../interface/playlist';
 
 @Component({
   selector: 'app-miniplayer',
@@ -19,11 +22,25 @@ export class MiniplayerComponent implements OnInit {
   isRepeat = false;
   isShuffle = false;
   originSongs: ISong[];
+  username: string;
+  playlist: any;
+  listMyPlaylist: any[];
   constructor(private songService: SongService,
-              private playerService: PlayerService) {
+              private playerService: PlayerService,
+              private userService: UserService,
+              private playlistService: PlaylistService,) {
   }
 
   ngOnInit(): void {
+    this.username = localStorage.getItem('username');
+    this.userService.getUserByUsername(this.username).subscribe(user => {
+      console.log(user);
+      this.playlist.user = user.data;
+    });
+    this.playlistService.getAllPlaylistByUser(this.username).subscribe(list => {
+      console.log(list);
+      this.listMyPlaylist = list.data;
+    });
     this.player = this.playerService.player$;
     this.player.subscribe(songs => {
       this.songList = songs;
@@ -68,9 +85,6 @@ export class MiniplayerComponent implements OnInit {
     }
   }
 
-  toggleShuffer() {
-    this.isShuffle = !this.isShuffle;
-  }
 
   backSong() {
     if (this.songIndex > 0) {
@@ -95,5 +109,16 @@ export class MiniplayerComponent implements OnInit {
       a[j] = x;
     }
     return a;
+  }
+  addSongToPlaylist(object: IPlaylist) {
+    object.songs.push(this.currentSong);
+    this.playlistService.updatePlaylist(object).subscribe();
+    this.updateLocalStorage();
+    this.playerService.addPlayList(object.songs);
+    this.playerService.historyPlaylist(object);
+  }
+  updateLocalStorage() {
+    this.playerService.addPlayList(this.playlist.songs);
+    this.playerService.historyPlaylist(this.playlist);
   }
 }

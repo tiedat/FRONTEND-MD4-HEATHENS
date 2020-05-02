@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {SongService} from '../../services/song.service';
 import {ActivatedRoute} from '@angular/router';
-import {DataService} from '../../services/data.service';
+import {PlayerService} from '../../services/player.service';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-my-library',
@@ -10,22 +11,20 @@ import {DataService} from '../../services/data.service';
 })
 export class MyLibraryComponent implements OnInit {
   songList: any[];
+  playlistList: any[];
   username: string;
+  user: any;
   constructor(private songService: SongService,
+              private userService: UserService,
               private route: ActivatedRoute,
-              private data: DataService) { }
+              private playerService: PlayerService) { }
 
   ngOnInit() {
-    this.data.currentMessage.subscribe(username => {
-      console.log(username);
-      this.username = username;
+    this.username = localStorage.getItem('username');
+    this.userService.getUserByUsername(this.username).subscribe(user => {
+      this.user = user.data;
     });
-    console.log(this.username);
     this.songService.getAllSongByUser(this.username).subscribe(list => {
       this.songList = list.data;
-    });
-    // this.route.paramMap.subscribe(param => {
-    //   console.log(param);
-    // });
-  }
+    });  }
 }

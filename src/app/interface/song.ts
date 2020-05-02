@@ -1,4 +1,5 @@
 import { IUser } from './user';
+import { ITag} from './tag';
 
 export interface ISong {
   id?: number;
@@ -7,6 +8,7 @@ export interface ISong {
   fileMp3?: string;
   image?: string;
   numberOfPlays?: number;
+  tags?: ITag[];
   user?: IUser;
   initTime?: Date;
 }

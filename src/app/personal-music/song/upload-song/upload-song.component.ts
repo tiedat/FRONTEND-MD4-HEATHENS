@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SongService } from '../../../services/song.service';
+import {Component, OnInit} from '@angular/core';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {SongService} from '../../../services/song.service';
 import * as firebase from 'firebase';
-import { finalize } from 'rxjs/operators';
-import { ISong } from '../../../interface/song';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { IUser } from '../../../interface/user';
-import { DataService } from '../../../services/data.service';
-import { UserService } from '../../../services/user.service';
+import {finalize} from 'rxjs/operators';
+import {ISong} from '../../../interface/song';
+import {AngularFireStorage} from '@angular/fire/storage';
+import {IUser} from '../../../interface/user';
+import {DataService} from '../../../services/data.service';
+import {UserService} from '../../../services/user.service';
+
 @Component({
   selector: 'app-upload-song',
   templateUrl: './upload-song.component.html',
@@ -37,14 +38,15 @@ export class UploadSongComponent implements OnInit {
     fileMp3: '',
     image: '',
     numberOfPlays: 0,
+    // tags: [{}],
     user: {}
   };
 
   constructor(private songService: SongService,
-    private fb: FormBuilder,
-    private storage: AngularFireStorage,
-    // private data: DataService,
-    private userService: UserService) {
+              private fb: FormBuilder,
+              private storage: AngularFireStorage,
+              // private data: DataService,
+              private userService: UserService) {
   }
 
   ngOnInit() {
@@ -61,7 +63,9 @@ export class UploadSongComponent implements OnInit {
       fileMp3: '',
       image: '',
       numberOfPlays: 0,
+      // tags: this.fb.array([])
     });
+    // this.addTag();
   }
 
   NgSubmit() {
@@ -70,6 +74,7 @@ export class UploadSongComponent implements OnInit {
     this.song.description = this.songUploadForm.get('description').value;
     this.uploadFileMP3();
     this.uploadFileImage();
+    // this.song.tags = this.songUploadForm.get('tags').value;
     console.log(this.song);
     this.songService.createSong(this.song).subscribe(result => {
       this.isShow = true;
@@ -83,6 +88,7 @@ export class UploadSongComponent implements OnInit {
       this.isLoading = false;
     });
   }
+
   uploadFileMP3() {
     const filePathMp3 = `audio/${this.selectedAudio.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
     const fileRefMp3 = this.storage.ref(filePathMp3);
@@ -97,6 +103,7 @@ export class UploadSongComponent implements OnInit {
       })
     ).subscribe();
   }
+
   uploadFileImage() {
     const filePathImage = `image/${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
     const fileRefImage = this.storage.ref(filePathImage);
@@ -110,6 +117,7 @@ export class UploadSongComponent implements OnInit {
       })
     ).subscribe();
   }
+
   showPreviewMp3(event: any) {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
@@ -125,6 +133,7 @@ export class UploadSongComponent implements OnInit {
       this.selectedAudio = null;
     }
   }
+
   showPreviewImage(event: any) {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
@@ -140,4 +149,19 @@ export class UploadSongComponent implements OnInit {
       this.selectedImage = null;
     }
   }
+
+  // get tags(): FormArray {
+  //   return this.songUploadForm.get('tags') as FormArray;
+  // }
+  //
+  // addTag() {
+  //   const tag = new FormGroup({
+  //     nameTag: new FormControl('')
+  //   });
+  //   this.tags.push(tag);
+  // }
+  //
+  // removeTag(index: number) {
+  //   this.tags.removeAt(index);
+  // }
 }
