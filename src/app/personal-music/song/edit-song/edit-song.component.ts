@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { ActivatedRoute } from '@angular/router';
 import { finalize } from 'rxjs/operators';
@@ -15,8 +15,8 @@ import { SongService } from '../../../services/song.service';
   styleUrls: ['./edit-song.component.scss']
 })
 export class EditSongComponent implements OnInit {
-  percentLoadingMp3;
-  percentLoadingImg;
+  percentLoadingMp3: string;
+  percentLoadingImg: string;
   showLoadingMp3 = false;
   showLoadingImg = false;
   songUploadForm: FormGroup;
@@ -38,15 +38,15 @@ export class EditSongComponent implements OnInit {
     fileMp3: '',
     image: '',
     numberOfPlays: 0,
+    tags: [{}]
   };
-  id;
   songEditForm: FormGroup;
 
-  constructor(private userService: UserService,
-              private fb: FormBuilder,
-              private storage: AngularFireStorage,
-              private route: ActivatedRoute,
-              private songService: SongService) {
+  constructor(
+    private fb: FormBuilder,
+    private storage: AngularFireStorage,
+    private route: ActivatedRoute,
+    private songService: SongService) {
   }
 
   ngOnInit() {
@@ -56,15 +56,20 @@ export class EditSongComponent implements OnInit {
       fileMp3: '',
       image: '',
       numberOfPlays: 0,
+      tags: this.fb.array([])
     });
     this.route.paramMap.subscribe(params => {
       const idSearch = Number(params.get('id'));
-      this.songService.getSong(idSearch).subscribe(song => {
-        this.song = song.data;
+      this.songService.getSong(idSearch).subscribe(next => {
+        this.song = next.data;
         this.songEditForm.controls.name.setValue(this.song.name);
         this.songEditForm.controls.description.setValue(this.song.description);
         this.audioOld = this.song.fileMp3;
         this.imageUrlOld = this.song.image;
+        for (const tag of this.song.tags) {
+          this.addTag();
+        }
+        this.tags.setValue(this.song.tags);
       });
     });
   }
@@ -150,5 +155,20 @@ export class EditSongComponent implements OnInit {
       this.imageUrl = '../../../assets/img/Placeholder.jpg';
       this.selectedImage = null;
     }
+  }
+  get tags(): FormArray {
+    return this.songUploadForm.get('tags') as FormArray;
+  }
+
+  addTag() {
+    const tag = new FormGroup({
+      id: new FormControl(0),
+      nameTag: new FormControl('')
+    });
+    this.tags.push(tag);
+  }
+
+  removeTag(index: number) {
+    this.tags.removeAt(index);
   }
 }

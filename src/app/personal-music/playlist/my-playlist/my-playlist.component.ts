@@ -6,8 +6,11 @@ import { ISong } from 'src/app/interface/song';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IPlaylist } from 'src/app/interface/playlist';
 import { PlaylistService } from 'src/app/services/playlist.service';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { SongService } from 'src/app/services/song.service';
+import { UserService } from 'src/app/services/user.service';
+import { ICmt } from 'src/app/interface/cmt';
+import { CommentService } from 'src/app/services/comment.service';
 
 @Component({
   selector: 'app-my-playlist',
@@ -40,13 +43,26 @@ export class MyPlaylistComponent implements OnInit {
     songs: [{}],
   };
   playlistForm: any;
+  cmtPlaylistForm: FormGroup;
+  username: string;
+  commentPost: ICmt = {
+    content: '',
+    playlist: {},
+    user: {}
+  };
   constructor(private route: ActivatedRoute,
-              private playlistService: PlaylistService,
-              private fb: FormBuilder,
-              private router: Router,
-              private songService: SongService,
-              private playerService: PlayerService) { }
+    private playlistService: PlaylistService,
+    private fb: FormBuilder,
+    private router: Router,
+    private songService: SongService,
+    private commentService: CommentService,
+    private playerService: PlayerService,
+    private userService: UserService) { }
   ngOnInit() {
+    this.username = localStorage.getItem('username');
+    this.userService.getUserByUsername(this.username).subscribe(user => {
+      this.commentPost.user = user.data;
+    });
     this.playlistForm = this.fb.group({
       name: this.fb.control('', [Validators.required]),
       description: '',
@@ -55,6 +71,7 @@ export class MyPlaylistComponent implements OnInit {
       const idSearch = Number(params.get('id'));
       this.playlistService.getPlaylist(idSearch).subscribe(playlist => {
         this.playlist = playlist.data;
+        this.commentPost.playlist = this.playlist;
         this.playlistForm.controls.name.setValue(this.playlist.name);
       });
     });
@@ -62,6 +79,9 @@ export class MyPlaylistComponent implements OnInit {
       this.songListAll = list.data;
     });
     this.isPlay = this.playerService.isPlay$;
+    this.cmtPlaylistForm = this.fb.group({
+      content: this.fb.control('', [Validators.required]),
+    });
   }
   editName() {
     this.playlist.name = this.playlistForm.get('name').value;
@@ -128,5 +148,14 @@ export class MyPlaylistComponent implements OnInit {
 
   updateLocalStorage() {
     this.playerService.addPlayList(this.playlist.songs);
+  }
+
+  onPost() {
+    this.commentPost.content = this.cmtPlaylistForm.get('content').value;
+    console.log(this.commentPost);
+    this.commentService.createCmtPlaylist(this.commentPost).subscribe(result => {
+      console.log('success');
+    });
+
   }
 }
