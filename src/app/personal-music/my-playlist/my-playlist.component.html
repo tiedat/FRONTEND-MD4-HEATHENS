@@ -117,4 +117,18 @@
     </tr>
   </tbody>
 </table>
+<div class="row">
+  <form class="col-sm-12 form-group" (ngSubmit)="onPost()" [formGroup]="cmtPlaylistForm">
+    <label for="comments">
+      Comments:
+    </label>
+    <textarea class="form-control" type="textarea" name="content" id="content" placeholder="Your Comments"
+              maxlength="6000" rows="7" formControlName="content"></textarea>
+    <div class="row ">
+      <div class="col-sm-12 form-group">
+        <button type="submit" class="btn btn-lg btn-warning btn-block">Post</button>
+      </div>
+    </div>
+  </form>
+</div>
 <!-- <app-mini-personal-player *ngIf="isPlayMusic" [songPlayed]="songPlayed" (changeSongs)="nextSong()"></app-mini-personal-player> -->
