@@ -1,11 +1,13 @@
-import {PlayerService} from 'src/app/services/player.service';
-import {Observable} from 'rxjs';
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {SongService} from '../../services/song.service';
-import {ISong} from 'src/app/interface/song';
-import {UserService} from '../../services/user.service';
-import {PlaylistService} from '../../services/playlist.service';
-import {IPlaylist} from '../../interface/playlist';
+import { SongCommentComponent } from './../song-comment/song-comment.component';
+import { PlayerService } from 'src/app/services/player.service';
+import { Observable } from 'rxjs';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { SongService } from '../../services/song.service';
+import { ISong } from 'src/app/interface/song';
+import { UserService } from '../../services/user.service';
+import { PlaylistService } from '../../services/playlist.service';
+import { IPlaylist } from '../../interface/playlist';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-miniplayer',
@@ -26,9 +28,10 @@ export class MiniplayerComponent implements OnInit {
   playlist: any;
   listMyPlaylist: any[];
   constructor(private songService: SongService,
-              private playerService: PlayerService,
-              private userService: UserService,
-              private playlistService: PlaylistService,) {
+    private playerService: PlayerService,
+    private userService: UserService,
+    private playlistService: PlaylistService,
+    private modalService: NgbModal) {
   }
 
   ngOnInit(): void {
@@ -47,6 +50,11 @@ export class MiniplayerComponent implements OnInit {
       this.currentSong = this.songList[0];
       this.length = this.songList.length;
     });
+  }
+
+  open(song: ISong) {
+    const modal = this.modalService.open(SongCommentComponent, { size: 'lg', scrollable: true });
+    modal.componentInstance.song = song;
   }
 
   shuffleList() {
@@ -75,14 +83,14 @@ export class MiniplayerComponent implements OnInit {
       this.currentSong = this.songList[this.songIndex];
     } else
       if (this.songIndex < this.length - 1) {
-      this.songIndex++;
-      this.currentSong = this.songList[this.songIndex];
-    } else {
-      if (this.isRepeat) {
-        this.songIndex = 0;
-        this.currentSong = this.songList[0];
+        this.songIndex++;
+        this.currentSong = this.songList[this.songIndex];
+      } else {
+        if (this.isRepeat) {
+          this.songIndex = 0;
+          this.currentSong = this.songList[0];
+        }
       }
-    }
   }
 
 
