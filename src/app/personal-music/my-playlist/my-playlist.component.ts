@@ -1,15 +1,16 @@
+import { IUser } from './../../interface/user';
 import { Component, OnInit } from '@angular/core';
 import { IPlaylist } from '../../interface/playlist';
 import { ISong } from '../../interface/song';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PlaylistService } from '../../services/playlist.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SongService } from '../../services/song.service';
 import { Observable } from 'rxjs';
 import { PlayerService } from 'src/app/services/player.service';
-import {ICmt} from '../../interface/cmt';
-import {UserService} from '../../services/user.service';
-import {CommentService} from '../../services/comment.service';
+import { ICmt } from '../../interface/cmt';
+import { UserService } from '../../services/user.service';
+import { CommentService } from '../../services/comment.service';
 
 @Component({
   selector: 'app-my-playlist',
@@ -26,6 +27,7 @@ export class MyPlaylistComponent implements OnInit {
   isLoading = false;
   isPlay: Observable<boolean>;
   songPlayed: ISong;
+  user: IUser;
   song: ISong = {
     name: '',
     description: '',
@@ -50,13 +52,13 @@ export class MyPlaylistComponent implements OnInit {
     user: {}
   };
   constructor(private route: ActivatedRoute,
-              private playlistService: PlaylistService,
-              private fb: FormBuilder,
-              private router: Router,
-              private songService: SongService,
-              private playerService: PlayerService,
-              private commentService: CommentService,
-              private userService: UserService, ) { }
+    private playlistService: PlaylistService,
+    private fb: FormBuilder,
+    private router: Router,
+    private songService: SongService,
+    private playerService: PlayerService,
+    private commentService: CommentService,
+    private userService: UserService, ) { }
   ngOnInit() {
     this.playlistForm = this.fb.group({
       name: this.fb.control('', [Validators.required]),
@@ -77,6 +79,7 @@ export class MyPlaylistComponent implements OnInit {
     this.cmtPlaylistForm = this.fb.group({
       content: this.fb.control('', [Validators.required]),
     });
+    this.userService.getUserByUsername(localStorage.getItem('username')).subscribe(user => this.user = user.data);
   }
   editName() {
     this.playlist.name = this.playlistForm.get('name').value;
@@ -146,8 +149,9 @@ export class MyPlaylistComponent implements OnInit {
     this.playerService.historyPlaylist(this.playlist);
   }
   onPost() {
-    this.commentPost.content = this.cmtPlaylistForm.get('content').value;
-    console.log(this.commentPost);
+    const cmtContent = this.cmtPlaylistForm.get('content').value;
+    this.commentPost.content = cmtContent;
+    this.commentPost.user = this.user;
     this.commentService.createCmtPlaylist(this.commentPost).subscribe(result => {
       console.log('success');
     });

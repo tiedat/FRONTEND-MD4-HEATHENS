@@ -24,6 +24,9 @@ import { CustomDatePipe } from './interface/custom.datepipe';
 import { CarouselNewSongComponent } from './component/homepage/carousel-new-song/carousel-new-song.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { CarouselComponent } from './component/homepage/carousel/carousel.component';
+import { SongCommentComponent } from './component/song-comment/song-comment.component';
+import { NgbModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 
@@ -42,7 +45,8 @@ import { CarouselComponent } from './component/homepage/carousel/carousel.compon
     CustomDatePipe,
     CarouselNewSongComponent,
     FooterComponent,
-    CarouselComponent
+    CarouselComponent,
+    SongCommentComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +58,9 @@ import { CarouselComponent } from './component/homepage/carousel/carousel.compon
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     BrowserAnimationsModule,
-    SlickCarouselModule
+    SlickCarouselModule,
+    NgbModule,
+    NgbModalModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptorService, multi: true }

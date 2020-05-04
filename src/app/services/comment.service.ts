@@ -32,6 +32,7 @@ export class CommentService {
 
   /* ---------------- CREATE CMTPLAYLIST ------------------------ */
   public createCmtPlaylist(cmtPlaylist: ICmt): Observable<any> {
+    console.log(cmtPlaylist);
     return this.httpClient.post(this.API_URL1, cmtPlaylist);
   }
 
