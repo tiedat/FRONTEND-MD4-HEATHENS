@@ -1,12 +1,5 @@
 <div class="title-text" (click)="showSongs()"> Bài hát ></div>
 <table class="table table-dark">
-  <thead class="">
-  <tr>
-    <th scope="col">Tên bài hát</th>
-    <th scope="col">Ảnh</th>
-    <th scope="col">Nhạc</th>
-  </tr>
-  </thead>
   <tbody class="table-hover" *ngFor="let song of songList, index as i">
   <tr *ngIf="i<3">
     <td>
