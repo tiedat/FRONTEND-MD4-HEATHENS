@@ -150,18 +150,18 @@ export class UploadSongComponent implements OnInit {
     }
   }
 
-  // get tags(): FormArray {
-  //   return this.songUploadForm.get('tags') as FormArray;
-  // }
-  //
-  // addTag() {
-  //   const tag = new FormGroup({
-  //     nameTag: new FormControl('')
-  //   });
-  //   this.tags.push(tag);
-  // }
-  //
-  // removeTag(index: number) {
-  //   this.tags.removeAt(index);
-  // }
+  get tags(): FormArray {
+    return this.songUploadForm.get('tags') as FormArray;
+  }
+
+  addTag() {
+    const tag = new FormGroup({
+      nameTag: new FormControl('')
+    });
+    this.tags.push(tag);
+  }
+
+  removeTag(index: number) {
+    this.tags.removeAt(index);
+  }
 }

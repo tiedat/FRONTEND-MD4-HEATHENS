@@ -1,7 +1,7 @@
 <body>
 <div class="container-fluid">
   <div class="row">
-    <nav class="col-md-2 d-none d-md-block bg-dark sidebar">
+    <nav class="col-md-2 d-none d-md-block sidebar">
       <div class="sidebar-sticky">
         <ul class="nav flex-column" >
           <li class="nav-item">
@@ -45,7 +45,7 @@
         </div>
       </div>
       <router-outlet></router-outlet>
-      <app-search-all *ngIf="isShowAll" [songList]="songList" (changeSongs)="showSongs()" (change)="showPlaylist()"></app-search-all>
+      <app-search-all *ngIf="isShowAll" [songList]="songList"  [playlistList]="playlistList" (changeSongs)="showSongs()" (changePlaylist)="showPlaylist()"></app-search-all>
       <app-search-songs *ngIf="isShowSong" [songList]="songList"></app-search-songs>
       <app-search-singer *ngIf="isShowSinger" ></app-search-singer>
       <app-search-playlist *ngIf="isShowPlaylist" [playlistList]="playlistList"></app-search-playlist>
