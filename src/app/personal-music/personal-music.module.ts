@@ -9,7 +9,10 @@ import {HttpClientModule} from '@angular/common/http';
 import { MyAllSongComponent } from './song/my-all-song/my-all-song.component';
 import { EditSongComponent } from './song/edit-song/edit-song.component';
 import { MyAllPlaylistComponent } from './playlist/my-all-playlist/my-all-playlist.component';
-import { MyPlaylistComponent } from './playlist/my-playlist/my-playlist.component';
+import { HistoryComponent } from './history/history.component';
+import { SongHistoryComponent } from './history/song-history/song-history.component';
+import { PlaylistHistoryComponent } from './history/playlist-history/playlist-history.component';
+import {MyPlaylistComponent} from './playlist/my-playlist/my-playlist.component';
 
 
 @NgModule({
@@ -18,7 +21,10 @@ import { MyPlaylistComponent } from './playlist/my-playlist/my-playlist.componen
     MyAllSongComponent,
     EditSongComponent,
     MyAllPlaylistComponent,
-    MyPlaylistComponent],
+    MyPlaylistComponent,
+    HistoryComponent,
+    SongHistoryComponent,
+    PlaylistHistoryComponent],
   imports: [
     CommonModule,
     PersonalMusicRoutingModule,

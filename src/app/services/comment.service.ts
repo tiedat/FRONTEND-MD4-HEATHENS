@@ -8,7 +8,7 @@ import { ICmt } from '../interface/cmt';
 })
 export class CommentService {
   private readonly API_URL = 'http://localhost:5000/api/cmtsong/';
-  private readonly API_URL1 = 'http://localhost:5000/api/cmtpls/';
+  private readonly API_URL1 = 'http://localhost:5000/api/cmtpls';
 
 
   constructor(private httpClient: HttpClient) {

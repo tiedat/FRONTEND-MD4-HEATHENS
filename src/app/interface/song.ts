@@ -1,6 +1,5 @@
 import { IUser } from './user';
-import { ITag } from './tag';
-
+import { ITag} from './tag';
 
 export interface ISong {
   id?: number;

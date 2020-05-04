@@ -3,7 +3,7 @@ import { SongService } from '../../../services/song.service';
 import { ActivatedRoute } from '@angular/router';
 import { ISong } from '../../../interface/song';
 import { UserService } from '../../../services/user.service';
-import { PlayerService } from 'src/app/services/player.service';
+import {PlayerService} from '../../../services/player.service';
 
 @Component({
   selector: 'app-my-all-song',
@@ -32,6 +32,7 @@ export class MyAllSongComponent implements OnInit {
     const song = this.songList[i];
     this.songService.deleteSong(song.id).subscribe(() => {
       this.songList = this.songList.filter(t => t.id !== song.id);
+      console.log('Xóa ' + song.id);
     });
   }
   playMusic(song: ISong) {

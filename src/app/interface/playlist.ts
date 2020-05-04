@@ -6,6 +6,7 @@ export interface IPlaylist {
   name?: string;
   image?: string;
   description?: string;
+  numberOfPlay?: number;
   songs?: any[];
   user?: IUser;
 }

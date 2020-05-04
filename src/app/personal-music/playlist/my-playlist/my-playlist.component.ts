@@ -1,16 +1,21 @@
-import { Component, OnInit } from '@angular/core';
 
-import { Observable } from 'rxjs';
-import { PlayerService } from 'src/app/services/player.service';
-import { ISong } from 'src/app/interface/song';
-import { ActivatedRoute, Router } from '@angular/router';
-import { IPlaylist } from 'src/app/interface/playlist';
-import { PlaylistService } from 'src/app/services/playlist.service';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { SongService } from 'src/app/services/song.service';
-import { UserService } from 'src/app/services/user.service';
-import { ICmt } from 'src/app/interface/cmt';
-import { CommentService } from 'src/app/services/comment.service';
+import {Component, OnInit} from '@angular/core';
+
+import {ActivatedRoute, Router} from '@angular/router';
+
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+
+import {Observable} from 'rxjs';
+import {PlayerService} from 'src/app/services/player.service';
+import {ISong} from '../../../interface/song';
+import {IUser} from '../../../interface/user';
+import {IPlaylist} from '../../../interface/playlist';
+import {PlaylistService} from '../../../services/playlist.service';
+import {ICmt} from '../../../interface/cmt';
+import {SongService} from '../../../services/song.service';
+import {CommentService} from '../../../services/comment.service';
+import {UserService} from '../../../services/user.service';
+
 
 @Component({
   selector: 'app-my-playlist',
@@ -27,6 +32,7 @@ export class MyPlaylistComponent implements OnInit {
   isLoading = false;
   isPlay: Observable<boolean>;
   songPlayed: ISong;
+  user: IUser;
   song: ISong = {
     name: '',
     description: '',
@@ -50,19 +56,18 @@ export class MyPlaylistComponent implements OnInit {
     playlist: {},
     user: {}
   };
+  commnetpls: ICmt[] = [];
+
   constructor(private route: ActivatedRoute,
-    private playlistService: PlaylistService,
-    private fb: FormBuilder,
-    private router: Router,
-    private songService: SongService,
-    private commentService: CommentService,
-    private playerService: PlayerService,
-    private userService: UserService) { }
+              private playlistService: PlaylistService,
+              private fb: FormBuilder,
+              private router: Router,
+              private songService: SongService,
+              private playerService: PlayerService,
+              private commentService: CommentService,
+              private userService: UserService) {
+  }
   ngOnInit() {
-    this.username = localStorage.getItem('username');
-    this.userService.getUserByUsername(this.username).subscribe(user => {
-      this.commentPost.user = user.data;
-    });
     this.playlistForm = this.fb.group({
       name: this.fb.control('', [Validators.required]),
       description: '',
@@ -73,8 +78,14 @@ export class MyPlaylistComponent implements OnInit {
         this.playlist = playlist.data;
         this.commentPost.playlist = this.playlist;
         this.playlistForm.controls.name.setValue(this.playlist.name);
+        this.commentService.getAllCmtPlaylist(idSearch).subscribe(comment => {
+          this.commnetpls = comment.data;
+          console.log(typeof (this.playlist.id));
+          console.log(comment.data);
+        });
       });
     });
+
     this.songService.getAllSong().subscribe(list => {
       this.songListAll = list.data;
     });
@@ -82,6 +93,7 @@ export class MyPlaylistComponent implements OnInit {
     this.cmtPlaylistForm = this.fb.group({
       content: this.fb.control('', [Validators.required]),
     });
+    this.userService.getUserByUsername(localStorage.getItem('username')).subscribe(user => this.user = user.data);
   }
   editName() {
     this.playlist.name = this.playlistForm.get('name').value;
@@ -118,10 +130,10 @@ export class MyPlaylistComponent implements OnInit {
     this.updateLocalStorage();
   }
   checkAdded(checkValue: number) {
-    let check: boolean;
+    let check;
     if (this.playlist.songs.length !== 0) {
-      for (const song of this.playlist.songs) {
-        if (checkValue === song.id) {
+      for (let i = 0; i < this.playlist.songs.length; i++) {
+        if (checkValue === this.playlist.songs[i].id) {
           check = false;
           break;
         } else {
@@ -148,14 +160,24 @@ export class MyPlaylistComponent implements OnInit {
 
   updateLocalStorage() {
     this.playerService.addPlayList(this.playlist.songs);
+    this.playerService.historyPlaylist(this.playlist);
   }
-
   onPost() {
-    this.commentPost.content = this.cmtPlaylistForm.get('content').value;
-    console.log(this.commentPost);
+    const cmtContent = this.cmtPlaylistForm.get('content').value;
+    this.commentPost.content = cmtContent;
+    this.commentPost.user = this.user;
     this.commentService.createCmtPlaylist(this.commentPost).subscribe(result => {
       console.log('success');
+      this.commnetpls.push(this.commentPost);
+      this.cmtPlaylistForm.reset();
     });
 
   }
+  nameConvert(name) {
+    const arr: string[] = name.split(' ');
+    let result = '';
+    arr.forEach(char => result += char.charAt(0).toUpperCase());
+    return result;
+  }
+
 }

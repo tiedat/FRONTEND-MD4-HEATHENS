@@ -1,0 +1,27 @@
+<table class="table">
+    <tbody>
+        <tr *ngFor="let song of songs; index as i">
+            <td class="d-flex">
+                <img [src]="song.image" alt="" width="50px" height="50px">
+                <div class="name-ctn">
+                    {{ song.name }}
+                </div>
+            </td>
+            <td>{{ song.initTime | date:'dd.MM.yyyy' }}</td>
+            <td>
+                <div class="dropdown d-flex flex-row-reverse">
+                    <a class="tool-btn" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

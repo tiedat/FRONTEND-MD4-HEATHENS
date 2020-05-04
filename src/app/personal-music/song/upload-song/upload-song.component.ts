@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
-import { SongService } from '../../../services/song.service';
+import {Component, OnInit} from '@angular/core';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {SongService} from '../../../services/song.service';
 import * as firebase from 'firebase';
-import { finalize } from 'rxjs/operators';
-import { ISong } from '../../../interface/song';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { IUser } from '../../../interface/user';
-import { UserService } from '../../../services/user.service';
+import {finalize} from 'rxjs/operators';
+import {ISong} from '../../../interface/song';
+import {AngularFireStorage} from '@angular/fire/storage';
+import {IUser} from '../../../interface/user';
+import {DataService} from '../../../services/data.service';
+import {UserService} from '../../../services/user.service';
+
 @Component({
   selector: 'app-upload-song',
   templateUrl: './upload-song.component.html',

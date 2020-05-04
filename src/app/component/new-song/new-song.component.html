@@ -1,0 +1,40 @@
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="../../../assets/banner/new-song.png" class="d-block w-100" alt="...">
+        </div>
+    </div>
+</div>
+<button type="button" class="btn btn-primary play-all" (click)="playMusic(songs)"><i class="fas fa-play"></i> Nghe tất
+    cả</button>
+<div class="dropdown-divider"></div>
+
+<table class="table">
+    <tbody>
+        <tr *ngFor="let song of songs; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td class="d-flex">
+                <img [src]="song.image" alt="" width="50px" height="50px">
+                <div class="name-ctn">
+                    {{ song.name}}
+                    <span>{{ 'by ' + username }}</span>
+                </div>
+            </td>
+            <td>{{ song.initTime | customDate }}</td>
+            <td>
+                <div class="dropdown d-flex flex-row-reverse">
+                    <a class="tool-btn" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

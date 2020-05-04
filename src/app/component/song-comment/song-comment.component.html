@@ -1,0 +1,34 @@
+<div class="modal-header">
+    <h4 class="modal-title">Bình luận</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="container-fluid">
+        <form [formGroup]="commentForm" (submit)="submit()">
+            <div class="input-group mb-3">
+                <input type="text" formControlName="content" class="form-control"
+                    placeholder="Hãy để lại bình luận tại đây">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Bình luận</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="container-fluid">
+        <ul class="list-unstyled">
+            <li class="media mb-3" *ngFor="let comment of songComments">
+                <div class="user-img mr-3">
+                    {{ nameConvert(comment.user.username) }}
+                </div>
+                <div class="media-body">
+                    <h5 class="mt-0 mb-1"> {{ comment.user.fullName }} </h5>
+                    {{ comment.content }}
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,4 +1,4 @@
 export interface ITag {
-    id?: number;
-    nameTag?: string;
-  }
+  id?: number;
+  nameTag?: string;
+}

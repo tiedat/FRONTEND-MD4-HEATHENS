@@ -1,0 +1,11 @@
+
+.btn:active,
+.btn:focus {
+    outline: none;
+    box-shadow: none;
+    background: #ccc;
+}
+
+.button {
+    border: 1px solid #ccc;
+}

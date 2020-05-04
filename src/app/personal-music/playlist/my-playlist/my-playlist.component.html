@@ -6,9 +6,6 @@
 <!--  </div>-->
 <!--</div>-->
 <h1>
-  <a>
-    <img [src]="playlist.image" height="180px" width="180px">
-  </a>
   <a (click)="playPlaylist()">
     <i role="button" class="far fa-play-circle"></i>
   </a>
@@ -65,7 +62,7 @@
     <tr>
       <th scope="col"></th>
       <th scope="col"></th>
-      <th scope="col"></th>
+      <th scope="col"> Bài hát hiện có</th>
       <th scope="col"></th>
       <th scope="col"></th>
     </tr>
@@ -90,6 +87,7 @@
     </tr>
   </tbody>
 </table>
+<h1>Bài hát gợi ý</h1>
 <table class="table table-dark">
   <thead class="">
     <tr>
@@ -120,10 +118,9 @@
     </tr>
   </tbody>
 </table>
-
-<div class="row">
+<div class="container-fluid">
   <form class="col-sm-12 form-group" (ngSubmit)="onPost()" [formGroup]="cmtPlaylistForm">
-    <label for="comments">
+    <label for="content">
       Comments:
     </label>
     <textarea class="form-control" type="textarea" name="content" id="content" placeholder="Your Comments"
@@ -134,4 +131,15 @@
       </div>
     </div>
   </form>
+  <ul class="list-unstyled">
+    <li class="media mb-3" *ngFor="let comment of commnetpls">
+      <div class="user-img mr-3">
+        {{ nameConvert(comment.user.fullName) }}
+      </div>
+      <div class="media-body">
+        <h5 class="mt-0 mb-1"> {{ comment.user.fullName }} </h5>
+        {{ comment.content }}
+      </div>
+    </li>
+  </ul>
 </div>
