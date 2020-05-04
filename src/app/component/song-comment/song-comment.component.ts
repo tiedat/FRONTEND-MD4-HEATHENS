@@ -29,7 +29,6 @@ export class SongCommentComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateFromDb();
-    console.log(this.nameConvert('Lê Thanh Hải'));
     this.commentForm = this.fb.group({
       content: ''
     });
@@ -43,7 +42,7 @@ export class SongCommentComponent implements OnInit {
     this.comment.song = this.song;
     this.comment.user = this.user;
     console.log(this.comment);
-    this.commentService.createCmtSong(this.comment).subscribe();
+    this.commentService.createCmtSong(this.comment).subscribe(success => this.songComments.push(this.comment));
     this.updateFromDb();
   }
 

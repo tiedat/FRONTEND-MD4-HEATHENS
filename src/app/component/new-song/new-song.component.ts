@@ -26,8 +26,8 @@ export class NewSongComponent implements OnInit {
     this.isPlay = this.playerService.isPlay$;
   }
 
-  playMusic() {
-    this.playerService.addPlayList(this.songs);
+  playMusic(songs: ISong[]) {
+    this.playerService.addPlayList(songs);
     this.playerService.changePlayStatus(true);
   }
 

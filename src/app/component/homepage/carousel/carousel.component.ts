@@ -1,6 +1,7 @@
 import { IPlaylist } from './../../../interface/playlist';
 import { PlayerService } from 'src/app/services/player.service';
 import { Component, OnInit, Input } from '@angular/core';
+import { ISong } from 'src/app/interface/song';
 
 @Component({
   selector: 'app-carousel',
@@ -21,9 +22,17 @@ export class CarouselComponent implements OnInit {
     "autoplaySpeed": 5000,
   };
 
-  constructor() { }
+  constructor(private playerService: PlayerService) { }
 
   ngOnInit(): void {
+    console.log(this.obj);
+  }
+
+  playPlaylist(playlist: IPlaylist) {
+    if (playlist.songs.length > 0) {
+      this.playerService.addPlayList(playlist.songs);
+      this.playerService.changePlayStatus(true);
+    }
   }
 
 }

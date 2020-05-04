@@ -27,7 +27,7 @@
             </a>
         </div>
         <div *ngFor="let item of obj; index as i" class="d-flex justify-content-between">
-            <div class="card ml-2" style="width: 12rem;">
+            <div class="card ml-2" style="width: 12rem;" (click)="playPlaylist(item)">
                 <img [src]="item.image" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{ item.name }}</h5>

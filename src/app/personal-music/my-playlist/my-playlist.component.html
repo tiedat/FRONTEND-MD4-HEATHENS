@@ -117,7 +117,7 @@
     </tr>
   </tbody>
 </table>
-<div class="row">
+<div class="container-fluid">
   <form class="col-sm-12 form-group" (ngSubmit)="onPost()" [formGroup]="cmtPlaylistForm">
     <label for="comments">
       Comments:
@@ -130,5 +130,16 @@
       </div>
     </div>
   </form>
+  <ul class="list-unstyled">
+    <li class="media mb-3" *ngFor="let comment of commnetpls">
+      <div class="user-img mr-3">
+        {{ nameConvert(comment.user.fullName) }}
+      </div>
+      <div class="media-body">
+        <h5 class="mt-0 mb-1"> {{ comment.user.fullName }} </h5>
+        {{ comment.content }}
+      </div>
+    </li>
+  </ul>
 </div>
 <!-- <app-mini-personal-player *ngIf="isPlayMusic" [songPlayed]="songPlayed" (changeSongs)="nextSong()"></app-mini-personal-player> -->

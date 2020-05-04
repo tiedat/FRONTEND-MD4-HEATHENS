@@ -51,6 +51,7 @@ export class MyPlaylistComponent implements OnInit {
     playlist: {},
     user: {}
   };
+  commnetpls: ICmt[] = [];
   constructor(private route: ActivatedRoute,
     private playlistService: PlaylistService,
     private fb: FormBuilder,
@@ -70,8 +71,14 @@ export class MyPlaylistComponent implements OnInit {
         this.playlist = playlist.data;
         this.commentPost.playlist = this.playlist;
         this.playlistForm.controls.name.setValue(this.playlist.name);
+        this.commentService.getAllCmtPlaylist(idSearch).subscribe(comment => {
+          this.commnetpls = comment.data;
+          console.log(typeof (this.playlist.id));
+          console.log(comment.data);
+        });
       });
     });
+
     this.songService.getAllSong().subscribe(list => {
       this.songListAll = list.data;
     });
@@ -154,7 +161,16 @@ export class MyPlaylistComponent implements OnInit {
     this.commentPost.user = this.user;
     this.commentService.createCmtPlaylist(this.commentPost).subscribe(result => {
       console.log('success');
+      this.commnetpls.push(this.commentPost);
+      this.cmtPlaylistForm.reset();
     });
 
   }
+  nameConvert(name) {
+    const arr: String[] = name.split(' ');
+    let result = '';
+    arr.forEach(char => result += char.charAt(0).toUpperCase());
+    return result;
+  }
+
 }

@@ -22,7 +22,7 @@
         <ul class="list-unstyled">
             <li class="media mb-3" *ngFor="let comment of songComments">
                 <div class="user-img mr-3">
-                    {{ nameConvert(comment.user.fullName) }}
+                    {{ nameConvert(comment.user.username) }}
                 </div>
                 <div class="media-body">
                     <h5 class="mt-0 mb-1"> {{ comment.user.fullName }} </h5>

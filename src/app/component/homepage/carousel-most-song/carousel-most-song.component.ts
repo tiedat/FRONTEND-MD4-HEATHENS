@@ -15,7 +15,8 @@ export class CarouselMostSongComponent implements OnInit {
   blankSong: ISong = {};
 
   constructor(
-    private songService: SongService
+    private songService: SongService,
+    private playerService: PlayerService
   ) { }
 
   ngOnInit(): void {
@@ -24,6 +25,11 @@ export class CarouselMostSongComponent implements OnInit {
         console.log(error);
       });
     console.log(this.songs);
+  }
+
+  playMusic(song: ISong) {
+    this.playerService.addSong(song);
+    this.playerService.changePlayStatus(true);
   }
 
   slideConfig = {

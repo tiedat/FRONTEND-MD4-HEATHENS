@@ -1,3 +1,4 @@
+import { PlayerService } from 'src/app/services/player.service';
 import { ISong } from './../../../interface/song';
 import { SongService } from './../../../services/song.service';
 import { Component, OnInit } from '@angular/core';
@@ -21,7 +22,8 @@ export class CarouselNewSongComponent implements OnInit {
   songs: ISong[];
 
   constructor(
-    private songService: SongService
+    private songService: SongService,
+    private playerService: PlayerService
   ) { }
 
   ngOnInit(): void {
@@ -29,5 +31,8 @@ export class CarouselNewSongComponent implements OnInit {
   }
 
 
-
+  playMusic(song: ISong) {
+    this.playerService.addSong(song);
+    this.playerService.changePlayStatus(true);
+  }
 }

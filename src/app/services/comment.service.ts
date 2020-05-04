@@ -8,7 +8,7 @@ import { ICmt } from '../interface/cmt';
 })
 export class CommentService {
   private readonly API_URL = 'http://localhost:5000/api/cmtsong/';
-  private readonly API_URL1 = 'http://localhost:5000/api/cmtpls/';
+  private readonly API_URL1 = 'http://localhost:5000/api/cmtpls';
 
 
   constructor(private httpClient: HttpClient) {
@@ -16,6 +16,7 @@ export class CommentService {
 
   /* ---------------- GET ALL CMTPLAYLIST  ------------------------ */
   public getAllCmtPlaylist(idPlaylist: number): Observable<any> {
+    console.log(idPlaylist)
     return this.httpClient.get(this.API_URL1 + '?idPlaylist=' + idPlaylist);
   }
 

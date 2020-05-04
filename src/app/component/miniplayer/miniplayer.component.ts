@@ -1,3 +1,5 @@
+import { Routes, Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentiation.service';
 import { SongCommentComponent } from './../song-comment/song-comment.component';
 import { PlayerService } from 'src/app/services/player.service';
 import { Observable } from 'rxjs';
@@ -8,6 +10,8 @@ import { UserService } from '../../services/user.service';
 import { PlaylistService } from '../../services/playlist.service';
 import { IPlaylist } from '../../interface/playlist';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { isBuffer } from 'util';
+import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-miniplayer',
@@ -31,7 +35,9 @@ export class MiniplayerComponent implements OnInit {
     private playerService: PlayerService,
     private userService: UserService,
     private playlistService: PlaylistService,
-    private modalService: NgbModal) {
+    private modalService: NgbModal,
+    private authService: AuthenticationService,
+    private route: Router) {
   }
 
   ngOnInit(): void {
@@ -53,8 +59,12 @@ export class MiniplayerComponent implements OnInit {
   }
 
   open(song: ISong) {
-    const modal = this.modalService.open(SongCommentComponent, { size: 'lg', scrollable: true });
-    modal.componentInstance.song = song;
+    if (this.authService.isUserLoggedIn()) {
+      const modal = this.modalService.open(SongCommentComponent, { size: 'lg', scrollable: true });
+      modal.componentInstance.song = song;
+    } else {
+      this.route.navigate(['/login']);
+    }
   }
 
   shuffleList() {
@@ -97,14 +107,14 @@ export class MiniplayerComponent implements OnInit {
   backSong() {
     if (this.songIndex > 0) {
       this.songIndex--;
-      this.currentSong = this.songIndex[this.songIndex];
+      this.currentSong = this.songList[this.songIndex];
     }
   }
 
   forwardSong() {
     if (this.songIndex < this.length - 1) {
       this.songIndex++;
-      this.currentSong = this.songIndex[this.songIndex];
+      this.currentSong = this.songList[this.songIndex];
     }
   }
 
