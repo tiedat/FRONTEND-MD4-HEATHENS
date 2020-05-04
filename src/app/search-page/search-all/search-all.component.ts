@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {SongService} from '../../services/song.service';
+import {ISong} from '../../interface/song';
+import {PlayerService} from '../../services/player.service';
 
 @Component({
   selector: 'app-search-all',
@@ -14,7 +16,8 @@ export class SearchAllComponent implements OnInit {
   @Output() changeSongs: EventEmitter<any> = new EventEmitter();
   @Output() changePlaylist: EventEmitter<any> = new EventEmitter();
   constructor(private route: ActivatedRoute,
-              private songService: SongService) { }
+              private songService: SongService,
+              private playerService: PlayerService,) { }
 
   ngOnInit() {
     // this.route.paramMap.subscribe(params => {
@@ -31,5 +34,9 @@ export class SearchAllComponent implements OnInit {
   }
   showPlaylist() {
     this.changePlaylist.emit();
+  }
+  playMusic(song: ISong) {
+    this.playerService.addSong(song);
+    this.playerService.changePlayStatus(true);
   }
 }

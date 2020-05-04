@@ -1,15 +1,12 @@
 <div class="title-text" (click)="showSongs()"> Bài hát ></div>
 <table class="table table-dark">
   <tbody class="table-hover" *ngFor="let song of songList, index as i">
-  <tr *ngIf="i<3">
+  <tr *ngIf="i<3" (click)="playMusic(song)">
+    <td >
+      <img [src]="song.image" style="width: 50px" height="50px">
+    </td>
     <td>
       {{song.name}}
-    </td>
-    <td>
-      <img [src]="song.image" style="width: 100px" height="100px">
-    </td>
-    <td >
-      <audio controls [src]="song.fileMp3" ></audio>
     </td>
   </tr>
   <button *ngIf="i>2" (click)="showSongs()">Xem tất cả</button>
@@ -41,11 +38,6 @@
         <div class="card-info ">
           <div class="title">
             <a title="" routerLink="{{playlist.id}}">{{playlist.name}}</a>
-          </div>
-          <div class="artist">
-          </div>
-          <div class="artist" style="line-height: normal;">
-            <span style="color: rgb(160, 160, 160); font-size: 12px;">Tạo bởi {{playlist.user.username}}</span>
           </div>
         </div>
       </div>

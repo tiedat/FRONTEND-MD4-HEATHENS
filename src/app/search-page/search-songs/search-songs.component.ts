@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {SongService} from '../../services/song.service';
+import {PlayerService} from '../../services/player.service';
+import {ISong} from '../../interface/song';
 
 @Component({
   selector: 'app-search-songs',
@@ -12,7 +14,8 @@ export class SearchSongsComponent implements OnInit {
   searchValue;
   // songList: any[];
   constructor(private route: ActivatedRoute,
-              private songService: SongService) { }
+              private songService: SongService,
+              private playerService: PlayerService) { }
 
   ngOnInit() {
     // this.route.paramMap.subscribe(params => {
@@ -24,5 +27,8 @@ export class SearchSongsComponent implements OnInit {
     //   });
     // });
   }
-
+  playMusic(song: ISong) {
+    this.playerService.addSong(song);
+    this.playerService.changePlayStatus(true);
+  }
 }

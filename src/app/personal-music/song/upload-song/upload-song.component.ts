@@ -38,7 +38,7 @@ export class UploadSongComponent implements OnInit {
     fileMp3: '',
     image: '',
     numberOfPlays: 0,
-    // tags: [{}],
+    tags: [{}],
     user: {}
   };
 
@@ -63,9 +63,9 @@ export class UploadSongComponent implements OnInit {
       fileMp3: '',
       image: '',
       numberOfPlays: 0,
-      // tags: this.fb.array([])
+      tags: this.fb.array([])
     });
-    // this.addTag();
+    this.addTag();
   }
 
   NgSubmit() {
