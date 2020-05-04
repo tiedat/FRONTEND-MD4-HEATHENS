@@ -9,8 +9,8 @@
         </div>
     </div>
     <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
-        <div ngxSlickItem *ngFor="let song of songs; index as i" class="slide d-flex justify-content-around">
-            <div *ngIf="i !== songs.length-1; elseBlock" class="d-flex card-wrap">
+        <div ngxSlickItem *ngFor="let song of songs; index as i" class="slide d-flex justify-content-around" (click)="playSong(song)" >
+            <div *ngIf="i !== songs.length-1; elseBlock" class="d-flex card-wrap" >
                 <div class="mr-3">
                     <img [src]="song.image" alt="..." width="130px" heiht="130px">
                 </div>

@@ -15,6 +15,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./miniplayer.component.scss']
 })
 export class MiniplayerComponent implements OnInit {
+  message: string;
+  isShow = false;
+  isSuccess = true;
   player: Observable<ISong[]>;
   currentSong: ISong;
   songList: ISong[];
@@ -81,30 +84,28 @@ export class MiniplayerComponent implements OnInit {
     if (this.isRepeatOne) {
       console.log(this.songIndex);
       this.currentSong = this.songList[this.songIndex];
-    } else
-      if (this.songIndex < this.length - 1) {
+    } else if (this.songIndex < this.length - 1) {
         this.songIndex++;
         this.currentSong = this.songList[this.songIndex];
-      } else {
-        if (this.isRepeat) {
-          this.songIndex = 0;
-          this.currentSong = this.songList[0];
-        }
-      }
+    } else  if (this.isRepeat) {
+        this.songIndex = 0;
+        this.currentSong = this.songList[0];
+    } else if (this.songIndex === this.length - 1) {
+      this.currentSong = this.songList[this.songIndex];
+    }
   }
-
 
   backSong() {
     if (this.songIndex > 0) {
       this.songIndex--;
-      this.currentSong = this.songIndex[this.songIndex];
+      this.currentSong = this.songList[this.songIndex];
     }
   }
 
   forwardSong() {
     if (this.songIndex < this.length - 1) {
       this.songIndex++;
-      this.currentSong = this.songIndex[this.songIndex];
+      this.currentSong = this.songList[this.songIndex];
     }
   }
 
@@ -119,11 +120,28 @@ export class MiniplayerComponent implements OnInit {
     return a;
   }
   addSongToPlaylist(object: IPlaylist) {
-    object.songs.push(this.currentSong);
-    this.playlistService.updatePlaylist(object).subscribe();
-    this.updateLocalStorage();
-    this.playerService.addPlayList(object.songs);
-    this.playerService.historyPlaylist(object);
+    let check = false;
+    if (object.songs.length !== 0) {
+      for (let i = 0; i < object.songs.length; i++) {
+        if (object.songs[i].id === this.currentSong.id) {
+          check = false;
+          alert('Bài hát đã có trong playlist');
+          break;
+        } else {
+          check = true;
+        }
+      }
+    } else {
+      check = true;
+    }
+    if (check) {
+      alert('Bài hát được thêm vào ' + object.name);
+      object.songs.push(this.currentSong);
+      this.playlistService.updatePlaylist(object).subscribe();
+      this.updateLocalStorage();
+      this.playerService.addPlayList(object.songs);
+      this.playerService.historyPlaylist(object);
+    }
   }
   updateLocalStorage() {
     this.playerService.addPlayList(this.playlist.songs);

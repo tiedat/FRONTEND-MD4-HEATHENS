@@ -9,13 +9,14 @@ import { ISong } from 'src/app/interface/song';
   styleUrls: ['./carousel-most-song.component.scss']
 })
 export class CarouselMostSongComponent implements OnInit {
-
+  song: ISong;
   songs: ISong[] = [];
   carousel_title = 'Bài hát được nghe nhiều nhất';
   blankSong: ISong = {};
 
   constructor(
-    private songService: SongService
+    private songService: SongService,
+    private playerService: PlayerService
   ) { }
 
   ngOnInit(): void {
@@ -34,4 +35,8 @@ export class CarouselMostSongComponent implements OnInit {
     "arrows": false,
     "autoplaySpeed": 5000,
   };
+  playSong(song) {
+    this.playerService.addSong(song);
+    this.playerService.changePlayStatus(true);
+  }
 }
